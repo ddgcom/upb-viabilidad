@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPB - Plataforma de Gestión LNCE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">UPB</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-link">Inicio</a>
+                <a href="#" class="nav-link">Noticias</a>
+                <a href="#" class="nav-link">Contacto</a>
+                <a href="#" class="nav-link">Gestión</a>
+                <a href="#" class="nav-link">Monitoreo</a>
+            </nav>
+            <div class="user-section">
+                <span class="username">diego</span>
+                <button class="btn-salir">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Tabs de navegación principal -->
+        <div class="main-tabs">
+            <button class="main-tab" data-tab="registro">
+                Registra tu comunidad <span class="check-icon">✓</span>
+            </button>
+            <button class="main-tab" data-tab="caracterizacion-inicial">
+                Caracterización inicial
+            </button>
+            <button class="main-tab" data-tab="caracterizacion-detallada">
+                Caracterización detallada
+            </button>
+            <button class="main-tab" data-tab="calculo-potencial">
+                Cálculo de potencial energético
+            </button>
+            <button class="main-tab active" data-tab="viabilidad">
+                Viabilidad
+            </button>
+        </div>
+
+        <!-- Contenido de Caracterización Inicial -->
+        <div id="caracterizacion-inicial" class="tab-content">
+            <div class="step-tabs">
+                <button class="step-tab active" data-step="1">Paso 1: Información de población</button>
+                <button class="step-tab" data-step="2">Paso 2: Conectividad y acceso</button>
+                <button class="step-tab" data-step="3">Paso 3: Información ambiental</button>
+                <button class="step-tab" data-step="4">Paso 4: Conectividad digital</button>
+                <button class="step-tab" data-step="5">Paso 5: Modelo de gobernanza</button>
+                <button class="step-tab" data-step="6">Paso 6: Intereses comunitarios</button>
+                <button class="step-tab" data-step="7">Paso 7: Roles comunitarios</button>
+                <button class="step-tab" data-step="8">Paso 8: Demanda energética</button>
+            </div>
+
+            <div id="step-1" class="step-content active">
+                <h2 class="section-title">Información de la población</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Su comunidad incluye población bajo protección constitucional especial? Puede seleccionar más de una opción (respuesta múltiple).</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="victimas">
+                            <span class="checkbox-label">Víctimas del conflicto armado</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="sujetos-reparacion">
+                            <span class="checkbox-label">Sujetos de reparación colectiva</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="reintegracion">
+                            <span class="checkbox-label">Personas en reintegración (firmantes de paz)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="comunidades-etnicas">
+                            <span class="checkbox-label">Comunidades étnicas</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="rural">
+                            <span class="checkbox-label">Población rural</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="mayores">
+                            <span class="checkbox-label">Personas mayores (60+)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="discapacidad">
+                            <span class="checkbox-label">Personas con discapacidad</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="gestantes">
+                            <span class="checkbox-label">Mujeres gestantes o lactantes</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="lgbtiq">
+                            <span class="checkbox-label">Población LGBTIQ+</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="calle">
+                            <span class="checkbox-label">Personas en situación de calle</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="migrantes">
+                            <span class="checkbox-label">Migrantes o refugiados</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="poblacion" value="estratos">
+                            <span class="checkbox-label">Estratos socioeconómicos 1, 2 o 3</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" disabled>Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(2)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step-content">
+                <h2 class="section-title">Conectividad y acceso</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Cuál es el tipo de acceso principal a su comunidad?</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="acceso" value="carretera-pavimentada">
+                            <span class="radio-label">Carretera pavimentada</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="acceso" value="carretera-destapada">
+                            <span class="radio-label">Carretera destapada</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="acceso" value="camino-herradura">
+                            <span class="radio-label">Camino de herradura</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="acceso" value="fluvial">
+                            <span class="radio-label">Acceso fluvial</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="acceso" value="aereo">
+                            <span class="radio-label">Solo acceso aéreo</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(1)">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(3)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content">
+                <h2 class="section-title">Información ambiental</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Qué recursos naturales están disponibles en su comunidad? (Selección múltiple)</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="recursos" value="rios">
+                            <span class="checkbox-label">Ríos o quebradas</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="recursos" value="sol">
+                            <span class="checkbox-label">Alta radiación solar</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="recursos" value="viento">
+                            <span class="checkbox-label">Vientos constantes</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="recursos" value="biomasa">
+                            <span class="checkbox-label">Biomasa disponible</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(2)">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(4)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="step-content">
+                <h2 class="section-title">Conectividad digital</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Qué tipo de conectividad digital tiene su comunidad?</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conectividad" value="internet-fijo">
+                            <span class="checkbox-label">Internet fijo</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conectividad" value="internet-movil">
+                            <span class="checkbox-label">Internet móvil (datos)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conectividad" value="telefonia">
+                            <span class="checkbox-label">Telefonía celular</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conectividad" value="ninguna">
+                            <span class="checkbox-label">Sin conectividad</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(3)">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(5)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-5" class="step-content">
+                <h2 class="section-title">Modelo de gobernanza</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Bajo cuál figura legal operará o planea operar la comunidad energética?</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="gobernanza" value="cooperativa">
+                            <span class="radio-label">Cooperativa</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="gobernanza" value="asociacion">
+                            <span class="radio-label">Asociación</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="gobernanza" value="fundacion">
+                            <span class="radio-label">Fundación sin ánimo de lucro</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="gobernanza" value="sas">
+                            <span class="radio-label">Sociedad por Acciones Simplificada (SAS)</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="gobernanza" value="no-definido">
+                            <span class="radio-label">Aún no está definido</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(4)">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(6)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-6" class="step-content">
+                <h2 class="section-title">Intereses comunitarios</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Cuáles son las principales motivaciones de la comunidad para conformar una comunidad energética?</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="motivaciones" value="reducir-costos">
+                            <span class="checkbox-label">Reducir costos de energía</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="motivaciones" value="confiabilidad">
+                            <span class="checkbox-label">Mejorar la confiabilidad del servicio</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="motivaciones" value="autonomia">
+                            <span class="checkbox-label">Incrementar la autonomía energética</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="motivaciones" value="renovables">
+                            <span class="checkbox-label">Usar recursos renovables locales</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(5)">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(7)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-7" class="step-content">
+                <h2 class="section-title">Roles comunitarios</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">Seleccione cuáles conocimientos tienen las personas de su comunidad</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conocimientos" value="electricidad">
+                            <span class="checkbox-label">Electricidad</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conocimientos" value="energias-renovables">
+                            <span class="checkbox-label">Energías renovables</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conocimientos" value="gestion">
+                            <span class="checkbox-label">Gestión y finanzas</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="conocimientos" value="legal">
+                            <span class="checkbox-label">Asesoría legal</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(6)">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextStep(8)">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="step-8" class="step-content">
+                <h2 class="section-title">Demanda energética</h2>
+                <div class="question-section">
+                    <div class="question-header">
+                        <p class="question-text">¿Cuál es el consumo energético mensual aproximado de su comunidad?</p>
+                        <button class="info-btn" title="Información adicional">ℹ️</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="consumo">Consumo mensual (kWh)</label>
+                        <input type="number" id="consumo" name="consumo" placeholder="Ej: 500">
+                    </div>
+                    <div class="form-group">
+                        <label for="viviendas">Número de viviendas en la comunidad</label>
+                        <input type="number" id="viviendas" name="viviendas" placeholder="Ej: 50">
+                    </div>
+                    <div class="form-group">
+                        <label for="establecimientos">Número de establecimientos</label>
+                        <input type="number" id="establecimientos" name="establecimientos" placeholder="Ej: 10">
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep(7)">Anterior</button>
+                    <button class="btn btn-primary" onclick="finishCharacterization()">Finalizar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido de Registro -->
+        <div id="registro" class="tab-content">
+            <h2 class="section-title">Registra tu comunidad</h2>
+            <p>Contenido del registro de comunidad...</p>
+        </div>
+
+        <!-- Contenido de Caracterización Detallada -->
+        <div id="caracterizacion-detallada" class="tab-content">
+            <h2 class="section-title">Caracterización detallada</h2>
+            <p>Contenido de caracterización detallada...</p>
+        </div>
+
+        <!-- Contenido de Cálculo de Potencial -->
+        <div id="calculo-potencial" class="tab-content">
+            <h2 class="section-title">Cálculo de potencial energético</h2>
+            <p>Contenido del cálculo de potencial energético...</p>
+        </div>
+
+        <!-- Contenido de Viabilidad -->
+        <div id="viabilidad" class="tab-content active">
+            <!-- Sub-tabs para tipos de viabilidad -->
+            <div class="viability-main-tabs">
+                <button class="viability-main-tab active" data-viability="social">1. Social</button>
+                <button class="viability-main-tab" data-viability="tecnica">2. Técnica</button>
+                <button class="viability-main-tab" data-viability="energetica">3. Energética</button>
+                <button class="viability-main-tab" data-viability="ambiental">4. Ambiental</button>
+                <button class="viability-main-tab" data-viability="juridica">5. Jurídica</button>
+                <button class="viability-main-tab" data-viability="financiera">6. Financiera</button>
+                <button class="viability-main-tab" data-viability="institucional">7. Institucional</button>
+                <button class="viability-main-tab" data-viability="integral">Resumen</button>
+            </div>
+
+            <!-- 1. VIABILIDAD SOCIAL -->
+            <div id="social" class="viability-content active">
+                <h3 class="section-subtitle">1. Viabilidad Social</h3>
+
+                <!-- soc_01: Nombre de la comunidad energética -->
+                <div class="question-section">
+                    <label class="form-label">Nombre de la comunidad energética</label>
+                    <input type="text" name="soc_01" class="form-control" placeholder="Ej: Comunidad Energética La Esperanza">
+                </div>
+
+                <!-- soc_02: Ubicación -->
+                <div class="question-section">
+                    <label class="form-label">Ubicación</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <input type="text" name="soc_02_departamento" class="form-control" placeholder="Ej: Antioquia">
+                        </div>
+                        <div class="form-group">
+                            <label>Municipio</label>
+                            <input type="text" name="soc_02_municipio" class="form-control" placeholder="Ej: Medellín">
+                        </div>
+                        <div class="form-group">
+                            <label>Barrio/Vereda/Resguardo</label>
+                            <input type="text" name="soc_02_barrio" class="form-control" placeholder="Ej: Vereda El Carmen">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- soc_03: Tipo de población -->
+                <div class="question-section">
+                    <label class="form-label">Tipo de población</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="soc_03" value="ordinario">
+                            <span class="radio-label">Ordinario</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="soc_03" value="institucional">
+                            <span class="radio-label">Institucional</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="soc_03" value="social">
+                            <span class="radio-label">Social</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- soc_04: Datos demográficos -->
+                <div class="question-section">
+                    <label class="form-label">Datos demográficos detallados</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Habitantes</label>
+                            <input type="number" name="soc_04_habitantes" class="form-control" placeholder="Ej: 500">
+                        </div>
+                        <div class="form-group">
+                            <label>Viviendas</label>
+                            <input type="number" name="soc_04_viviendas" class="form-control" placeholder="Ej: 120">
+                        </div>
+                        <div class="form-group">
+                            <label>Niños (0-12)</label>
+                            <input type="number" name="soc_04_ninos" class="form-control" placeholder="Ej: 80">
+                        </div>
+                        <div class="form-group">
+                            <label>Jóvenes (13-25)</label>
+                            <input type="number" name="soc_04_jovenes" class="form-control" placeholder="Ej: 100">
+                        </div>
+                        <div class="form-group">
+                            <label>Adultos (26+)</label>
+                            <input type="number" name="soc_04_adultos" class="form-control" placeholder="Ej: 320">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- soc_05: Lengua y organizaciones étnicas -->
+                <div class="question-section">
+                    <label class="form-label">Lengua predominante y presencia de organizaciones étnicas</label>
+                    <input type="text" name="soc_05" class="form-control" placeholder="Ej: Español, presencia de cabildo indígena">
+                </div>
+
+                <!-- soc_06: Motivaciones -->
+                <div class="question-section">
+                    <label class="form-label">Motivaciones: ¿Por qué quieren ser comunidad energética?</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="reducir-costos">
+                            <span class="checkbox-label">Reducir costos de energía</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="acceso-energia">
+                            <span class="checkbox-label">Acceder a energía por primera vez</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="confiabilidad">
+                            <span class="checkbox-label">Mejorar la confiabilidad del servicio</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="autonomia">
+                            <span class="checkbox-label">Incrementar la autonomía energética</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="renovables">
+                            <span class="checkbox-label">Usar recursos renovables locales</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="desarrollo-local">
+                            <span class="checkbox-label">Impulsar el desarrollo local</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="soc_06" value="medio-ambiente">
+                            <span class="checkbox-label">Proteger el medio ambiente</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" disabled>Anterior</button>
+                    <button class="btn btn-primary" onclick="switchViabilityTab('tecnica')">Siguiente: Viabilidad Técnica</button>
+                </div>
+            </div>
+
+            <!-- 2. VIABILIDAD TÉCNICA -->
+            <div id="tecnica" class="viability-content">
+                <h3 class="section-subtitle">2. Viabilidad Técnica</h3>
+
+                <!-- tec_01: Coordenadas GPS y Altitud -->
+                <div class="question-section">
+                    <label class="form-label">Coordenadas GPS y Altitud</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Latitud</label>
+                            <input type="text" name="tec_01_latitud" class="form-control" placeholder="Ej: 6.2442">
+                        </div>
+                        <div class="form-group">
+                            <label>Longitud</label>
+                            <input type="text" name="tec_01_longitud" class="form-control" placeholder="Ej: -75.5812">
+                        </div>
+                        <div class="form-group">
+                            <label>Altitud (msnm)</label>
+                            <input type="number" name="tec_01_altitud" class="form-control" placeholder="Ej: 1500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_02: Estado de conexión al SIN o ZNI -->
+                <div class="question-section">
+                    <label class="form-label">Estado de conexión al Sistema Interconectado Nacional (SIN) o Zona No Interconectada (ZNI)</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="tec_02" value="sin-conectado">
+                            <span class="radio-label">Conectado al SIN</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="tec_02" value="zni">
+                            <span class="radio-label">Zona No Interconectada (ZNI)</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="tec_02" value="sin-servicio">
+                            <span class="radio-label">Sin servicio eléctrico</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- tec_03: Consumo de energía -->
+                <div class="question-section">
+                    <label class="form-label">Consumo de energía</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Consumo mensual (kWh)</label>
+                            <input type="number" name="tec_03_kwh" class="form-control" placeholder="Ej: 500">
+                        </div>
+                        <div class="form-group">
+                            <label>Costo mensual ($)</label>
+                            <input type="number" name="tec_03_costo" class="form-control" placeholder="Ej: 150000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_04: Inventario de energéticos -->
+                <div class="question-section">
+                    <label class="form-label">Inventario de energéticos utilizados actualmente</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="lena">
+                            <span class="checkbox-label">Leña</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="gas-propano">
+                            <span class="checkbox-label">Gas propano (cilindro)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="gas-natural">
+                            <span class="checkbox-label">Gas natural</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="carbon">
+                            <span class="checkbox-label">Carbón</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="diesel">
+                            <span class="checkbox-label">Diésel/ACPM</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="gasolina">
+                            <span class="checkbox-label">Gasolina</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="velas">
+                            <span class="checkbox-label">Velas/Mecheros</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tec_04" value="baterias">
+                            <span class="checkbox-label">Baterías/Pilas</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- tec_05: Inventario de equipos -->
+                <div class="question-section">
+                    <label class="form-label">Inventario de equipos y maquinaria</label>
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Equipo</th>
+                                <th>Cantidad</th>
+                                <th>Potencia estimada (W)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Refrigeradores/Neveras</td>
+                                <td><input type="number" name="tec_05_refrigeradores_cant" class="form-control-sm"></td>
+                                <td><input type="number" name="tec_05_refrigeradores_pot" class="form-control-sm" placeholder="150"></td>
+                            </tr>
+                            <tr>
+                                <td>Iluminación (bombillos)</td>
+                                <td><input type="number" name="tec_05_iluminacion_cant" class="form-control-sm"></td>
+                                <td><input type="number" name="tec_05_iluminacion_pot" class="form-control-sm" placeholder="15"></td>
+                            </tr>
+                            <tr>
+                                <td>Televisores</td>
+                                <td><input type="number" name="tec_05_tv_cant" class="form-control-sm"></td>
+                                <td><input type="number" name="tec_05_tv_pot" class="form-control-sm" placeholder="100"></td>
+                            </tr>
+                            <tr>
+                                <td>Ventiladores</td>
+                                <td><input type="number" name="tec_05_ventiladores_cant" class="form-control-sm"></td>
+                                <td><input type="number" name="tec_05_ventiladores_pot" class="form-control-sm" placeholder="60"></td>
+                            </tr>
+                            <tr>
+                                <td>Motores/Bombas</td>
+                                <td><input type="number" name="tec_05_motores_cant" class="form-control-sm"></td>
+                                <td><input type="number" name="tec_05_motores_pot" class="form-control-sm" placeholder="750"></td>
+                            </tr>
+                            <tr>
+                                <td>Equipos de cómputo</td>
+                                <td><input type="number" name="tec_05_computo_cant" class="form-control-sm"></td>
+                                <td><input type="number" name="tec_05_computo_pot" class="form-control-sm" placeholder="200"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- tec_06: Potencial Solar -->
+                <div class="question-section">
+                    <label class="form-label">Potencial Solar: Área disponible para instalación de paneles</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Área disponible (m²)</label>
+                            <input type="number" name="tec_06_area" class="form-control" placeholder="Ej: 100">
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de superficie</label>
+                            <select name="tec_06_superficie" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="techo-concreto">Techo de concreto</option>
+                                <option value="techo-metal">Techo metálico</option>
+                                <option value="terreno">Terreno abierto</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_07: Potencial Eólico -->
+                <div class="question-section">
+                    <label class="form-label">Potencial Eólico</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Zona geográfica</label>
+                            <select name="tec_07_zona" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="costa">Zona costera</option>
+                                <option value="altiplano">Altiplano/Meseta</option>
+                                <option value="valle">Valle</option>
+                                <option value="montana">Montaña</option>
+                                <option value="selva">Selva/Bosque</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rugosidad del terreno</label>
+                            <select name="tec_07_rugosidad" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="baja">Baja (terreno plano, sin obstáculos)</option>
+                                <option value="media">Media (algunos árboles/edificios)</option>
+                                <option value="alta">Alta (muchos obstáculos, bosque denso)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_08: Potencial Biomasa - Animales -->
+                <div class="question-section">
+                    <label class="form-label">Potencial Biomasa: Cantidad de animales por especie</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Bovinos (vacas, toros)</label>
+                            <input type="number" name="tec_08_bovinos" class="form-control" placeholder="Ej: 50">
+                        </div>
+                        <div class="form-group">
+                            <label>Porcinos (cerdos)</label>
+                            <input type="number" name="tec_08_porcinos" class="form-control" placeholder="Ej: 30">
+                        </div>
+                        <div class="form-group">
+                            <label>Aves (gallinas, pollos)</label>
+                            <input type="number" name="tec_08_aves" class="form-control" placeholder="Ej: 200">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_09: Potencial Biomasa - Área pecuaria -->
+                <div class="question-section">
+                    <label class="form-label">Potencial Biomasa: Área pecuaria</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Área pecuaria (Hectáreas)</label>
+                            <input type="number" name="tec_09_area" class="form-control" placeholder="Ej: 10">
+                        </div>
+                        <div class="form-group">
+                            <label>Especie predominante</label>
+                            <select name="tec_09_especie" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="bovino">Bovino</option>
+                                <option value="porcino">Porcino</option>
+                                <option value="avicola">Avícola</option>
+                                <option value="mixto">Mixto</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_10: Potencial Hídrico -->
+                <div class="question-section">
+                    <label class="form-label">Potencial Hídrico</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Altura de caída disponible</label>
+                            <select name="tec_10_altura" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="baja">Baja (menos de 5 metros)</option>
+                                <option value="media">Media (5-20 metros)</option>
+                                <option value="alta">Alta (más de 20 metros)</option>
+                                <option value="no-disponible">No disponible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Caudal estimado</label>
+                            <select name="tec_10_caudal" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="bajo">Bajo (menos de 10 L/s)</option>
+                                <option value="medio">Medio (10-50 L/s)</option>
+                                <option value="alto">Alto (más de 50 L/s)</option>
+                                <option value="desconocido">Desconocido</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tec_11: Tipo de confinamiento -->
+                <div class="question-section">
+                    <label class="form-label">Tipo de confinamiento y recolección de residuos animales</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="tec_11" value="estabulado">
+                            <span class="radio-label">Estabulado (confinamiento total)</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="tec_11" value="semi-estabulado">
+                            <span class="radio-label">Semi-estabulado</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="tec_11" value="pastoreo">
+                            <span class="radio-label">Pastoreo libre</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="tec_11" value="no-aplica">
+                            <span class="radio-label">No aplica</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" onclick="switchViabilityTab('social')">Anterior</button>
+                    <button class="btn btn-primary" onclick="switchViabilityTab('energetica')">Siguiente: Viabilidad Energética</button>
+                </div>
+            </div>
+
+            <!-- 3. VIABILIDAD ENERGÉTICA -->
+            <div id="energetica" class="viability-content">
+                <div class="viability-steps">
+                    <button class="viability-step active" data-step="energia-1">Paso 1: Factor de Planta</button>
+                    <button class="viability-step" data-step="energia-2">Paso 2: Infraestructura</button>
+                    <button class="viability-step" data-step="energia-3">Paso 3: Experiencia y Mantenimiento</button>
+                    <button class="viability-step" data-step="energia-4">Paso 4: Conexión y Seguridad</button>
+                </div>
+
+                <!-- Paso 1: Cálculo de Factor de Planta -->
+                <div id="energia-1" class="viability-step-content active">
+                    <h3 class="section-subtitle">Cálculo de Factor de Planta</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Se tiene el cálculo de al menos un potencial energético?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_potencial_calculado" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_potencial_calculado" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                        <p class="form-hint" style="font-size: 12px; color: #e74c3c; margin-top: 5px; display: none;" id="hint_potencial">
+                            Por favor diríjase al módulo de potencial energético para calcular los potenciales que apliquen a su comunidad.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Para qué tecnología desea evaluar el factor de planta?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="energia_tecnologia" value="hidro">
+                                <span class="checkbox-label">Hidro</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="energia_tecnologia" value="solar">
+                                <span class="checkbox-label">Solar</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="energia_tecnologia" value="eolico">
+                                <span class="checkbox-label">Eólico</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="energia_tecnologia" value="biomasa">
+                                <span class="checkbox-label">Biomasa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuál es el factor de planta proyectado para la tecnología seleccionada?</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Factor de planta (%)</label>
+                                <input type="number" name="energia_factor_planta" class="form-control" placeholder="Ej: 20" min="0" max="100" step="0.1">
+                            </div>
+                        </div>
+                        <div class="scale-reference" style="font-size: 12px; color: #666; margin-top: 10px;">
+                            <p><strong>Referencia Solar:</strong> &lt;15% No recomendado | 15-20% Factible | 20-25% Bueno | &gt;25% Óptimo</p>
+                            <p><strong>Referencia Eólico:</strong> &lt;20% No recomendado | 20-30% Factible | 30-40% Bueno | &gt;40% Óptimo</p>
+                            <p><strong>Referencia Hidro:</strong> &lt;30% No recomendado | 30-50% Factible | 50-70% Bueno | &gt;70% Óptimo</p>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="switchViabilityTab('tecnica')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('energetica', 'energia-2')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Evaluación de Infraestructura -->
+                <div id="energia-2" class="viability-step-content">
+                    <h3 class="section-subtitle">Evaluación de Infraestructura</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Existen redes de distribución dentro de la comunidad?</label>
+                        <p style="font-size: 12px; color: #666; margin-bottom: 10px;">0: No existen | 5: Red completa y funcional</p>
+                        <div class="scale-group">
+                            <label class="scale-item">
+                                <input type="radio" name="energia_redes_distribucion" value="0">
+                                <span>0</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_redes_distribucion" value="1">
+                                <span>1</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_redes_distribucion" value="2">
+                                <span>2</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_redes_distribucion" value="3">
+                                <span>3</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_redes_distribucion" value="4">
+                                <span>4</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_redes_distribucion" value="5">
+                                <span>5</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con un espacio libre, estable y seguro para la instalación de equipos?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_espacio_disponible" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_espacio_disponible" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="energia_espacio_detalles">
+                        <label class="form-label">Detalles del espacio disponible</label>
+                        <div class="form-group">
+                            <label>¿En dónde se ubicaría la instalación?</label>
+                            <select name="energia_ubicacion_instalacion" class="form-control">
+                                <option value="">Seleccione...</option>
+                                <option value="edificio">Edificio existente</option>
+                                <option value="area-comun">Área común</option>
+                                <option value="terreno">Terreno cercano</option>
+                                <option value="techo">Techo de edificación</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>¿El suelo es compacto y no inundable?</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="energia_suelo_compacto" value="si">
+                                    <span class="radio-label">Sí</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="energia_suelo_compacto" value="no">
+                                    <span class="radio-label">No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>¿Las paredes/techo tienen integridad estructural adecuada?</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="energia_integridad_estructural" value="si">
+                                    <span class="radio-label">Sí</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="energia_integridad_estructural" value="no">
+                                    <span class="radio-label">No</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="energia_integridad_estructural" value="no-aplica">
+                                    <span class="radio-label">No aplica</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cómo está distribuida la demanda de energía en la comunidad?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_dispersion" value="concentrada">
+                                <span class="radio-label">Muy concentrada en pocos puntos</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_dispersion" value="media">
+                                <span class="radio-label">Medianamente distribuida</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_dispersion" value="dispersa">
+                                <span class="radio-label">Muy dispersa en toda la comunidad</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('energetica', 'energia-1')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('energetica', 'energia-3')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Experiencia y Mantenimiento -->
+                <div id="energia-3" class="viability-step-content">
+                    <h3 class="section-subtitle">Revisión de Mantenimiento y Experiencia</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">Seleccione el nivel de experiencia previa de la comunidad con sistemas energéticos:</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_experiencia_previa" value="0">
+                                <span class="radio-label">Sin experiencia previa</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_experiencia_previa" value="1">
+                                <span class="radio-label">Experiencias previas fallidas o abandono total</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_experiencia_previa" value="3">
+                                <span class="radio-label">Experiencia básica o indirecta</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_experiencia_previa" value="4">
+                                <span class="radio-label">Experiencia directa con buenos resultados en operación</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_experiencia_previa" value="5">
+                                <span class="radio-label">Experiencia sólida: la comunidad opera sistemas similares</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Selecciona el nivel de capacidad para realizar mantenimientos</label>
+                        <div class="scale-group">
+                            <label class="scale-item">
+                                <input type="radio" name="energia_mantenimiento" value="1">
+                                <span>1 - Muy bajo</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_mantenimiento" value="2">
+                                <span>2 - Bajo</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_mantenimiento" value="3">
+                                <span>3 - Medio</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_mantenimiento" value="4">
+                                <span>4 - Alto</span>
+                            </label>
+                            <label class="scale-item">
+                                <input type="radio" name="energia_mantenimiento" value="5">
+                                <span>5 - Muy alto</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('energetica', 'energia-2')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('energetica', 'energia-4')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Conexión y Seguridad -->
+                <div id="energia-4" class="viability-step-content">
+                    <h3 class="section-subtitle">Conexión a Red y Seguridad</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La capacidad instalada de la CE supera los 100 kW?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_capacidad_100" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_capacidad_100" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            Si supera 100 kW, se requiere contrato de conexión y registro de fronteras comerciales.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con certificado del operador de red o distribuidor?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_certificado_or" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_certificado_or" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_certificado_or" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con contrato de conexión con el operador de red?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_contrato_or" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_contrato_or" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_contrato_or" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con registro de fronteras comerciales?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="energia_fronteras_comerciales" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_fronteras_comerciales" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_fronteras_comerciales" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="energia_fronteras_comerciales" value="no-aplica">
+                                <span class="radio-label">No aplica (menor a 100 kW)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('energetica', 'energia-3')">Anterior</button>
+                        <button class="btn btn-primary" onclick="calculateViabilityEnergetic()">Calcular Viabilidad Energética</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. VIABILIDAD AMBIENTAL -->
+            <div id="ambiental" class="viability-content">
+                <div class="viability-steps">
+                    <button class="viability-step active" data-step="ambiental-1">Paso 1: Restricciones</button>
+                    <button class="viability-step" data-step="ambiental-2">Paso 2: Licenciamiento</button>
+                    <button class="viability-step" data-step="ambiental-3">Paso 3: Consulta Previa</button>
+                    <button class="viability-step" data-step="ambiental-4">Paso 4: Impactos y Huella</button>
+                </div>
+
+                <!-- Paso 1: Restricciones Ambientales -->
+                <div id="ambiental-1" class="viability-step-content active">
+                    <h3 class="section-subtitle">Restricciones Ambientales</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La comunidad o el proyecto se ubica en un área con restricción ambiental?</label>
+                        <p style="font-size: 12px; color: #e74c3c; margin-bottom: 10px;">
+                            <strong>Alerta:</strong> Si selecciona alguna zona protegida, se requiere validación de zonificación específica.
+                        </p>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="parque-nacional">
+                                <span class="checkbox-label">Parque Nacional Natural (PNN)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="reserva-sociedad">
+                                <span class="checkbox-label">Reserva Natural de la Sociedad Civil</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="ramsar">
+                                <span class="checkbox-label">Sitios Ramsar</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="paramo">
+                                <span class="checkbox-label">Páramo</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="humedal">
+                                <span class="checkbox-label">Humedal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="bosque-seco">
+                                <span class="checkbox-label">Bosque Seco</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="reserva-forestal">
+                                <span class="checkbox-label">Reserva Forestal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_restricciones" value="ninguno">
+                                <span class="checkbox-label">Ninguno de los anteriores</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Conoce si el POT/EOT/PBOT permite este tipo de proyecto en la zona?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_pot" value="si">
+                                <span class="radio-label">Sí, está permitido</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_pot" value="no">
+                                <span class="radio-label">No está permitido</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_pot" value="no-sabe">
+                                <span class="radio-label">No sabe / No se ha verificado</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="switchViabilityTab('energetica')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('ambiental', 'ambiental-2')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Licenciamiento Ambiental -->
+                <div id="ambiental-2" class="viability-step-content">
+                    <h3 class="section-subtitle">Licenciamiento Ambiental</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuál es la capacidad instalada de la solución energética?</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Capacidad (MW)</label>
+                                <input type="number" name="ambiental_capacidad_mw" class="form-control" placeholder="Ej: 0.5" step="0.01">
+                            </div>
+                        </div>
+                        <div class="info-box" style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                            <p><strong>Menor a 10 MW:</strong> Requiere Plan de Manejo Ambiental (PMA)</p>
+                            <p><strong>Mayor a 10 MW:</strong> Requiere Licencia Ambiental ante autoridad regional o ANLA</p>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿En qué estado se encuentra la gestión de la Licencia Ambiental o PMA?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_licencia_estado" value="otorgada">
+                                <span class="radio-label">Ya ha sido otorgada</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_licencia_estado" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_licencia_estado" value="planeacion">
+                                <span class="radio-label">En planeación</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_licencia_estado" value="no-planificado">
+                                <span class="radio-label">No se ha evaluado / planificado</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con los permisos menores requeridos?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_permisos_menores" value="ocupacion-cauces">
+                                <span class="checkbox-label">Permiso de ocupación de cauces</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_permisos_menores" value="vertimientos">
+                                <span class="checkbox-label">Permiso de vertimientos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_permisos_menores" value="aprovechamiento-forestal">
+                                <span class="checkbox-label">Permiso de aprovechamiento forestal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_permisos_menores" value="concesion-aguas">
+                                <span class="checkbox-label">Concesión de aguas</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_permisos_menores" value="no-aplica">
+                                <span class="checkbox-label">No aplica / No se requieren</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('ambiental', 'ambiental-1')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('ambiental', 'ambiental-3')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Consulta Previa -->
+                <div id="ambiental-3" class="viability-step-content">
+                    <h3 class="section-subtitle">Consulta Previa y Comunidades Étnicas</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Hay presencia de comunidades étnicas o patrimonio cultural/arqueológico en el área de influencia?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_comunidades_etnicas" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_comunidades_etnicas" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="ambiental_consulta_section">
+                        <label class="form-label">¿Se ha realizado o se cuenta con certificación de Consulta Previa?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_consulta_previa" value="si">
+                                <span class="radio-label">Sí, cuenta con certificación o acta de cierre del Ministerio del Interior</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_consulta_previa" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_consulta_previa" value="no">
+                                <span class="radio-label">No se ha iniciado</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_consulta_previa" value="no-aplica">
+                                <span class="radio-label">No aplica (no hay presencia de comunidades étnicas)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('ambiental', 'ambiental-2')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('ambiental', 'ambiental-4')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Impactos y Huella de Carbono -->
+                <div id="ambiental-4" class="viability-step-content">
+                    <h3 class="section-subtitle">Impactos Ambientales y Huella de Carbono</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La comunidad conoce los impactos ambientales del proyecto?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_conoce_impactos" value="si">
+                                <span class="radio-label">Sí, están informados completamente</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_conoce_impactos" value="parcialmente">
+                                <span class="radio-label">Parcialmente</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_conoce_impactos" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La comunidad se ubica en un área con amenazas y/o riesgos ambientales?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_amenazas" value="inundacion">
+                                <span class="checkbox-label">Inundación</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_amenazas" value="deslizamiento">
+                                <span class="checkbox-label">Deslizamiento</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_amenazas" value="sequia">
+                                <span class="checkbox-label">Sequía</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_amenazas" value="contaminacion">
+                                <span class="checkbox-label">Contaminación</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_amenazas" value="incendios">
+                                <span class="checkbox-label">Incendios forestales</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="ambiental_amenazas" value="ninguna">
+                                <span class="checkbox-label">Ninguna identificada</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuál es el porcentaje estimado de reducción de huella de carbono con el proyecto?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_reduccion_huella" value="0-10">
+                                <span class="radio-label">0% - 10% (Reducción mínima)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_reduccion_huella" value="10-30">
+                                <span class="radio-label">10% - 30% (Reducción marginal)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_reduccion_huella" value="30-50">
+                                <span class="radio-label">30% - 50% (Reducción moderada)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_reduccion_huella" value="50-80">
+                                <span class="radio-label">50% - 80% (Reducción significativa)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="ambiental_reduccion_huella" value="80-100">
+                                <span class="radio-label">&gt; 80% (Reducción transformacional)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('ambiental', 'ambiental-3')">Anterior</button>
+                        <button class="btn btn-primary" onclick="calculateViabilityEnvironmental()">Calcular Viabilidad Ambiental</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. VIABILIDAD JURÍDICA -->
+            <div id="juridica" class="viability-content">
+                <div class="viability-steps">
+                    <button class="viability-step active" data-step="juridica-1">Paso 1: Naturaleza Jurídica</button>
+                    <button class="viability-step" data-step="juridica-2">Paso 2: Registro y Actividad</button>
+                    <button class="viability-step" data-step="juridica-3">Paso 3: Cumplimiento Técnico</button>
+                    <button class="viability-step" data-step="juridica-4">Paso 4: Protección Usuario</button>
+                </div>
+
+                <!-- Paso 1: Naturaleza Jurídica -->
+                <div id="juridica-1" class="viability-step-content active">
+                    <h3 class="section-subtitle">Identificación de Naturaleza Jurídica</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La comunidad cuenta con un registro jurídico?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_registro_juridico" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_registro_juridico" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                        <p class="form-hint" style="font-size: 12px; color: #e74c3c; margin-top: 5px; display: none;" id="hint_registro_juridico">
+                            No es viable legalmente. La comunidad debe registrarse antes de continuar.
+                        </p>
+                    </div>
+
+                    <div class="question-section" id="jur_datos_organizacion">
+                        <label class="form-label">Datos de la organización</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre de la comunidad u organización</label>
+                                <input type="text" name="jur_nombre_organizacion" class="form-control" placeholder="Ej: Comunidad Energética La Esperanza">
+                            </div>
+                            <div class="form-group">
+                                <label>NIT</label>
+                                <input type="text" name="jur_nit" class="form-control" placeholder="Ej: 900123456-7">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Fecha de constitución legal</label>
+                                <input type="date" name="jur_fecha_constitucion" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de figura legal</label>
+                                <select name="jur_tipo_figura" class="form-control">
+                                    <option value="">Seleccione...</option>
+                                    <option value="cooperativa">Cooperativa</option>
+                                    <option value="asociacion">Asociación</option>
+                                    <option value="fundacion">Fundación sin ánimo de lucro</option>
+                                    <option value="sas">Sociedad por Acciones Simplificada (SAS)</option>
+                                    <option value="sa">Sociedad Anónima (S.A.)</option>
+                                    <option value="ltda">Sociedad Limitada (LTDA)</option>
+                                    <option value="jac">Junta de Acción Comunal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Documentos requeridos (marque los que tiene disponibles)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_documentos" value="certificado-existencia">
+                                <span class="checkbox-label">Certificado de Existencia y Representación Legal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_documentos" value="estatutos">
+                                <span class="checkbox-label">Estatutos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_documentos" value="rut">
+                                <span class="checkbox-label">RUT</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_documentos" value="acta-constitucion">
+                                <span class="checkbox-label">Acta de constitución</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Documentación del Representante Legal</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre completo</label>
+                                <input type="text" name="jur_rep_nombre" class="form-control" placeholder="Nombre del representante legal">
+                            </div>
+                            <div class="form-group">
+                                <label>Número de cédula</label>
+                                <input type="text" name="jur_rep_cedula" class="form-control" placeholder="Ej: 1234567890">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Correo electrónico</label>
+                                <input type="email" name="jur_rep_correo" class="form-control" placeholder="correo@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono de contacto</label>
+                                <input type="tel" name="jur_rep_telefono" class="form-control" placeholder="Ej: 3001234567">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="switchViabilityTab('ambiental')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('juridica', 'juridica-2')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Registro y Actividad Energética -->
+                <div id="juridica-2" class="viability-step-content">
+                    <h3 class="section-subtitle">Registro y Actividad Energética</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Qué tipo de actividad energética va a prestar la comunidad?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_actividad_energetica" value="autoconsumo">
+                                <span class="radio-label">Autogeneración para autoconsumo</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_actividad_energetica" value="comercializacion">
+                                <span class="radio-label">Autogeneración para comercialización</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_actividad_energetica" value="ambas">
+                                <span class="radio-label">Ambas (autoconsumo y comercialización)</span>
+                            </label>
+                        </div>
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            La comercialización requiere constitución formal de figura jurídica reconocida.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La comunidad está registrada en el RCE (Registro de Comunidades Energéticas) ante el MME y la SSDP?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_registro_rce" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_registro_rce" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_registro_rce" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            El registro se realiza en: <a href="https://minenergia.gov.co/es/comunidades-energeticas/" target="_blank">minenergia.gov.co/comunidades-energeticas</a>
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Situación legal de los predios (Saneamiento)</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_predios" value="saneado">
+                                <span class="radio-label">Predios saneados (títulos de propiedad claros)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_predios" value="en-proceso">
+                                <span class="radio-label">En proceso de saneamiento</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_predios" value="posesion">
+                                <span class="radio-label">Posesión sin título</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_predios" value="colectivo">
+                                <span class="radio-label">Territorio colectivo (resguardo/consejo comunitario)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Aplica y se realizó Consulta Previa?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_consulta_previa" value="realizada">
+                                <span class="radio-label">Sí aplica y ya se realizó</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_consulta_previa" value="en-proceso">
+                                <span class="radio-label">Sí aplica y está en proceso</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_consulta_previa" value="pendiente">
+                                <span class="radio-label">Sí aplica pero no se ha iniciado</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_consulta_previa" value="no-aplica">
+                                <span class="radio-label">No aplica (no hay comunidades étnicas)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('juridica', 'juridica-1')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('juridica', 'juridica-3')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Cumplimiento Técnico-Regulatorio -->
+                <div id="juridica-3" class="viability-step-content">
+                    <h3 class="section-subtitle">Cumplimiento Técnico-Regulatorio</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La comunidad tiene una capacidad instalada menor a 5 MW?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_capacidad_5mw" value="si">
+                                <span class="radio-label">Sí (menor a 5 MW)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_capacidad_5mw" value="no">
+                                <span class="radio-label">No (mayor o igual a 5 MW)</span>
+                            </label>
+                        </div>
+                        <p class="form-hint" style="font-size: 12px; color: #e74c3c; margin-top: 5px; display: none;" id="hint_capacidad_5mw">
+                            La CE debe tener una capacidad instalada menor a 5 MW para ser viable.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La capacidad instalada supera los 100 kW?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_capacidad_100kw" value="si">
+                                <span class="radio-label">Sí (requiere contrato de conexión)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_capacidad_100kw" value="no">
+                                <span class="radio-label">No (no requiere contrato de conexión)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="jur_conexion_section">
+                        <label class="form-label">¿Cuenta con contrato de conexión con el operador de red?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_contrato_conexion" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_contrato_conexion" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_contrato_conexion" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="jur_fronteras_section">
+                        <label class="form-label">¿Cuenta con registro de fronteras comerciales?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_fronteras_comerciales" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_fronteras_comerciales" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_fronteras_comerciales" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('juridica', 'juridica-2')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('juridica', 'juridica-4')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Protección al Usuario -->
+                <div id="juridica-4" class="viability-step-content">
+                    <h3 class="section-subtitle">Mecanismos de Protección al Usuario</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con mecanismos de protección al usuario?</label>
+                        <p style="font-size: 12px; color: #666; margin-bottom: 10px;">
+                            Seleccione todos los mecanismos con los que cuenta. Se requiere contar con todos para cumplimiento total.
+                        </p>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_proteccion_usuario" value="contrato-condiciones">
+                                <span class="checkbox-label">Contrato de Condiciones Uniformes</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_proteccion_usuario" value="libre-eleccion">
+                                <span class="checkbox-label">Libre elección del prestador</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_proteccion_usuario" value="medicion-real">
+                                <span class="checkbox-label">Medición real de consumos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_proteccion_usuario" value="canal-quejas">
+                                <span class="checkbox-label">Canal de atención de quejas y reclamos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_proteccion_usuario" value="terminos">
+                                <span class="checkbox-label">Términos y condiciones claros</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="jur_proteccion_usuario" value="privacidad">
+                                <span class="checkbox-label">Política de privacidad y datos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuenta con seguro de responsabilidad civil?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="jur_seguro_responsabilidad" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_seguro_responsabilidad" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="jur_seguro_responsabilidad" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('juridica', 'juridica-3')">Anterior</button>
+                        <button class="btn btn-primary" onclick="calculateViabilityLegal()">Calcular Viabilidad Jurídica</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. VIABILIDAD FINANCIERA -->
+            <div id="financiera" class="viability-content">
+                <div class="viability-steps">
+                    <button class="viability-step active" data-step="financiera-1">Paso 1: Recursos Disponibles</button>
+                    <button class="viability-step" data-step="financiera-2">Paso 2: Inversión (CAPEX)</button>
+                    <button class="viability-step" data-step="financiera-3">Paso 3: Ingresos y Gastos</button>
+                    <button class="viability-step" data-step="financiera-4">Paso 4: Indicadores</button>
+                </div>
+
+                <!-- Paso 1: Recursos Disponibles -->
+                <div id="financiera-1" class="viability-step-content active">
+                    <h3 class="section-subtitle">Fuentes de Financiación Disponibles</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Su comunidad cuenta con recursos propios para realizar el proyecto?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="financiera_recursos_propios" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="financiera_recursos_propios" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="financiera_monto_propio_section">
+                        <label class="form-label">Monto de recursos propios disponibles (COP)</label>
+                        <input type="number" name="financiera_monto_propio" class="form-control" placeholder="Ej: 50000000">
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Fuentes de financiación estatales identificadas:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_estado" value="faer">
+                                <span class="checkbox-label">FAER (Fondo de Apoyo Financiero para Energización Rural)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_estado" value="fazni">
+                                <span class="checkbox-label">FAZNI (Fondo de Apoyo Financiero ZNI)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_estado" value="prone">
+                                <span class="checkbox-label">PRONE (Programa de Normalización de Redes)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_estado" value="fenoge">
+                                <span class="checkbox-label">FENOGE (Fondo de Energías No Convencionales)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_estado" value="sgr">
+                                <span class="checkbox-label">Sistema General de Regalías (SGR)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_estado" value="cooperacion">
+                                <span class="checkbox-label">Cooperación internacional</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Fuentes de financiación privadas identificadas:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_privadas" value="bancolombia">
+                                <span class="checkbox-label">Bancolombia</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_privadas" value="bbva">
+                                <span class="checkbox-label">Banco BBVA</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_privadas" value="bancobogota">
+                                <span class="checkbox-label">Banco de Bogotá</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_privadas" value="davivienda">
+                                <span class="checkbox-label">Davivienda</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_privadas" value="bid-bancoldex">
+                                <span class="checkbox-label">BID - BANCOLDEX</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_fuentes_privadas" value="findeter">
+                                <span class="checkbox-label">FINDETER</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="switchViabilityTab('juridica')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('financiera', 'financiera-2')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Inversión (CAPEX) -->
+                <div id="financiera-2" class="viability-step-content">
+                    <h3 class="section-subtitle">Cálculo de Inversión (CAPEX)</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">Potencial energético anual estimado (kWh/año)</label>
+                        <input type="number" name="financiera_potencial_anual" class="form-control" placeholder="Ej: 120000">
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            Este valor se obtiene del módulo de cálculo de potencial energético.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Costo de instalación estimado (USD/kW)</label>
+                        <input type="number" name="financiera_costo_kw" class="form-control" placeholder="Ej: 1200" step="0.01">
+                        <div class="info-box" style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                            <p><strong>Referencia Solar:</strong> 800 - 1,200 USD/kW</p>
+                            <p><strong>Referencia Eólico:</strong> 1,200 - 1,800 USD/kW</p>
+                            <p><strong>Referencia Hidro:</strong> 1,500 - 3,000 USD/kW</p>
+                            <p><strong>Referencia Biomasa:</strong> 2,000 - 4,000 USD/kW</p>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Capacidad instalada proyectada (kW)</label>
+                        <input type="number" name="financiera_capacidad_kw" class="form-control" placeholder="Ej: 50">
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Costo total de inversión estimado (CAPEX en USD)</label>
+                        <input type="number" name="financiera_capex_total" class="form-control" placeholder="Calculado automáticamente o ingrese manualmente">
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            CAPEX = Capacidad (kW) x Costo de instalación (USD/kW)
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Tasa de cambio USD a COP</label>
+                        <input type="number" name="financiera_tasa_cambio" class="form-control" placeholder="Ej: 4000" step="0.01">
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('financiera', 'financiera-1')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('financiera', 'financiera-3')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Ingresos y Gastos -->
+                <div id="financiera-3" class="viability-step-content">
+                    <h3 class="section-subtitle">Proyección de Ingresos y Gastos Operativos</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">Tarifa actual de energía (COP/kWh)</label>
+                        <input type="number" name="financiera_tarifa_actual" class="form-control" placeholder="Ej: 650" step="0.01">
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">IPC anual estimado (%)</label>
+                        <input type="number" name="financiera_ipc_anual" class="form-control" placeholder="Ej: 5" step="0.1" value="5">
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Factor de mantenimiento anual (% del CAPEX)</label>
+                        <input type="number" name="financiera_factor_mantenimiento" class="form-control" placeholder="Ej: 2" step="0.1" value="2">
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            Típicamente entre 1% y 3% del CAPEX anual para sistemas solares.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Requiere financiamiento externo (crédito)?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="financiera_requiere_credito" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="financiera_requiere_credito" value="no">
+                                <span class="radio-label">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="financiera_credito_section">
+                        <label class="form-label">Parámetros del crédito</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tasa de interés mensual (%)</label>
+                                <input type="number" name="financiera_tasa_interes" class="form-control" placeholder="Ej: 1.5" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label>Plazo del crédito (meses)</label>
+                                <input type="number" name="financiera_plazo_meses" class="form-control" placeholder="Ej: 60">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Monto a financiar (COP)</label>
+                                <input type="number" name="financiera_monto_credito" class="form-control" placeholder="Ej: 100000000">
+                            </div>
+                            <div class="form-group">
+                                <label>Período de gracia (meses)</label>
+                                <input type="number" name="financiera_periodo_gracia" class="form-control" placeholder="Ej: 6" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('financiera', 'financiera-2')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('financiera', 'financiera-4')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Indicadores de Éxito -->
+                <div id="financiera-4" class="viability-step-content">
+                    <h3 class="section-subtitle">Indicadores de Éxito Financiero</h3>
+
+                    <div class="info-box" style="background: #e8f4fd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; margin-bottom: 10px;"><strong>Los siguientes indicadores se calcularán automáticamente:</strong></p>
+                        <ul style="font-size: 12px; color: #666; margin-left: 20px;">
+                            <li><strong>VPN (Valor Presente Neto):</strong> Debe ser mayor a 0 para ser viable</li>
+                            <li><strong>Payback:</strong> Período de recuperación de la inversión</li>
+                            <li><strong>TIR:</strong> Tasa Interna de Retorno</li>
+                        </ul>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Vida útil del proyecto (años)</label>
+                        <input type="number" name="financiera_vida_util" class="form-control" placeholder="Ej: 25" value="25">
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            Típicamente 25 años para sistemas solares, 20-30 para hidroeléctricos.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Tasa de descuento anual (%)</label>
+                        <input type="number" name="financiera_tasa_descuento" class="form-control" placeholder="Ej: 10" step="0.1" value="10">
+                        <p class="form-hint" style="font-size: 12px; color: #666; margin-top: 5px;">
+                            Para proyectos de energía renovable, típicamente entre 8% y 12%.
+                        </p>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Se espera vender excedentes de energía a la red?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="financiera_venta_excedentes" value="si">
+                                <span class="radio-label">Sí</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="financiera_venta_excedentes" value="no">
+                                <span class="radio-label">No (solo autoconsumo)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section" id="financiera_excedentes_section">
+                        <label class="form-label">Porcentaje estimado de excedentes (%)</label>
+                        <input type="number" name="financiera_porcentaje_excedentes" class="form-control" placeholder="Ej: 30" step="1" min="0" max="100">
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Se aplicarán incentivos tributarios (Ley 1715/2014)?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_incentivos" value="renta">
+                                <span class="checkbox-label">Deducción especial de renta (hasta 50%)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_incentivos" value="iva">
+                                <span class="checkbox-label">Exclusión de IVA</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_incentivos" value="aranceles">
+                                <span class="checkbox-label">Exención de aranceles</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="financiera_incentivos" value="depreciacion">
+                                <span class="checkbox-label">Depreciación acelerada</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('financiera', 'financiera-3')">Anterior</button>
+                        <button class="btn btn-primary" onclick="calculateViabilityFinancial()">Calcular Viabilidad Financiera</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. VIABILIDAD INSTITUCIONAL Y ORGANIZACIONAL (SOCIAL/GOBERNANZA) -->
+            <div id="institucional" class="viability-content">
+                <div class="viability-steps">
+                    <button class="viability-step active" data-step="institucional-1">Paso 1: Liderazgo</button>
+                    <button class="viability-step" data-step="institucional-2">Paso 2: Toma de Decisiones</button>
+                    <button class="viability-step" data-step="institucional-3">Paso 3: Articulación</button>
+                    <button class="viability-step" data-step="institucional-4">Paso 4: Gobernanza</button>
+                </div>
+
+                <!-- Paso 1: Liderazgo -->
+                <div id="institucional-1" class="viability-step-content active">
+                    <h3 class="section-subtitle">Evaluación de Liderazgo en la Comunidad</h3>
+                    <p style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                        En una escala de 1 a 5, evalúe los siguientes rasgos del líder/líderes que gestionan el proyecto.
+                        <br>1 = Necesito mucha mejora | 5 = Me siento muy competente
+                    </p>
+
+                    <div class="question-section">
+                        <label class="form-label">Comunicación clara y escucha activa</label>
+                        <div class="scale-group">
+                            <label class="scale-item"><input type="radio" name="inst_lid_comunicacion" value="1"><span>1</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_comunicacion" value="2"><span>2</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_comunicacion" value="3"><span>3</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_comunicacion" value="4"><span>4</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_comunicacion" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Gestión de equipos y delegación</label>
+                        <div class="scale-group">
+                            <label class="scale-item"><input type="radio" name="inst_lid_gestion" value="1"><span>1</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_gestion" value="2"><span>2</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_gestion" value="3"><span>3</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_gestion" value="4"><span>4</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_gestion" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Planificación y visión estratégica</label>
+                        <div class="scale-group">
+                            <label class="scale-item"><input type="radio" name="inst_lid_planificacion" value="1"><span>1</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_planificacion" value="2"><span>2</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_planificacion" value="3"><span>3</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_planificacion" value="4"><span>4</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_planificacion" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Inteligencia emocional y empatía</label>
+                        <div class="scale-group">
+                            <label class="scale-item"><input type="radio" name="inst_lid_emocional" value="1"><span>1</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_emocional" value="2"><span>2</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_emocional" value="3"><span>3</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_emocional" value="4"><span>4</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_emocional" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Capacidad de resolución de problemas</label>
+                        <div class="scale-group">
+                            <label class="scale-item"><input type="radio" name="inst_lid_problemas" value="1"><span>1</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_problemas" value="2"><span>2</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_problemas" value="3"><span>3</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_problemas" value="4"><span>4</span></label>
+                            <label class="scale-item"><input type="radio" name="inst_lid_problemas" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="switchViabilityTab('financiera')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('institucional', 'institucional-2')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Toma de Decisiones y Difusión -->
+                <div id="institucional-2" class="viability-step-content">
+                    <h3 class="section-subtitle">Toma de Decisiones y Difusión de Información</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Qué medios usa la comunidad para informar a todos sus integrantes?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="whatsapp">
+                                <span class="checkbox-label">Grupos de WhatsApp</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="reuniones">
+                                <span class="checkbox-label">Reuniones presenciales</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="carteleras">
+                                <span class="checkbox-label">Carteleras informativas</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="boletines">
+                                <span class="checkbox-label">Boletines impresos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="altoparlante">
+                                <span class="checkbox-label">Altoparlante/Perifoneo</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="actas">
+                                <span class="checkbox-label">Actas de reunión</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="redes-sociales">
+                                <span class="checkbox-label">Redes sociales (Facebook, etc.)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_medios_difusion" value="email">
+                                <span class="checkbox-label">Correo electrónico</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cuál es el método principal para la toma de decisiones?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="inst_metodo_decision" value="consenso">
+                                <span class="radio-label">Consenso o Mayoría absoluta</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_metodo_decision" value="mayoria-simple">
+                                <span class="radio-label">Mayoría simple</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_metodo_decision" value="delegacion">
+                                <span class="radio-label">Delegación o Comité definido</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_metodo_decision" value="lider">
+                                <span class="radio-label">Decisión del líder principal</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_metodo_decision" value="no-definido">
+                                <span class="radio-label">No hay un mecanismo definido</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Mecanismos de rendición de cuentas y transparencia</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_rendicion_cuentas" value="asambleas">
+                                <span class="checkbox-label">Asambleas periódicas</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_rendicion_cuentas" value="informes">
+                                <span class="checkbox-label">Informes financieros</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_rendicion_cuentas" value="carteleras">
+                                <span class="checkbox-label">Publicación en carteleras</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_rendicion_cuentas" value="auditoria">
+                                <span class="checkbox-label">Auditoría externa</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_rendicion_cuentas" value="ninguno">
+                                <span class="checkbox-label">No existe mecanismo formal</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Mecanismos de resolución de conflictos internos</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_resolucion_conflictos" value="comite">
+                                <span class="checkbox-label">Comité de conciliación</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_resolucion_conflictos" value="mediacion">
+                                <span class="checkbox-label">Mediación comunitaria</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_resolucion_conflictos" value="asamblea">
+                                <span class="checkbox-label">Asamblea general</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_resolucion_conflictos" value="lider">
+                                <span class="checkbox-label">Decisión del líder</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_resolucion_conflictos" value="ninguno">
+                                <span class="checkbox-label">No existe mecanismo formal</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('institucional', 'institucional-1')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('institucional', 'institucional-3')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Articulación con Actores -->
+                <div id="institucional-3" class="viability-step-content">
+                    <h3 class="section-subtitle">Articulación para Propósitos Comunes</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">Seleccione los actores externos con los que la comunidad tiene relación activa:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="jac">
+                                <span class="checkbox-label">Juntas de Acción Comunal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="ongs">
+                                <span class="checkbox-label">ONGs Ambientales</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="empresas">
+                                <span class="checkbox-label">Empresas privadas</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="academia">
+                                <span class="checkbox-label">Universidad / Academia</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="cooperacion">
+                                <span class="checkbox-label">Entidades de cooperación internacional</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="banca">
+                                <span class="checkbox-label">Banca pública o privada</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="gobierno">
+                                <span class="checkbox-label">Entidades gubernamentales (Alcaldía, Gobernación)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_actores_externos" value="operador-red">
+                                <span class="checkbox-label">Operador de red eléctrica</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Mapa de Actores: Califique la influencia e interés de los aliados principales</label>
+                        <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Califique de 1 a 5 (1=Muy bajo, 5=Muy alto)</p>
+                        <table class="matrix-table">
+                            <thead>
+                                <tr>
+                                    <th>Actor</th>
+                                    <th>Influencia (1-5)</th>
+                                    <th>Interés (1-5)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Alcaldía/Gobierno local</td>
+                                    <td><input type="number" name="inst_mapa_alcaldia_influencia" min="1" max="5" class="form-control-sm"></td>
+                                    <td><input type="number" name="inst_mapa_alcaldia_interes" min="1" max="5" class="form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Operador de red</td>
+                                    <td><input type="number" name="inst_mapa_operador_influencia" min="1" max="5" class="form-control-sm"></td>
+                                    <td><input type="number" name="inst_mapa_operador_interes" min="1" max="5" class="form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>ONGs / Cooperación</td>
+                                    <td><input type="number" name="inst_mapa_ong_influencia" min="1" max="5" class="form-control-sm"></td>
+                                    <td><input type="number" name="inst_mapa_ong_interes" min="1" max="5" class="form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Universidad / Academia</td>
+                                    <td><input type="number" name="inst_mapa_academia_influencia" min="1" max="5" class="form-control-sm"></td>
+                                    <td><input type="number" name="inst_mapa_academia_interes" min="1" max="5" class="form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Empresas privadas</td>
+                                    <td><input type="number" name="inst_mapa_empresas_influencia" min="1" max="5" class="form-control-sm"></td>
+                                    <td><input type="number" name="inst_mapa_empresas_interes" min="1" max="5" class="form-control-sm"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('institucional', 'institucional-2')">Anterior</button>
+                        <button class="btn btn-primary" onclick="nextViabilityStep('institucional', 'institucional-4')">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Autoevaluación de Gobernanza -->
+                <div id="institucional-4" class="viability-step-content">
+                    <h3 class="section-subtitle">Autoevaluación de Gobernanza e Infraestructura</h3>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Cómo calificaría la madurez de la organización comunitaria?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="inst_madurez_organizacion" value="5">
+                                <span class="radio-label">Muy sólida: Reglas claras, alta participación y rendición de cuentas</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_madurez_organizacion" value="4">
+                                <span class="radio-label">Buena: Se toman decisiones en conjunto y hay reuniones frecuentes</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_madurez_organizacion" value="3">
+                                <span class="radio-label">Adecuada: Hay comités pero la participación es media</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_madurez_organizacion" value="2">
+                                <span class="radio-label">Incipiente: Hay organización básica pero pocas personas participan</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="inst_madurez_organizacion" value="0">
+                                <span class="radio-label">Muy débil o No existe: No hay reglas ni participación</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Modelo de Gobernanza: Misión y Visión</label>
+                        <div class="form-group">
+                            <label>Misión de la comunidad energética</label>
+                            <textarea name="inst_mision" class="form-control" rows="3" placeholder="Describa la misión de la comunidad..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Visión de la comunidad energética</label>
+                            <textarea name="inst_vision" class="form-control" rows="3" placeholder="Describa la visión de la comunidad..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Infraestructura organizacional disponible</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="internet">
+                                <span class="checkbox-label">Acceso a Internet</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="bodegas">
+                                <span class="checkbox-label">Bodegas de almacenamiento</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="salon-comunal">
+                                <span class="checkbox-label">Salón comunal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="oficina">
+                                <span class="checkbox-label">Oficina administrativa</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="equipos-computo">
+                                <span class="checkbox-label">Equipos de cómputo</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="transporte">
+                                <span class="checkbox-label">Vehículo de transporte</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_infraestructura" value="herramientas">
+                                <span class="checkbox-label">Herramientas técnicas</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Seleccione los ODS a los que contribuye la comunidad energética:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_ods" value="ods1">
+                                <span class="checkbox-label">ODS 1: Fin de la pobreza</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_ods" value="ods7">
+                                <span class="checkbox-label">ODS 7: Energía asequible y no contaminante</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_ods" value="ods10">
+                                <span class="checkbox-label">ODS 10: Reducción de las desigualdades</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_ods" value="ods11">
+                                <span class="checkbox-label">ODS 11: Ciudades y comunidades sostenibles</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="inst_ods" value="ods13">
+                                <span class="checkbox-label">ODS 13: Acción por el clima</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="prevViabilityStep('institucional', 'institucional-3')">Anterior</button>
+                        <button class="btn btn-primary" onclick="calculateViabilityInstitutional()">Calcular Viabilidad Institucional</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. RESUMEN INTEGRAL -->
+            <div id="integral" class="viability-content">
+                <h3 class="section-subtitle">Resumen Integral de Viabilidad</h3>
+
+                <!-- Resultados calculados -->
+                <div id="viability-results-summary" style="display:none;">
+                    <div class="viability-score-container">
+                        <div class="overall-score">
+                            <span class="score-value" id="overall-score">--</span>
+                            <span class="score-label">Viabilidad General</span>
+                        </div>
+                        <div class="score-classification" id="score-classification">
+                            <!-- Verde/Amarillo/Rojo según puntaje -->
+                        </div>
+                    </div>
+
+                    <div class="viability-breakdown">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">1. Viabilidad Social</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-social"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-social-text">--</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">2. Viabilidad Técnica</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-tecnica"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-tecnica-text">--</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">3. Viabilidad Energética</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-energetica"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-energetica-text">--</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">4. Viabilidad Ambiental</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-ambiental"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-ambiental-text">--</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">5. Viabilidad Jurídica</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-juridica"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-juridica-text">--</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">6. Viabilidad Financiera</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-financiera"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-financiera-text">--</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">7. Viabilidad Institucional</span>
+                            <div class="breakdown-progress">
+                                <div class="breakdown-bar" id="score-institucional"></div>
+                            </div>
+                            <span class="breakdown-score" id="score-institucional-text">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Clasificación de resultados -->
+                    <div class="results-interpretation" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                        <h4 style="margin-bottom: 15px;">Interpretación de Resultados</h4>
+                        <div class="interpretation-scale">
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="width: 20px; height: 20px; background: #27ae60; border-radius: 4px; margin-right: 10px;"></span>
+                                <span><strong>Alta (≥ 4.0):</strong> La comunidad cuenta con condiciones sólidas para avanzar a la fase de diseño integral.</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="width: 20px; height: 20px; background: #f39c12; border-radius: 4px; margin-right: 10px;"></span>
+                                <span><strong>Media (3.0 - 3.99):</strong> El proyecto es potencialmente viable, pero requiere ajustes previos en algunos componentes.</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span style="width: 20px; height: 20px; background: #e74c3c; border-radius: 4px; margin-right: 10px;"></span>
+                                <span><strong>Baja (&lt; 3.0):</strong> La comunidad presenta barreras críticas. Se sugiere replantear el diseño o implementar acciones de mejora.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recomendaciones -->
+                    <div id="viability-recommendation" style="margin-top: 30px;"></div>
+
+                    <!-- ODS Impactados -->
+                    <div id="ods-impact" style="margin-top: 30px; padding: 20px; background: #e8f4fd; border-radius: 8px;">
+                        <h4 style="margin-bottom: 15px;">Objetivos de Desarrollo Sostenible Impactados</h4>
+                        <div id="ods-icons" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <!-- Se llenarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="action-buttons" style="margin-top: 30px; display: flex; gap: 15px; justify-content: center;">
+                        <button class="btn btn-secondary" onclick="window.print()">Imprimir Reporte</button>
+                        <button class="btn btn-primary" onclick="exportResults()">Exportar Resultados</button>
+                    </div>
+                </div>
+
+                <!-- Estado inicial: sin datos -->
+                <div id="viability-no-data" style="text-align: center; padding: 40px;">
+                    <p style="font-size: 16px; color: #666; margin-bottom: 20px;">
+                        Complete todas las evaluaciones de viabilidad para ver el resumen integral
+                    </p>
+                    <div class="checklist-status" style="text-align: left; max-width: 400px; margin: 0 auto 30px auto;">
+                        <div class="status-item" style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span class="status-icon" id="status-social">○</span> 1. Viabilidad Social
+                        </div>
+                        <div class="status-item" style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span class="status-icon" id="status-tecnica">○</span> 2. Viabilidad Técnica
+                        </div>
+                        <div class="status-item" style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span class="status-icon" id="status-energetica">○</span> 3. Viabilidad Energética
+                        </div>
+                        <div class="status-item" style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span class="status-icon" id="status-ambiental">○</span> 4. Viabilidad Ambiental
+                        </div>
+                        <div class="status-item" style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span class="status-icon" id="status-juridica">○</span> 5. Viabilidad Jurídica
+                        </div>
+                        <div class="status-item" style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span class="status-icon" id="status-financiera">○</span> 6. Viabilidad Financiera
+                        </div>
+                        <div class="status-item" style="padding: 8px 0;">
+                            <span class="status-icon" id="status-institucional">○</span> 7. Viabilidad Institucional
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="switchViabilityTab('social')">
+                        Comenzar con Viabilidad Social
+                    </button>
+                </div>
+
+                <!-- Evaluación LNCE (solo para personal del laboratorio) -->
+                <div id="lnce-evaluation" style="margin-top: 40px; padding: 20px; background: #fff3cd; border-radius: 8px; display: none;">
+                    <h4 style="margin-bottom: 15px;">Evaluación de Gobernanza LNCE</h4>
+                    <p style="font-size: 12px; color: #856404; margin-bottom: 15px;">
+                        Diligenciado por el personal del LNCE basado en la matriz de gobernanza técnica, ambiental y social
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Estructura y roles</label>
+                            <select name="lnce_estructura" class="form-control">
+                                <option value="0">0 - Inexistente</option>
+                                <option value="1">1 - Muy débil</option>
+                                <option value="2">2 - Incipiente</option>
+                                <option value="3">3 - Adecuada</option>
+                                <option value="4">4 - Buena</option>
+                                <option value="5">5 - Muy sólida</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Participación e inclusión</label>
+                            <select name="lnce_participacion" class="form-control">
+                                <option value="0">0 - Inexistente</option>
+                                <option value="1">1 - Muy débil</option>
+                                <option value="2">2 - Incipiente</option>
+                                <option value="3">3 - Adecuada</option>
+                                <option value="4">4 - Buena</option>
+                                <option value="5">5 - Muy sólida</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Transparencia y rendición de cuentas</label>
+                            <select name="lnce_transparencia" class="form-control">
+                                <option value="0">0 - Inexistente</option>
+                                <option value="1">1 - Muy débil</option>
+                                <option value="2">2 - Incipiente</option>
+                                <option value="3">3 - Adecuada</option>
+                                <option value="4">4 - Buena</option>
+                                <option value="5">5 - Muy sólida</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Capacidades y liderazgo</label>
+                            <select name="lnce_capacidades" class="form-control">
+                                <option value="0">0 - Inexistente</option>
+                                <option value="1">1 - Muy débil</option>
+                                <option value="2">2 - Incipiente</option>
+                                <option value="3">3 - Adecuada</option>
+                                <option value="4">4 - Buena</option>
+                                <option value="5">5 - Muy sólida</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Articulación con actores externos</label>
+                        <select name="lnce_articulacion" class="form-control">
+                            <option value="0">0 - Inexistente</option>
+                            <option value="1">1 - Muy débil</option>
+                            <option value="2">2 - Incipiente</option>
+                            <option value="3">3 - Adecuada</option>
+                            <option value="4">4 - Buena</option>
+                            <option value="5">5 - Muy sólida</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveLNCEEvaluation()">Guardar Evaluación LNCE</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
