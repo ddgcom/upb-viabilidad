@@ -1658,167 +1658,511 @@
             <div id="social" class="viability-content">
                 <h3 class="section-subtitle">5. Viabilidad Social</h3>
 
-                <!-- Caracterización: 1.1 Reconocimiento de Liderazgos -->
+                <!-- 1.1 Reconocimiento de Liderazgos -->
                 <div class="question-block">
                     <h4 class="block-title">1.1 Reconocimiento de Liderazgos</h4>
+
                     <div class="question-section">
-                        <label class="form-label">Seleccione cuál de los siguientes factores diferenciales más + obligatorios del cuestionario:</label>
-                        <p class="form-hint">Lista desplegable: "Tener el mínimo las bases inspiradas en el formato 4 - Reconocimiento de la comunidad en 'Caracterización Detallada'. Para el usuario selecciona UNO, los listados: la lista desplegable que disponga el índice es continuidad.</p>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_liderazgo" value="1">
-                                <span class="checkbox-label">1 = Tiene poco ejercicio mucho miedo</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_liderazgo" value="2">
-                                <span class="checkbox-label">2 = No muestra reconocimiento evidente</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_liderazgo" value="3">
-                                <span class="checkbox-label">3 = Tiene cierto liderazgo incipiente</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_liderazgo" value="4">
-                                <span class="checkbox-label">4 = Tiene buen liderazgo reconocido</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_liderazgo" value="5">
-                                <span class="checkbox-label">5 = Tiene liderazgo consolidado y comprometido</span>
-                            </label>
+                        <label class="form-label">Seleccione cuál de los siguientes líderes diligenciará este componente del cuestionario:</label>
+                        <select name="vs_lider_seleccionado" class="form-control">
+                            <option value="">Seleccione un líder</option>
+                            <option value="juan">Juan</option>
+                            <option value="luis">Luis</option>
+                            <option value="diego">Diego</option>
+                        </select>
+                    </div>
+
+                    <div class="question-section">
+                        <div class="info-box">
+                            <p><strong>Escala de evaluación:</strong></p>
+                            <p>1 = Siento que necesito mucha mejora | 2 = Siento que necesito mejorar | 3 = Me considero medianamente competente | 4 = Me siento competente | 5 = Me siento muy competente</p>
+                        </div>
+                    </div>
+
+                    <!-- Comunicación en el liderazgo -->
+                    <div class="question-section">
+                        <label class="form-label">Comunicación en el liderazgo y escucha activa:</label>
+                        <div class="sub-question-list">
+                            <div class="sub-question-item">
+                                <p>Me comunico con claridad, precisión y transparencia.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_com_1" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_1" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_1" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_1" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_1" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Por lo general, otorgo espacio para que otros expresen sus ideas y los escucho activamente.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_com_2" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_2" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_2" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_2" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_2" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Adapto mi estilo de comunicación según el interlocutor con el que interactúo (por ejemplo: equipo técnico, directivos, clientes, etc.).</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_com_3" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_3" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_3" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_3" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_3" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Solicito retroalimentación al equipo de trabajo para mejorar mis habilidades de comunicación.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_com_4" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_4" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_4" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_4" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_com_4" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gestión de equipos y delegación -->
+                    <div class="question-section">
+                        <label class="form-label">Gestión de equipos y delegación:</label>
+                        <div class="sub-question-list">
+                            <div class="sub-question-item">
+                                <p>Confío plenamente en los miembros del equipo para asignar tareas críticas.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ges_1" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_1" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_1" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_1" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_1" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Delego con instrucciones claras y autonomía suficiente.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ges_2" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_2" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_2" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_2" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_2" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Superviso a los miembros del equipo sin microgestionar.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ges_3" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_3" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_3" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_3" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_3" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Reconozco los aportes de mi equipo y les otorgo el crédito.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ges_4" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_4" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_4" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_4" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ges_4" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visión estratégica -->
+                    <div class="question-section">
+                        <label class="form-label">Visión estratégica:</label>
+                        <div class="sub-question-list">
+                            <div class="sub-question-item">
+                                <p>Establezco metas de mediano y largo plazo, no solo las urgencias del día.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_vis_1" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_1" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_1" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_1" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_1" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Establezco tendencias, riesgos y oportunidades del entorno con el propósito de anticipar los planes a seguir.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_vis_2" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_2" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_2" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_2" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_2" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>En la planeación articulo las estrategias con las metas, nuestra experiencia, capacidades y recursos.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_vis_3" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_3" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_3" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_3" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_3" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Conecto mis decisiones estratégicas en el presente con los objetivos futuros.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_vis_4" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_4" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_4" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_4" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_vis_4" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inteligencia emocional -->
+                    <div class="question-section">
+                        <label class="form-label">Inteligencia emocional en el liderazgo:</label>
+                        <div class="sub-question-list">
+                            <div class="sub-question-item">
+                                <p>Reconozco mis emociones y su impacto en las decisiones que tomo y en el relacionamiento con los demás.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ie_1" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_1" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_1" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_1" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_1" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Gestiono mi estrés y la presión con compostura.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ie_2" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_2" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_2" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_2" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_2" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Empatizo con las emociones de los otros y ajusto mi estilo de conversación.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ie_3" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_3" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_3" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_3" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_3" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Recupero la calma ante conflictos y me oriento a su resolución.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_ie_4" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_4" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_4" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_4" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_ie_4" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resolución de problemas -->
+                    <div class="question-section">
+                        <label class="form-label">Resolución de problemas:</label>
+                        <div class="sub-question-list">
+                            <div class="sub-question-item">
+                                <p>Abordo desafíos estructurados, sin postergar las decisiones necesarias.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_rp_1" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_1" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_1" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_1" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_1" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Analizo las causas antes de proponer soluciones.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_rp_2" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_2" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_2" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_2" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_2" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Invito al equipo para co-construir opciones de solución.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_rp_3" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_3" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_3" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_3" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_3" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
+                            <div class="sub-question-item">
+                                <p>Evalúo los resultados y sus ajustes con el propósito de mejorar a futuro.</p>
+                                <div class="radio-group radio-inline">
+                                    <label class="radio-item"><input type="radio" name="vs_rp_4" value="1"><span class="radio-label">1</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_4" value="2"><span class="radio-label">2</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_4" value="3"><span class="radio-label">3</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_4" value="4"><span class="radio-label">4</span></label>
+                                    <label class="radio-item"><input type="radio" name="vs_rp_4" value="5"><span class="radio-label">5</span></label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 1.2 Mecanismos de Difusión -->
+                <!-- 2.1 Información simétrica -->
                 <div class="question-block">
-                    <h4 class="block-title">1.2 Mecanismos de Difusión de Información</h4>
+                    <h4 class="block-title">2.1 Información simétrica para todos los integrantes de la comunidad</h4>
                     <div class="question-section">
-                        <label class="form-label">Pregunta abierta: ¿Cuáles mecanismos de difusión de información utilizan en la comunidad?</label>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_difusion" value="reuniones">
-                                <span class="checkbox-label">Reuniones comunitarias</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_difusion" value="redes">
-                                <span class="checkbox-label">Redes sociales / WhatsApp</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_difusion" value="carteleras">
-                                <span class="checkbox-label">Carteleras informativas</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vs_difusion" value="voceros">
-                                <span class="checkbox-label">Voceros / líderes</span>
-                            </label>
-                        </div>
+                        <label class="form-label">¿Cuáles mecanismos de difusión de información utilizan en la comunidad?</label>
+                        <p class="form-hint">Por ejemplo, redes sociales, boletines informativos, posters, cartelera informativa, grupos de whatsapp, etc.</p>
+                        <textarea name="vs_mecanismos_difusion" class="form-control" rows="3" placeholder="Describa los mecanismos de difusión de información utilizados"></textarea>
                     </div>
                 </div>
 
-                <!-- 2.2 Toma de Decisiones -->
+                <!-- 2.2 Toma de decisiones -->
                 <div class="question-block">
-                    <h4 class="block-title">2.2 Toma de Decisiones y Participación Activa</h4>
+                    <h4 class="block-title">2.2 Toma de decisiones a partir de mayorías absolutas o calificadas</h4>
+
                     <div class="question-section">
-                        <label class="form-label">Selección de preguntas: Identifique el método de relación que utiliza su comunidad (selección con lista desplegable):</label>
+                        <label class="form-label">¿Qué tipo de regla usa la comunidad para las tomas de decisiones? (selección múltiple)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_regla_decision" value="mayoria-simple">
+                                <span class="checkbox-label">Mayoría simple: Gana la opción que tiene más votos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_regla_decision" value="mayoria-absoluta">
+                                <span class="checkbox-label">Mayoría absoluta: Gana la opción que votan más del 50% del total de los miembros de la comunidad, asistan o no a la votación</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_regla_decision" value="consenso">
+                                <span class="checkbox-label">Consenso</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_regla_decision" value="comite">
+                                <span class="checkbox-label">Decisión por comité</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_regla_decision" value="no-definido">
+                                <span class="checkbox-label">No hay un mecanismo definido</span>
+                            </label>
+                        </div>
+                        <div class="question-section" style="margin-top: 10px;">
+                            <label class="form-label">Otro (especifique):</label>
+                            <input type="text" name="vs_regla_decision_otra" class="form-control" placeholder="Especifique otra regla">
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Se requiere cantidad mínima de miembros para que la votación sea válida?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="vs_decision" value="1">
-                                <span class="radio-label">Puntaje = 1: Decisiones unilaterales</span>
+                                <input type="radio" name="vs_quorum" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="vs_decision" value="2">
-                                <span class="radio-label">Puntaje = 2: Consultas informales</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_decision" value="3">
-                                <span class="radio-label">Puntaje = 3: Votaciones formales</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_decision" value="4">
-                                <span class="radio-label">Puntaje = 4: Consenso mayoritario</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_decision" value="5">
-                                <span class="radio-label">Puntaje = 5: Consenso participativo</span>
+                                <input type="radio" name="vs_quorum" value="no">
+                                <span class="radio-label">No</span>
                             </label>
                         </div>
                     </div>
-                </div>
 
-                <!-- 3.1 Fortalecimiento de Capacidades -->
-                <div class="question-block">
-                    <h4 class="block-title">3.1 Fortalecimiento de Capacidades para la Gestión del Proyecto</h4>
                     <div class="question-section">
-                        <label class="form-label">Seleccione cuáles de las siguientes actores están vinculados en el modelo de gobernanza actual:</label>
+                        <label class="form-label">Seleccione el método de votación que utiliza su comunidad:</label>
                         <div class="checkbox-grid">
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vs_actores" value="jac">
-                                <span class="checkbox-label">Juntas de acción comunal y asamblea</span>
+                                <input type="checkbox" name="vs_metodo_votacion" value="presencial">
+                                <span class="checkbox-label">Presencial</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vs_actores" value="consejos">
-                                <span class="checkbox-label">Consejos de cuencas, comités, veredas y otros</span>
+                                <input type="checkbox" name="vs_metodo_votacion" value="electronico">
+                                <span class="checkbox-label">Voto electrónico</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vs_actores" value="lideres">
-                                <span class="checkbox-label">Líderes de cooperativa / industrias / artesanos</span>
+                                <input type="checkbox" name="vs_metodo_votacion" value="correo">
+                                <span class="checkbox-label">Consulta por correo</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vs_actores" value="grupos">
-                                <span class="checkbox-label">Grupos de investigación y otras entidades de educación</span>
+                                <input type="checkbox" name="vs_metodo_votacion" value="delegacion">
+                                <span class="checkbox-label">Delegación</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vs_actores" value="entidades">
-                                <span class="checkbox-label">Entidades de desarrollo empresarial</span>
+                                <input type="checkbox" name="vs_metodo_votacion" value="no-hay">
+                                <span class="checkbox-label">No hay métodos de votación</span>
                             </label>
+                        </div>
+                        <div class="question-section" style="margin-top: 10px;">
+                            <label class="form-label">Otro (especifique):</label>
+                            <input type="text" name="vs_metodo_votacion_otra" class="form-control" placeholder="Especifique otro método">
                         </div>
                     </div>
                 </div>
 
-                <!-- 4.1 Percepción de la Gobernanza -->
+                <!-- 2.4 Evitar concentración del poder -->
                 <div class="question-block">
-                    <h4 class="block-title">4.1 Alineación de Gobernanza y Prioridad Comunitaria</h4>
+                    <h4 class="block-title">2.4 Evitar concentración del poder</h4>
+
                     <div class="question-section">
-                        <label class="form-label">Percepción de la gobernanza: A manera que piensan el interés de personas de la comunidad ¿cuáles se tienen las expectativas en cuanto a gobernanza?</label>
+                        <label class="form-label">¿La comunidad realiza reuniones abiertas al menos 2 veces al año (pueden ser asambleas, comités, concejos, entre otros donde haya comunicación abierta)?</label>
                         <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="vs_gobernanza" value="1">
-                                <span class="radio-label">1 = No existe la participación local: sin valor</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_gobernanza" value="2">
-                                <span class="radio-label">2 = No hay MAS: Hay algunas pero más baja posibilidades a las tableros</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_gobernanza" value="3">
-                                <span class="radio-label">3 = Está bueno: Hay funcionando bueno pero para poder permitir</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_gobernanza" value="4">
-                                <span class="radio-label">4 = Sí está bien: Equipo líder decisiones con participación</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vs_gobernanza" value="5">
-                                <span class="radio-label">5 = Hay MAS: Mayor nivel alto participación y funcionando</span>
-                            </label>
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_abiertas" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_abiertas" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Existen registros firmados y archivados de las reuniones (sean asambleas, comités, concejos, etc.)?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_registros_reuniones" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_registros_reuniones" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Las reuniones están orientadas netamente a brindar información o reporte de lo informado?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_info" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_info" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Las reuniones están orientadas a recoger opiniones o recomendaciones de la comunidad?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_opiniones" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_opiniones" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿En las reuniones se socializan los resultados, las decisiones, los ajustes propuestos por la comunidad?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_socializacion" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_reuniones_socializacion" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Los cargos tienen límite de mandato por estatutos?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_limite_mandato" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_limite_mandato" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿La información financiera es pública para miembros?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_info_financiera_publica" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_info_financiera_publica" value="no"><span class="radio-label">No</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">¿Existe un agente de veeduría independiente?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_veeduria" value="si"><span class="radio-label">Sí</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_veeduria" value="no"><span class="radio-label">No</span></label>
                         </div>
                     </div>
                 </div>
 
-                <!-- Resultado de Viabilidad Social -->
-                <div class="result-message-card green-border">
-                    <div class="result-header">
-                        <span class="result-icon">S</span>
-                        <span class="result-title">Resultado de Viabilidad Social</span>
-                        <span class="result-score" id="score_social">--/5</span>
+                <!-- 3.1 Relacionamiento con stakeholders -->
+                <div class="question-block">
+                    <h4 class="block-title">3.1 Relacionamiento con stakeholders (otros actores)</h4>
+                    <div class="question-section">
+                        <label class="form-label">Seleccione cuáles de los siguientes actores están vinculados en el modelo de gobernanza de la comunidad:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="gobierno-nacional">
+                                <span class="checkbox-label">Gobierno nacional</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="gobierno-local">
+                                <span class="checkbox-label">Gobierno local</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="jac">
+                                <span class="checkbox-label">Juntas de acción comunal</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="org-sociales">
+                                <span class="checkbox-label">Organizaciones sociales y ambientales</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="empresa-privada">
+                                <span class="checkbox-label">Empresas del sector privado</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="empresa-publica">
+                                <span class="checkbox-label">Empresas del sector público</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="cooperacion-internacional">
+                                <span class="checkbox-label">Entidades de cooperación internacional</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="academia">
+                                <span class="checkbox-label">Academia (universidades, colegios, grupos de investigación u otras entidades de educación) (Ejemplos: UPB, SEC)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="otras-ce">
+                                <span class="checkbox-label">Otras Comunidades Energéticas</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="centro-empresarial">
+                                <span class="checkbox-label">Centro de desarrollo empresarial</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="financiamiento">
+                                <span class="checkbox-label">Agentes de financiamiento (Ángeles inversores, banca pública, banca privada, cooperativas, crowdfunding)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vs_stakeholders" value="ninguna">
+                                <span class="checkbox-label">Ninguna</span>
+                            </label>
+                        </div>
+                        <div class="question-section" style="margin-top: 10px;">
+                            <label class="form-label">Otra (especifique):</label>
+                            <input type="text" name="vs_stakeholders_otra" class="form-control" placeholder="Especifique otro actor">
+                        </div>
                     </div>
-                    <div class="result-body">
-                        <p class="result-text">Se muestra resultado de viabilidad social:</p>
-                        <ul>
-                            <li>&gt; 4.0 = Alta viabilidad social</li>
-                            <li>3.0 - 3.99 = Viabilidad social media (requiere acciones)</li>
-                            <li>&lt; 3.0 = No hay viabilidad social</li>
-                        </ul>
+                </div>
+
+                <!-- 4.1 Autoevaluación de gobernanza -->
+                <div class="question-block">
+                    <h4 class="block-title">4.1 Autoevaluación de gobernanza</h4>
+                    <div class="question-section">
+                        <label class="form-label">Si tuvieras que evaluar el modelo de gobernanza de tu comunidad (cómo se toman las decisiones, quién participa, cómo se informa y rinden cuentas), ¿qué calificación le pondrías en una escala de 0 a 5?</label>
+                        <div class="info-box">
+                            <p><strong>Escala:</strong></p>
+                            <p>0 – No existe: No hay organización ni reglas claras.</p>
+                            <p>1 – Muy débil: Hay alguna junta o líder, pero casi nadie participa ni se informa.</p>
+                            <p>2 – Incipiente: Hay organización básica, pero pocas personas participan y la información no llega a todos.</p>
+                            <p>3 – Adecuada: Hay juntas/comités y reuniones, se informa a la comunidad, aunque no siempre participa mucha gente.</p>
+                            <p>4 – Buena: Se toman decisiones con participación, hay reuniones frecuentes y la mayoría está informada.</p>
+                            <p>5 – Muy sólida: Reglas claras, alta participación, buena comunicación y rendición de cuentas.</p>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="vs_autoevaluacion" value="0"><span class="radio-label">0 - No existe</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_autoevaluacion" value="1"><span class="radio-label">1 - Muy débil</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_autoevaluacion" value="2"><span class="radio-label">2 - Incipiente</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_autoevaluacion" value="3"><span class="radio-label">3 - Adecuada</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_autoevaluacion" value="4"><span class="radio-label">4 - Buena</span></label>
+                            <label class="radio-item"><input type="radio" name="vs_autoevaluacion" value="5"><span class="radio-label">5 - Muy sólida</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="form-label">Escribe una frase o idea corta que explique por qué escogiste esa calificación:</label>
+                        <p class="form-hint">Ejemplos: "Desde que la comunidad existe contamos con una junta, pero pocas personas participan en las decisiones". "Tenemos comités organizados y realizamos reuniones periódicas con buena asistencia".</p>
+                        <textarea name="vs_justificacion_autoevaluacion" class="form-control" rows="3" placeholder="Explique brevemente su calificación"></textarea>
                     </div>
                 </div>
 
@@ -1826,29 +2170,24 @@
                     <h3 class="documents-title">Documentos a Adjuntar</h3>
                     <ul class="documents-list">
                         <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de 1 - Liderazgo (caracterización con puntaje promedio)</span>
-                            <input type="file" name="doc_vs_liderazgo" class="document-input">
+                            <span class="document-icon">📷</span>
+                            <span class="document-name">Imágenes de evidencia de la comunidad</span>
+                            <input type="file" name="doc_vs_imagenes" class="document-input" multiple accept="image/*">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de 1.2 Mecanismos de información y difusión</span>
-                            <input type="file" name="doc_vs_difusion" class="document-input">
+                            <span class="document-name">Actas firmadas</span>
+                            <input type="file" name="doc_vs_actas" class="document-input">
+                        </li>
+                        <li class="document-item">
+                            <span class="document-icon">📷</span>
+                            <span class="document-name">Fotos de asambleas</span>
+                            <input type="file" name="doc_vs_fotos_asambleas" class="document-input" multiple accept="image/*">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de 2.2 Toma de decisión y formato de decisiones calificadas</span>
-                            <input type="file" name="doc_vs_decisiones" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de 3 Fortalecimiento de capacidades para gestión de proyectos comunitarios</span>
-                            <input type="file" name="doc_vs_capacidades" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de 4 Alineación de Gobernanza y Prioridad comunitaria</span>
-                            <input type="file" name="doc_vs_gobernanza" class="document-input">
+                            <span class="document-name">Informes de gestión</span>
+                            <input type="file" name="doc_vs_informes" class="document-input">
                         </li>
                     </ul>
                 </div>
