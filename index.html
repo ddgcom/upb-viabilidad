@@ -1152,90 +1152,25 @@
             <div id="ambiental" class="viability-content">
                 <h3 class="section-subtitle">2. Viabilidad Ambiental</h3>
 
-                <!-- 1.1 Restricciones Ambientales -->
-                <div class="question-block">
-                    <h4 class="block-title">1.1 Restricciones Ambientales</h4>
-                    <div class="question-section">
-                        <label class="form-label">A partir de las coordenadas de la comunidad (numeral 1.1 de la caracterización inicial), se identifica si el proyecto se encuentra al interior o en alguna de las siguientes áreas:</label>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="pnn">
-                                <span class="checkbox-label">Parque Nacional Natural (PNN)</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="rnsc">
-                                <span class="checkbox-label">Reserva Natural de la Sociedad Civil</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="ramsar">
-                                <span class="checkbox-label">Sitios Ramsar</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="paramo">
-                                <span class="checkbox-label">Páramos</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="humedal">
-                                <span class="checkbox-label">Humedales</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="manglar">
-                                <span class="checkbox-label">Manglares</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="reserva-forestal">
-                                <span class="checkbox-label">Reserva Forestal</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_restricciones" value="ninguno">
-                                <span class="checkbox-label">Ninguno de los anteriores</span>
-                            </label>
-                        </div>
-                        <div class="info-box">
-                            <p><strong>Consideraciones:</strong> El tipo de restricción de donde se ubica la comunidad, presenta la necesidad de validar si con el paisaje correspondiente es posible desarrollar, según su zonificación interna y los requisitos específicos, un proyecto energético renovable.</p>
-                        </div>
-                    </div>
-
-                    <div class="question-section">
-                        <label class="form-label">Áreas de cobertura vegetal:</label>
-                        <p class="form-hint">Indique las áreas que tienen cobertura boscosa/agrícola y ganadera/boscificada de tipo intensivo o bajo intensivo (Clases 1 a 6). Puntaje 1 - Cobertura natural que indica grado de sensibilidad alta.</p>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_cobertura" value="bosque-natural">
-                                <span class="checkbox-label">Bosque natural</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_cobertura" value="pastizales">
-                                <span class="checkbox-label">Pastizales</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_cobertura" value="cultivos">
-                                <span class="checkbox-label">Cultivos agrícolas</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_cobertura" value="zona-urbana">
-                                <span class="checkbox-label">Zona urbana/construida</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- 1.2 Ordenamiento Territorial -->
                 <div class="question-block">
                     <h4 class="block-title">1.2 Ordenamiento Territorial</h4>
                     <div class="question-section">
-                        <label class="form-label">¿Se ha ejecutado este proyecto está permitido según el instrumento de ordenamiento territorial vigente?</label>
+                        <label class="form-label">¿El uso del suelo donde se ubicará el proyecto es compatible con proyectos de generación de energía según el instrumento de ordenamiento territorial vigente (POT/EOT/PBOT)?</label>
                         <div class="radio-group">
                             <label class="radio-item">
                                 <input type="radio" name="va_pot" value="si">
-                                <span class="radio-label">Sí - Hay solo</span>
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
                                 <input type="radio" name="va_pot" value="no">
                                 <span class="radio-label">No</span>
                             </label>
+                            <label class="radio-item">
+                                <input type="radio" name="va_pot" value="no-sabe">
+                                <span class="radio-label">No sabe</span>
+                            </label>
                         </div>
-                        <p class="form-hint">Puntaje 1 = Sí, hay un proyecto está permitido según el instrumento (POT/EOT/PBOT). Se recomienda revisar la compatibilidad del uso del suelo.</p>
                     </div>
                 </div>
 
@@ -1243,46 +1178,20 @@
                 <div class="question-block">
                     <h4 class="block-title">1.3 Patrimonio Cultural</h4>
                     <div class="question-section">
-                        <label class="form-label">Pregunta con única respuesta: ¿Hay sitios arqueológicos, cementerios o patrimonio cultural en el área?</label>
+                        <label class="form-label">¿Hay sitios arqueológicos, cementerios indígenas o patrimonio cultural en el área del proyecto?</label>
+                        <p class="form-hint">Para más información consultar el Sistema de Información de Patrimonio del Ministerio de Cultura</p>
                         <div class="radio-group">
                             <label class="radio-item">
                                 <input type="radio" name="va_patrimonio" value="si">
-                                <span class="radio-label">Sí - hay sitios arqueológicos, cementerios o patrimonio cultural identificados en el área</span>
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
                                 <input type="radio" name="va_patrimonio" value="no">
-                                <span class="radio-label">No - no se registran elementos de patrimonio cultural o arqueológico en el área</span>
+                                <span class="radio-label">No</span>
                             </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.1 Zonas de Amenaza y Riesgo -->
-                <div class="question-block">
-                    <h4 class="block-title">2.1 Zonas de Amenaza y Riesgo</h4>
-                    <div class="question-section">
-                        <label class="form-label">A partir de las coordenadas de la comunidad se identifica si la comunidad se ubica en alguna de las siguientes zonas:</label>
-                        <p class="form-hint">Consideración: En las de alta vulnerabilidad Cd. donde se ubica la propiedad, presenta la necesidad de adoptar medidas de adaptación frente con el posible riesgo/emergencias.</p>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_amenazas" value="inundacion">
-                                <span class="checkbox-label">Zona inundable</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_amenazas" value="deslizamiento">
-                                <span class="checkbox-label">Zona de deslizamiento</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_amenazas" value="sequia">
-                                <span class="checkbox-label">Zona propensa a sequía</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_amenazas" value="incendios">
-                                <span class="checkbox-label">Zona de incendios forestales</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_amenazas" value="ninguna">
-                                <span class="checkbox-label">Ninguna de las anteriores</span>
+                            <label class="radio-item">
+                                <input type="radio" name="va_patrimonio" value="no-sabe">
+                                <span class="radio-label">No sabe</span>
                             </label>
                         </div>
                     </div>
@@ -1290,36 +1199,34 @@
 
                 <!-- 3.1 Licenciamiento Ambiental -->
                 <div class="question-block">
-                    <h4 class="block-title">3.1 Licenciamiento Ambiental</h4>
+                    <h4 class="block-title">3.1 Licenciamiento Ambiental <span class="badge badge-info">Solo aplica si requiere licencia ambiental</span></h4>
+
+                    <!-- 3.1.1 Estado de Licencia -->
                     <div class="question-section">
-                        <label class="form-label">Plan de Manejo Ambiental (PMA):</label>
-                        <p class="form-hint">Mostrar el mensaje: "Se no requiere licencia ambiental, Se debe realizar un Plan de Manejo Ambiental (PMA)"</p>
+                        <label class="form-label">3.1.1 ¿La licencia ambiental ya fue otorgada?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="va_pma_estado" value="tiene">
-                                <span class="radio-label">La comunidad tiene el Plan de Manejo Ambiental del proyecto. Debe formar un Plan de Manejo Ambiental (PMA) donde especifique los impactos y medidas de mitigación asociados.</span>
+                                <input type="radio" name="va_licencia_otorgada" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="va_pma_estado" value="no-tiene">
-                                <span class="radio-label">No tiene PMA elaborado</span>
+                                <input type="radio" name="va_licencia_otorgada" value="no">
+                                <span class="radio-label">No</span>
                             </label>
                         </div>
                     </div>
 
+                    <!-- 3.1.2 Trámite de Licencia -->
                     <div class="question-section">
-                        <label class="form-label">Estado del mensaje: "Debe gestionar Licencia Ambiental ante la Corporación Autónoma Regional para proyectos hasta 10 MW"</label>
+                        <label class="form-label">3.1.2 ¿La licencia ambiental está en trámite?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="va_licencia_estado" value="otorgada">
-                                <span class="radio-label">La Licencia Ambiental ya está emitida y los trámites en la autoridad ambiental</span>
+                                <input type="radio" name="va_licencia_tramite" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="va_licencia_estado" value="en-tramite">
-                                <span class="radio-label">En trámite</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="va_licencia_estado" value="no-planificado">
-                                <span class="radio-label">No se ha planificado la gestión de Licencia Ambiental. No obstante se encuentra en proceso</span>
+                                <input type="radio" name="va_licencia_tramite" value="no">
+                                <span class="radio-label">No</span>
                             </label>
                         </div>
                     </div>
@@ -1329,16 +1236,20 @@
                 <div class="question-block">
                     <h4 class="block-title">3.2 Diagnóstico Ambiental de Alternativas (DAA)</h4>
                     <div class="question-section">
-                        <label class="form-label">Diagnóstico ambiental de alternativas (DAA):</label>
-                        <p class="form-hint">Solo aplica "Se debe realizar Diagnóstico ambiental de alternativas (con para el tipo de recurso a implementar"</p>
+                        <label class="form-label">¿Se requiere Diagnóstico Ambiental de Alternativas (DAA)?</label>
+                        <p class="form-hint">Solo aplica para proyectos hidroeléctricos</p>
                         <div class="radio-group">
                             <label class="radio-item">
                                 <input type="radio" name="va_daa" value="si">
-                                <span class="radio-label">Sí se ha evaluado alternativas de ubicación y diseño (con análisis comparativo de DAA para todo el trámite)</span>
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
                                 <input type="radio" name="va_daa" value="no">
-                                <span class="radio-label">No ha evaluado alternativa ambiental de ubicación o diseño (= 0% en Puntaje Puntaje 1 confidente de Diagnóstico)</span>
+                                <span class="radio-label">No</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="va_daa" value="no-aplica">
+                                <span class="radio-label">No aplica</span>
                             </label>
                         </div>
                     </div>
@@ -1348,34 +1259,25 @@
                 <div class="question-block">
                     <h4 class="block-title">3.3 Permisos Ambientales</h4>
                     <div class="question-section">
-                        <label class="form-label">Pregunta de selección con múltiple respuesta: Seleccione los permisos ambientales superfinos:</label>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_permisos" value="concesion-aguas">
-                                <span class="checkbox-label">Concesión de aguas</span>
+                        <label class="form-label">¿El proyecto cuenta con los permisos ambientales requeridos (concesión de aguas, vertimientos, aprovechamiento forestal, ocupación de cauce)?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="va_permisos" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_permisos" value="vertimientos">
-                                <span class="checkbox-label">Permiso de vertimientos</span>
+                            <label class="radio-item">
+                                <input type="radio" name="va_permisos" value="no">
+                                <span class="radio-label">No</span>
                             </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_permisos" value="emisiones">
-                                <span class="checkbox-label">Permiso de emisiones atmosféricas</span>
+                            <label class="radio-item">
+                                <input type="radio" name="va_permisos" value="en-tramite">
+                                <span class="radio-label">En trámite</span>
                             </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_permisos" value="ocupacion-cauce">
-                                <span class="checkbox-label">Permiso de ocupación de cauce</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_permisos" value="aprovechamiento">
-                                <span class="checkbox-label">Permiso de Aprovechamiento Forestal</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_permisos" value="sustraccion">
-                                <span class="checkbox-label">Sustracción de Áreas Subterráneas</span>
+                            <label class="radio-item">
+                                <input type="radio" name="va_permisos" value="no-aplica">
+                                <span class="radio-label">No aplica</span>
                             </label>
                         </div>
-                        <p class="form-hint">Se requiere elegir permisos ambientales con su nombre de la autoridad ambiental competente.</p>
                     </div>
                 </div>
 
@@ -1383,16 +1285,24 @@
                 <div class="question-block">
                     <h4 class="block-title">3.4 Consulta Previa</h4>
                     <div class="question-section">
-                        <label class="form-label">Consulta previa:</label>
-                        <p class="form-hint">Una comunidad seleccionó previamente que si hay presencia de comunidades étnicas cercanas, se debe</p>
+                        <label class="form-label">¿Se requiere adelantar proceso de consulta previa con comunidades étnicas?</label>
+                        <p class="form-hint">Solo aplica si hay presencia de comunidades indígenas, afrocolombianas, raizales, palenqueras o ROM en el área de influencia del proyecto</p>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="va_consulta_previa" value="hay-presencia">
-                                <span class="radio-label">Hay presencia de comunidades étnicas y se ha adelantado o está en proceso de Consulta previa sobre la ubicación, diseño y construcción del proyecto con el Ministerio del Interior</span>
+                                <input type="radio" name="va_consulta_previa" value="si-completada">
+                                <span class="radio-label">Sí, y ya se completó el proceso</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="va_consulta_previa" value="no-hay">
-                                <span class="radio-label">No hay comunidades étnicas certificadas en la zona</span>
+                                <input type="radio" name="va_consulta_previa" value="si-en-proceso">
+                                <span class="radio-label">Sí, está en proceso</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="va_consulta_previa" value="si-no-iniciado">
+                                <span class="radio-label">Sí, pero no se ha iniciado</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="va_consulta_previa" value="no-aplica">
+                                <span class="radio-label">No aplica (no hay comunidades étnicas)</span>
                             </label>
                         </div>
                     </div>
@@ -1400,48 +1310,22 @@
 
                 <!-- 3.5 Antecedentes Sancionatorios -->
                 <div class="question-block">
-                    <h4 class="block-title">3.5 Antecedentes Sancionatorios Graves</h4>
+                    <h4 class="block-title">3.5 Antecedentes Sancionatorios</h4>
                     <div class="question-section">
-                        <label class="form-label">Antecedentes sancionatorios graves:</label>
-                        <p class="form-hint">Un desarrollador legal tiene procesos de sector y no sido sancionado o multado por infracciones al medio ambiente</p>
+                        <label class="form-label">¿El representante legal o la empresa tienen antecedentes sancionatorios ambientales vigentes?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="va_antecedentes" value="no-tiene">
-                                <span class="radio-label">Puntaje = 5 "El representante legal presenta antecedentes sancionatorios o procesos ambientales vigentes"</span>
+                                <input type="radio" name="va_antecedentes" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="va_antecedentes" value="tiene">
-                                <span class="radio-label">Puntaje = 1 "Si representa legal no presenta antecedentes sancionatorios o procesos ambientales vigentes"</span>
+                                <input type="radio" name="va_antecedentes" value="no">
+                                <span class="radio-label">No</span>
                             </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4.1 Cálculo Huella de Carbono -->
-                <div class="question-block">
-                    <h4 class="block-title">4.1 Cálculo de Huella de Carbono</h4>
-                    <div class="question-section">
-                        <label class="form-label">Cálculo de huella de carbono del consumo actual:</label>
-                        <p class="form-hint">La plataforma tiene toda la fuente a energía toma renovables para la comunidad y las viviendas totalmente (con base de energía no las siguientes unidades:</p>
-                        <div class="info-box">
-                            <p><strong>Consumo eléctrico:</strong> Energía eléctrica de la red: 0.34 kgCO2/kWh</p>
-                            <p><strong>Combustibles:</strong></p>
-                            <ul>
-                                <li>Gas Natural: 1.9 kgCO2/m³</li>
-                                <li>Gas GLP: 1.55 kgCO2/kg</li>
-                                <li>Diésel: 2.68 kgCO2/L</li>
-                                <li>Gasolina: 2.31 kgCO2/L</li>
-                            </ul>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Huella de carbono actual (kgCO2/año)</label>
-                                <input type="number" name="va_huella_actual" class="form-control" placeholder="Calculado automáticamente">
-                            </div>
-                            <div class="form-group">
-                                <label>Reducción proyectada (%)</label>
-                                <input type="number" name="va_reduccion_co2" class="form-control" placeholder="Ej: 80">
-                            </div>
+                            <label class="radio-item">
+                                <input type="radio" name="va_antecedentes" value="no-sabe">
+                                <span class="radio-label">No sabe</span>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -1450,46 +1334,21 @@
                 <div class="question-block">
                     <h4 class="block-title">5.1 Vertimientos e Impactos</h4>
                     <div class="question-section">
-                        <label class="form-label">Pregunta de selección con múltiple respuesta: Seleccione de las siguientes fuentes de contaminación cercanas:</label>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_contaminacion" value="domesticas">
-                                <span class="checkbox-label">Vertimiento de aguas residuales domésticas e industriales</span>
+                        <label class="form-label">¿El proyecto generará vertimientos o impactos ambientales significativos?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="va_vertimientos" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_contaminacion" value="agricola">
-                                <span class="checkbox-label">Actividad agrícola intensiva</span>
+                            <label class="radio-item">
+                                <input type="radio" name="va_vertimientos" value="no">
+                                <span class="radio-label">No</span>
                             </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_contaminacion" value="residuos">
-                                <span class="checkbox-label">Manejo inadecuado de Transporte petróleo</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_contaminacion" value="mineria">
-                                <span class="checkbox-label">Minería artesanal/industrial</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="va_contaminacion" value="ninguna">
-                                <span class="checkbox-label">Ninguna</span>
+                            <label class="radio-item">
+                                <input type="radio" name="va_vertimientos" value="minimos">
+                                <span class="radio-label">Mínimos/controlables</span>
                             </label>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Resultado de Viabilidad Ambiental -->
-                <div class="result-message-card green-border">
-                    <div class="result-header">
-                        <span class="result-icon">A</span>
-                        <span class="result-title">Resultado de Viabilidad Ambiental</span>
-                        <span class="result-score" id="score_ambiental">--/5</span>
-                    </div>
-                    <div class="result-body">
-                        <p class="result-text">Se muestra resultado de viabilidad ambiental:</p>
-                        <ul>
-                            <li>&gt; 4.0 = Viabilidad ambiental alta</li>
-                            <li>3.0 - 3.99 = Viabilidad ambiental media (condicional)</li>
-                            <li>&lt; 3.0 = No hay viabilidad ambiental</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -1498,48 +1357,18 @@
                     <ul class="documents-list">
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Diagnóstico de restricción ambiental</span>
-                            <input type="file" name="doc_va_restriccion" class="document-input">
+                            <span class="document-name">Licencia ambiental <span class="document-condition">(solo si está en trámite)</span></span>
+                            <input type="file" name="doc_va_licencia" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de puntaje y formato de ordenamiento territorial</span>
-                            <input type="file" name="doc_va_ordenamiento" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Diagnóstico Ambiental de Alternativas (DAA)</span>
-                            <input type="file" name="doc_va_daa" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de permisos ambientales (con entrega a la autoridad)</span>
+                            <span class="document-name">Permisos Ambientales <span class="document-condition">(solo si los tiene)</span></span>
                             <input type="file" name="doc_va_permisos" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Consulta Previa</span>
-                            <input type="file" name="doc_va_consulta" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Antecedentes sancionatorios</span>
-                            <input type="file" name="doc_va_antecedentes" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Huella de Carbono y cálculo de huella</span>
-                            <input type="file" name="doc_va_huella" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Impactos ambientales</span>
-                            <input type="file" name="doc_va_impactos" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Archivo de Cumplimiento capa 1</span>
-                            <input type="file" name="doc_va_cumplimiento" class="document-input">
+                            <span class="document-name">Certificación o acta de cierre del proceso emitida por el Ministerio del Interior <span class="document-condition">(solo si hay presencia de comunidades étnicas)</span></span>
+                            <input type="file" name="doc_va_consulta_previa" class="document-input">
                         </li>
                     </ul>
                 </div>
