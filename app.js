@@ -1,8 +1,7 @@
 // Estado de la aplicación
 const appState = {
-    currentMainTab: 'viabilidad',
+    currentMainTab: 'caracterizacion-inicial',
     currentViabilityTab: 'energetica',
-    currentStep: 1,
     viabilityScores: {},
     formData: {}
 };
@@ -10,27 +9,25 @@ const appState = {
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
     initMainTabs();
-    initStepTabs();
     initViabilityTabs();
-    setupViabilityStepHandlers();
-    setupFinancialParameters();
 });
 
-// ============ MAIN TABS (Caracterización / Viabilidad) ============
+// ============ MAIN TABS (Pestañas principales moradas) ============
 
 function initMainTabs() {
     const mainTabs = document.querySelectorAll('.main-tab');
     mainTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const tabId = this.getAttribute('data-tab');
-            switchTab(tabId);
+            switchMainTab(tabId);
         });
     });
 }
 
-function switchTab(tabId) {
+function switchMainTab(tabId) {
     appState.currentMainTab = tabId;
 
+    // Actualizar pestañas
     document.querySelectorAll('.main-tab').forEach(tab => {
         tab.classList.remove('active');
         if (tab.getAttribute('data-tab') === tabId) {
@@ -38,6 +35,7 @@ function switchTab(tabId) {
         }
     });
 
+    // Mostrar contenido correspondiente
     document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
     });
@@ -46,85 +44,17 @@ function switchTab(tabId) {
     if (targetContent) {
         targetContent.classList.add('active');
     }
-}
 
-// ============ CHARACTERIZATION STEPS ============
-
-function initStepTabs() {
-    const stepTabs = document.querySelectorAll('.step-tab');
-    stepTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const stepNumber = parseInt(this.getAttribute('data-step'));
-            goToStep(stepNumber);
-        });
-    });
-}
-
-function goToStep(stepNumber) {
-    appState.currentStep = stepNumber;
-
-    document.querySelectorAll('.step-tab').forEach(tab => {
-        tab.classList.remove('active');
-        if (parseInt(tab.getAttribute('data-step')) === stepNumber) {
-            tab.classList.add('active');
-        }
-    });
-
-    document.querySelectorAll('.step-content').forEach(content => {
-        content.classList.remove('active');
-    });
-
-    const targetStep = document.getElementById(`step-${stepNumber}`);
-    if (targetStep) {
-        targetStep.classList.add('active');
+    // Si es viabilidad integral, calcular resultados
+    if (tabId === 'viabilidad-integral') {
+        displayIntegralResults();
     }
+
+    // Scroll al inicio
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function nextStep(stepNumber) {
-    saveCurrentStepData();
-    goToStep(stepNumber);
-}
-
-function prevStep(stepNumber) {
-    goToStep(stepNumber);
-}
-
-function saveCurrentStepData() {
-    const currentStepElement = document.querySelector('.step-content.active');
-    if (!currentStepElement) return;
-
-    const stepId = currentStepElement.id;
-    const formElements = currentStepElement.querySelectorAll('input, select, textarea');
-
-    appState.formData[stepId] = {};
-
-    formElements.forEach(element => {
-        if (element.type === 'checkbox') {
-            if (!appState.formData[stepId][element.name]) {
-                appState.formData[stepId][element.name] = [];
-            }
-            if (element.checked) {
-                appState.formData[stepId][element.name].push(element.value);
-            }
-        } else if (element.type === 'radio') {
-            if (element.checked) {
-                appState.formData[stepId][element.name] = element.value;
-            }
-        } else {
-            appState.formData[stepId][element.name] = element.value;
-        }
-    });
-}
-
-function finishCharacterization() {
-    saveCurrentStepData();
-    calculateViabilityEnergetic();
-    switchTab('viabilidad');
-    switchViabilityTab('energetica');
-    showNotification('Caracterización completada. Inicie el análisis de viabilidad.');
-}
-
-// ============ VIABILITY TABS & NAVIGATION ============
+// ============ VIABILITY TABS (6 viabilidades) ============
 
 function initViabilityTabs() {
     const viabilityTabs = document.querySelectorAll('.viability-main-tab');
@@ -139,6 +69,7 @@ function initViabilityTabs() {
 function switchViabilityTab(tabId) {
     appState.currentViabilityTab = tabId;
 
+    // Actualizar pestañas de viabilidad
     document.querySelectorAll('.viability-main-tab').forEach(tab => {
         tab.classList.remove('active');
         if (tab.getAttribute('data-viability') === tabId) {
@@ -146,6 +77,7 @@ function switchViabilityTab(tabId) {
         }
     });
 
+    // Mostrar contenido correspondiente
     document.querySelectorAll('.viability-content').forEach(content => {
         content.classList.remove('active');
     });
@@ -153,498 +85,519 @@ function switchViabilityTab(tabId) {
     const targetContent = document.getElementById(tabId);
     if (targetContent) {
         targetContent.classList.add('active');
-
-        if (tabId === 'integral') {
-            displayIntegralResults();
-        }
     }
+
+    // Scroll al inicio del contenido
+    window.scrollTo({ top: 200, behavior: 'smooth' });
 }
 
-function setupViabilityStepHandlers() {
-    // Energy viability steps
-    const energySteps = document.querySelectorAll('#energetica .viability-step');
-    energySteps.forEach(step => {
-        step.addEventListener('click', function() {
-            const stepId = this.getAttribute('data-step');
-            goToViabilityStep('energetica', stepId);
-        });
-    });
+// ============ CÁLCULO DE POTENCIAL ENERGÉTICO ============
 
-    // Environmental viability steps
-    const envSteps = document.querySelectorAll('#ambiental .viability-step');
-    envSteps.forEach(step => {
-        step.addEventListener('click', function() {
-            const stepId = this.getAttribute('data-step');
-            goToViabilityStep('ambiental', stepId);
-        });
-    });
+function calculatePotential() {
+    // Cálculo Solar
+    const solarArea = parseFloat(document.querySelector('[name="cp_solar_area"]')?.value) || 0;
+    const solarHSP = parseFloat(document.querySelector('[name="cp_solar_hsp"]')?.value) || 4.5;
+    const solarEfficiency = 0.18; // 18% eficiencia típica
+    const solarPotential = solarArea * solarHSP * solarEfficiency * 365;
 
-    // Legal viability steps
-    const legalSteps = document.querySelectorAll('#legal .viability-step');
-    legalSteps.forEach(step => {
-        step.addEventListener('click', function() {
-            const stepId = this.getAttribute('data-step');
-            goToViabilityStep('legal', stepId);
-        });
-    });
+    // Mostrar resultados
+    const resultSolar = document.getElementById('result_solar');
+    if (resultSolar) {
+        resultSolar.textContent = solarPotential > 0 ? `${Math.round(solarPotential).toLocaleString()} kWh/año` : '-- kWh/año';
+    }
 
-    // Financial viability steps
-    const finSteps = document.querySelectorAll('#financiera .viability-step');
-    finSteps.forEach(step => {
-        step.addEventListener('click', function() {
-            const stepId = this.getAttribute('data-step');
-            goToViabilityStep('financiera', stepId);
-        });
-    });
+    // Cálculo Eólico (simplificado)
+    const eolicoVelocidad = parseFloat(document.querySelector('[name="cp_eolico_velocidad"]')?.value) || 0;
+    let eolicoPotential = 0;
+    if (eolicoVelocidad > 0) {
+        // Fórmula simplificada: P = 0.5 * densidad * A * v^3 * Cp
+        eolicoPotential = 0.5 * 1.225 * 50 * Math.pow(eolicoVelocidad, 3) * 0.35 * 8760 / 1000;
+    }
 
-    // Social viability steps
-    const socSteps = document.querySelectorAll('#social .viability-step');
-    socSteps.forEach(step => {
-        step.addEventListener('click', function() {
-            const stepId = this.getAttribute('data-step');
-            goToViabilityStep('social', stepId);
-        });
-    });
+    const resultEolico = document.getElementById('result_eolico');
+    if (resultEolico) {
+        resultEolico.textContent = eolicoPotential > 0 ? `${Math.round(eolicoPotential).toLocaleString()} kWh/año` : '-- kWh/año';
+    }
+
+    // Cálculo Hídrico (simplificado)
+    const hidricoAltura = document.querySelector('[name="cp_hidrico_altura"]')?.value;
+    const hidricoCaudal = document.querySelector('[name="cp_hidrico_caudal"]')?.value;
+    let hidricoPotential = 0;
+
+    const alturaMap = { 'baja': 3, 'media': 12, 'alta': 30, 'no-disponible': 0 };
+    const caudalMap = { 'bajo': 5, 'medio': 25, 'alto': 75, 'desconocido': 0 };
+
+    if (hidricoAltura && hidricoCaudal) {
+        const h = alturaMap[hidricoAltura] || 0;
+        const q = caudalMap[hidricoCaudal] || 0;
+        // P = 9.81 * Q * H * eficiencia * horas/año
+        hidricoPotential = 9.81 * (q / 1000) * h * 0.7 * 8760;
+    }
+
+    const resultHidrico = document.getElementById('result_hidrico');
+    if (resultHidrico) {
+        resultHidrico.textContent = hidricoPotential > 0 ? `${Math.round(hidricoPotential).toLocaleString()} kWh/año` : '-- kWh/año';
+    }
+
+    // Cálculo Biomasa (simplificado)
+    const bovinos = parseInt(document.querySelector('[name="cp_biomasa_bovinos"]')?.value) || 0;
+    const porcinos = parseInt(document.querySelector('[name="cp_biomasa_porcinos"]')?.value) || 0;
+    const aves = parseInt(document.querySelector('[name="cp_biomasa_aves"]')?.value) || 0;
+
+    // kg estiercol/día * m3 biogás/kg * kWh/m3 * días/año
+    const biomasaPotential = (bovinos * 20 * 0.04 + porcinos * 5 * 0.06 + aves * 0.1 * 0.08) * 2 * 365;
+
+    const resultBiomasa = document.getElementById('result_biomasa');
+    if (resultBiomasa) {
+        resultBiomasa.textContent = biomasaPotential > 0 ? `${Math.round(biomasaPotential).toLocaleString()} kWh/año` : '-- kWh/año';
+    }
+
+    showNotification('Cálculo de potencial energético completado');
 }
 
-function goToViabilityStep(viabilityType, stepId) {
-    // Remove active from all steps
-    document.querySelectorAll(`#${viabilityType} .viability-step`).forEach(step => {
-        step.classList.remove('active');
-    });
+// ============ CÁLCULO DE VIABILIDADES ============
 
-    // Add active to clicked step
-    document.querySelector(`#${viabilityType} [data-step="${stepId}"]`).classList.add('active');
+function calculateAllViability() {
+    // Calcular todas las viabilidades
+    calculateViabilitySocial();
+    calculateViabilityTecnica();
+    calculateViabilityEnergetica();
+    calculateViabilityAmbiental();
+    calculateViabilityJuridica();
+    calculateViabilityFinanciera();
 
-    // Hide all step contents
-    document.querySelectorAll(`#${viabilityType} .viability-step-content`).forEach(content => {
-        content.classList.remove('active');
-    });
-
-    // Show selected step content
-    const stepContent = document.getElementById(stepId);
-    if (stepContent) {
-        stepContent.classList.add('active');
-    }
-}
-
-function nextViabilityStep(viabilityType, nextStepId) {
-    saveViabilityStepData(viabilityType);
-    goToViabilityStep(viabilityType, nextStepId);
-}
-
-function prevViabilityStep(viabilityType, prevStepId) {
-    goToViabilityStep(viabilityType, prevStepId);
-}
-
-function prevViabilityMainTab(tabId) {
-    const tabs = ['energetica', 'ambiental', 'legal', 'financiera', 'social'];
-    const currentIndex = tabs.indexOf(appState.currentViabilityTab);
-    if (currentIndex > 0) {
-        switchViabilityTab(tabs[currentIndex - 1]);
-    }
-}
-
-function saveViabilityStepData(viabilityType) {
-    const viabilityContent = document.getElementById(viabilityType);
-    if (!viabilityContent) return;
-
-    const formElements = viabilityContent.querySelectorAll('input, select, textarea');
-    const stepData = {};
-
-    formElements.forEach(element => {
-        if (element.type === 'checkbox') {
-            if (!stepData[element.name]) {
-                stepData[element.name] = [];
-            }
-            if (element.checked) {
-                stepData[element.name].push(element.value);
-            }
-        } else if (element.type === 'radio') {
-            if (element.checked) {
-                stepData[element.name] = element.value;
-            }
-        } else {
-            stepData[element.name] = element.value;
-        }
-    });
-
-    if (!appState.formData[viabilityType]) {
-        appState.formData[viabilityType] = {};
-    }
-    Object.assign(appState.formData[viabilityType], stepData);
-}
-
-// ============ VIABILITY CALCULATIONS ============
-
-function calculateViabilityEnergetic() {
-    saveViabilityStepData('energetica');
-    const data = appState.formData.energetica || {};
-
-    let score = 0;
-    const maxScore = 5;
-
-    // Evaluación de figura legal
-    if (data.energia_figura_legal && data.energia_figura_legal !== 'no-definido') {
-        score += 1;
-    }
-
-    // Evaluación de capacidad de mantenimiento
-    const mantenimiento = parseInt(data.energia_mantenimiento) || 0;
-    score += (mantenimiento / 5); // Convertir 0-5 a 0-1
-
-    // Evaluación de infraestructura
-    const infraestructura = parseInt(data.energia_infraestructura) || 0;
-    score += (infraestructura / 5);
-
-    // Evaluación de certificados
-    if (data.energia_certificado_or === 'si') {
-        score += 1;
-    } else if (data.energia_certificado_or === 'en-tramite') {
-        score += 0.5;
-    }
-
-    // Evaluación de contrato
-    if (data.energia_contrato_or === 'si') {
-        score += 0.5;
-    }
-
-    // Normalizar a escala 0-5
-    score = Math.min(score, maxScore);
-
-    appState.viabilityScores.energetica = score;
-    showNotification('Viabilidad Energética calculada: ' + score.toFixed(1) + '/5');
-}
-
-function calculateViabilityEnvironmental() {
-    saveViabilityStepData('ambiental');
-    const data = appState.formData.ambiental || {};
-
-    let score = 2.5; // Puntuación base
-
-    // Restricciones ambientales
-    const restricciones = data.ambiental_restricciones || [];
-    if (restricciones.length > 0) {
-        score += (restricciones.length * 0.2);
-    }
-
-    // Ordenamiento territorial
-    if (data.ambiental_pot === 'si') {
-        score += 1;
-    } else if (data.ambiental_pot === 'no-sabe') {
-        score += 0.3;
-    }
-
-    // Patrimonio cultural
-    if (data.ambiental_patrimonio === 'no') {
-        score += 0.5;
-    }
-
-    // Licenciamiento
-    if (data.ambiental_licencia_estado === 'otorgada') {
-        score += 1;
-    } else if (data.ambiental_licencia_estado === 'en-tramite') {
-        score += 0.5;
-    }
-
-    // Consulta previa
-    if (data.ambiental_consulta_previa === 'si' || data.ambiental_consulta_previa === 'no-aplica') {
-        score += 0.5;
-    }
-
-    // Amenazas
-    const amenazas = data.ambiental_amenazas || [];
-    if (amenazas.includes('ninguna') || amenazas.length === 0) {
-        score += 0.5;
-    }
-
-    score = Math.min(score, 5);
-
-    appState.viabilityScores.ambiental = score;
-    showNotification('Viabilidad Ambiental calculada: ' + score.toFixed(1) + '/5');
-}
-
-function calculateViabilityLegal() {
-    saveViabilityStepData('legal');
-    const data = appState.formData.legal || {};
-
-    let score = 0;
-
-    // Documentos de constitución
-    if (data.legal_documentos_constitucion === 'si') {
-        score += 1.5;
-    } else if (data.legal_documentos_constitucion === 'en-tramite') {
-        score += 0.75;
-    }
-
-    // Personería jurídica
-    if (data.legal_personeria === 'si') {
-        score += 1.5;
-    } else if (data.legal_personeria === 'en-tramite') {
-        score += 0.75;
-    }
-
-    // Contrato de conexión
-    if (data.legal_contrato_conexion === 'si') {
-        score += 1;
-    } else if (data.legal_contrato_conexion === 'en-tramite') {
-        score += 0.5;
-    }
-
-    // Protección al usuario
-    const proteccion = data.legal_proteccion_usuario || [];
-    score += (proteccion.length * 0.33);
-
-    score = Math.min(score, 5);
-
-    appState.viabilityScores.legal = score;
-    showNotification('Viabilidad Legal calculada: ' + score.toFixed(1) + '/5');
-}
-
-function calculateViabilityFinancial() {
-    saveViabilityStepData('financiera');
-    const data = appState.formData.financiera || {};
-
-    let score = 2; // Puntuación base
-
-    // Evaluación de fuentes de financiación
-    const fuentesEstado = data.financiera_fuentes_estado || [];
-    const fuentesPrivadas = data.financiera_fuentes_privadas || [];
-    const totalFuentes = fuentesEstado.length + fuentesPrivadas.length;
-
-    score += Math.min(totalFuentes * 0.3, 1.5);
-
-    // Evaluación de parámetros financieros
-    const tarifa = parseFloat(data.financiera_tarifa_actual) || 0;
-    const capex = parseFloat(data.financiera_capex) || 0;
-    const potencial = parseFloat(data.financiera_potencial) || 0;
-
-    if (tarifa > 0) score += 0.5;
-    if (capex > 0) score += 0.5;
-    if (potencial > 0) score += 0.5;
-
-    // Evaluación de payback (años para recuperar inversión)
-    if (capex > 0 && potencial > 0 && tarifa > 0) {
-        const ingresoAnual = potencial * tarifa;
-        if (ingresoAnual > 0) {
-            const paybackYears = capex / (ingresoAnual / 1000); // Conversión USD a COP aproximada
-            if (paybackYears < 10) {
-                score += 1;
-            } else if (paybackYears < 15) {
-                score += 0.5;
-            }
-        }
-    }
-
-    // Evaluación de financiamiento
-    if (data.financiera_requiere_credito === 'no') {
-        score += 0.5;
-    } else if (data.financiera_requiere_credito === 'si') {
-        const tasa = parseFloat(data.financiera_tasa_interes) || 0;
-        const plazo = parseInt(data.financiera_plazo_meses) || 0;
-        if (tasa > 0 && plazo > 0 && tasa <= 2) {
-            score += 0.5;
-        }
-    }
-
-    score = Math.min(score, 5);
-
-    appState.viabilityScores.financiera = score;
-    showNotification('Viabilidad Financiera calculada: ' + score.toFixed(1) + '/5');
+    // Ir a viabilidad integral
+    switchMainTab('viabilidad-integral');
 }
 
 function calculateViabilitySocial() {
-    saveViabilityStepData('social');
-    const data = appState.formData.social || {};
+    let score = 2.5; // Puntuación base
 
-    let score = 0;
-    let responses = 0;
+    // Evaluar motivaciones seleccionadas
+    const motivaciones = document.querySelectorAll('[name="vs_motivaciones"]:checked');
+    score += Math.min(motivaciones.length * 0.3, 1);
 
-    // Evaluaciones de liderazgo
-    const fields = [
-        'social_comunicacion',
-        'social_gestion_equipos',
-        'social_pensamiento_estrategico',
-        'social_inteligencia_emocional',
-        'social_resolucion_problemas'
-    ];
-
-    fields.forEach(field => {
-        const value = parseInt(data[field]) || 0;
-        if (value > 0) {
-            score += value;
-            responses++;
-        }
-    });
-
-    // Promediar
-    if (responses > 0) {
-        score = score / responses;
+    // Evaluar participación
+    const participacion = document.querySelector('[name="vs_participacion"]:checked');
+    if (participacion) {
+        score += parseInt(participacion.value) * 0.2;
     }
 
+    // Evaluar consenso
+    const consenso = document.querySelector('[name="vs_consenso"]:checked');
+    if (consenso) {
+        const consensoValues = { 'total': 1, 'mayoritario': 0.7, 'parcial': 0.4, 'bajo': 0.2, 'conflicto': 0 };
+        score += consensoValues[consenso.value] || 0;
+    }
+
+    // Evaluar capacidad técnica
+    const capacidades = document.querySelectorAll('[name="vs_capacidad"]:checked');
+    score += Math.min(capacidades.length * 0.15, 0.5);
+
+    score = Math.min(Math.max(score, 0), 5);
     appState.viabilityScores.social = score;
-    showNotification('Viabilidad Social calculada: ' + score.toFixed(1) + '/5');
 }
 
-function displayIntegralResults() {
-    const scores = appState.viabilityScores;
+function calculateViabilityTecnica() {
+    let score = 2; // Puntuación base
 
-    // Verificar si hay suficientes cálculos
-    if (Object.keys(scores).length < 5) {
-        document.getElementById('viability-no-data').style.display = 'block';
-        document.getElementById('viability-results-summary').style.display = 'none';
+    // Potencial calculado
+    const potencial = document.querySelector('[name="vt_potencial"]:checked');
+    if (potencial && potencial.value === 'si') {
+        score += 1;
+    }
+
+    // Redes de distribución
+    const redes = document.querySelector('[name="vt_redes"]:checked');
+    if (redes) {
+        score += parseInt(redes.value) * 0.2;
+    }
+
+    // Espacio disponible
+    const espacio = document.querySelector('[name="vt_espacio"]:checked');
+    if (espacio && espacio.value === 'si') {
+        score += 0.5;
+    }
+
+    // Experiencia previa
+    const experiencia = document.querySelector('[name="vt_experiencia"]:checked');
+    if (experiencia) {
+        score += parseInt(experiencia.value) * 0.1;
+    }
+
+    // Mantenimiento
+    const mantenimiento = document.querySelector('[name="vt_mantenimiento"]:checked');
+    if (mantenimiento) {
+        score += parseInt(mantenimiento.value) * 0.1;
+    }
+
+    score = Math.min(Math.max(score, 0), 5);
+    appState.viabilityScores.tecnica = score;
+}
+
+function calculateViabilityEnergetica() {
+    let score = 2; // Puntuación base
+
+    // Factor de planta
+    const factorPlanta = parseFloat(document.querySelector('[name="ve_factor_planta"]')?.value) || 0;
+    if (factorPlanta >= 25) score += 1.5;
+    else if (factorPlanta >= 20) score += 1;
+    else if (factorPlanta >= 15) score += 0.5;
+
+    // Capacidad menor a 100kW (más fácil de gestionar)
+    const capacidad100 = document.querySelector('[name="ve_capacidad_100"]:checked');
+    if (capacidad100 && capacidad100.value === 'no') {
+        score += 0.5;
+    }
+
+    // Certificado operador de red
+    const certificado = document.querySelector('[name="ve_certificado_or"]:checked');
+    if (certificado) {
+        if (certificado.value === 'si') score += 0.5;
+        else if (certificado.value === 'en-tramite') score += 0.25;
+    }
+
+    // Distribución de demanda
+    const dispersion = document.querySelector('[name="ve_dispersion"]:checked');
+    if (dispersion) {
+        const dispersionValues = { 'concentrada': 0.5, 'media': 0.3, 'dispersa': 0.1 };
+        score += dispersionValues[dispersion.value] || 0;
+    }
+
+    score = Math.min(Math.max(score, 0), 5);
+    appState.viabilityScores.energetica = score;
+}
+
+function calculateViabilityAmbiental() {
+    let score = 3; // Puntuación base
+
+    // Restricciones ambientales
+    const restricciones = document.querySelectorAll('[name="va_restricciones"]:checked');
+    const tieneNinguno = Array.from(restricciones).some(r => r.value === 'ninguno');
+    if (tieneNinguno) {
+        score += 1;
+    } else {
+        score -= restricciones.length * 0.3;
+    }
+
+    // POT permite el proyecto
+    const pot = document.querySelector('[name="va_pot"]:checked');
+    if (pot) {
+        if (pot.value === 'si') score += 0.5;
+        else if (pot.value === 'no') score -= 1;
+    }
+
+    // Estado de licencia ambiental
+    const licencia = document.querySelector('[name="va_licencia"]:checked');
+    if (licencia) {
+        const licenciaValues = { 'otorgada': 1, 'en-tramite': 0.5, 'planeacion': 0.2, 'no-planificado': 0 };
+        score += licenciaValues[licencia.value] || 0;
+    }
+
+    // Comunidades étnicas (requiere consulta previa)
+    const etnicas = document.querySelector('[name="va_comunidades_etnicas"]:checked');
+    if (etnicas && etnicas.value === 'no') {
+        score += 0.3;
+    }
+
+    // Amenazas
+    const amenazas = document.querySelectorAll('[name="va_amenazas"]:checked');
+    const tieneNingunaAmenaza = Array.from(amenazas).some(a => a.value === 'ninguna');
+    if (tieneNingunaAmenaza) {
+        score += 0.3;
+    } else {
+        score -= amenazas.length * 0.2;
+    }
+
+    score = Math.min(Math.max(score, 0), 5);
+    appState.viabilityScores.ambiental = score;
+}
+
+function calculateViabilityJuridica() {
+    let score = 0; // Inicia en 0 porque requiere registro
+
+    // Registro jurídico
+    const registro = document.querySelector('[name="vj_registro"]:checked');
+    if (registro && registro.value === 'si') {
+        score += 2;
+    } else {
+        score = 0; // No viable sin registro
+        appState.viabilityScores.juridica = score;
         return;
     }
 
-    document.getElementById('viability-no-data').style.display = 'none';
-    document.getElementById('viability-results-summary').style.display = 'block';
+    // Documentos disponibles
+    const documentos = document.querySelectorAll('[name="vj_docs"]:checked');
+    score += Math.min(documentos.length * 0.4, 1.5);
 
-    // Calcular promedio
-    const avgScore = (
-        (scores.energetica || 0) +
-        (scores.ambiental || 0) +
-        (scores.legal || 0) +
-        (scores.financiera || 0) +
-        (scores.social || 0)
-    ) / 5;
-
-    // Actualizar score general
-    const scoreValue = document.getElementById('overall-score');
-    scoreValue.textContent = avgScore.toFixed(1);
-
-    // Actualizar color basado en score
-    if (avgScore >= 4) {
-        scoreValue.style.color = '#28a745';
-    } else if (avgScore >= 3) {
-        scoreValue.style.color = '#ffc107';
-    } else {
-        scoreValue.style.color = '#dc3545';
+    // Registro RCE
+    const rce = document.querySelector('[name="vj_rce"]:checked');
+    if (rce) {
+        if (rce.value === 'si') score += 1;
+        else if (rce.value === 'en-tramite') score += 0.5;
     }
 
-    // Actualizar barras de viabilidad individual
-    updateScoreBar('energetica', scores.energetica || 0);
-    updateScoreBar('ambiental', scores.ambiental || 0);
-    updateScoreBar('legal', scores.legal || 0);
-    updateScoreBar('financiera', scores.financiera || 0);
-    updateScoreBar('social', scores.social || 0);
-
-    // Mostrar recomendación
-    let recommendation = '';
-    if (avgScore >= 4) {
-        recommendation = `<div class="recommendation success">
-            <h4>✓ Alta Viabilidad Integral (${avgScore.toFixed(1)}/5)</h4>
-            <p>La comunidad cuenta con condiciones sólidas para avanzar a la fase de diseño integral del proyecto.</p>
-        </div>`;
-    } else if (avgScore >= 3) {
-        recommendation = `<div class="recommendation warning">
-            <h4>⚠ Viabilidad Media (${avgScore.toFixed(1)}/5)</h4>
-            <p>El proyecto es potencialmente viable, pero requiere ajustes previos en algunos componentes.</p>
-        </div>`;
-    } else {
-        recommendation = `<div class="recommendation error">
-            <h4>✗ Baja Viabilidad (${avgScore.toFixed(1)}/5)</h4>
-            <p>La comunidad presenta barreras críticas. Se sugiere replantear el diseño antes de continuar.</p>
-        </div>`;
+    // Capacidad menor a 5MW
+    const capacidad = document.querySelector('[name="vj_capacidad"]:checked');
+    if (capacidad && capacidad.value === 'si') {
+        score += 0.5;
     }
 
-    document.getElementById('viability-recommendation').innerHTML = recommendation;
+    score = Math.min(Math.max(score, 0), 5);
+    appState.viabilityScores.juridica = score;
 }
 
-function updateScoreBar(type, score) {
-    const bar = document.getElementById(`score-${type}`);
-    const text = document.getElementById(`score-${type}-text`);
+function calculateViabilityFinanciera() {
+    let score = 2; // Puntuación base
 
-    if (bar && text) {
-        const percentage = (score / 5) * 100;
-        bar.style.width = percentage + '%';
-        text.textContent = score.toFixed(1) + '/5';
+    // Recursos propios
+    const recursos = document.querySelector('[name="vf_recursos"]:checked');
+    if (recursos && recursos.value === 'si') {
+        score += 0.5;
+        const monto = parseFloat(document.querySelector('[name="vf_monto"]')?.value) || 0;
+        if (monto > 0) score += 0.5;
     }
+
+    // Fuentes de financiación estatales
+    const fuentesEstado = document.querySelectorAll('[name="vf_fuentes_estado"]:checked');
+    score += Math.min(fuentesEstado.length * 0.2, 0.8);
+
+    // CAPEX calculado
+    const capacidadKw = parseFloat(document.querySelector('[name="vf_capacidad_kw"]')?.value) || 0;
+    const costoKw = parseFloat(document.querySelector('[name="vf_costo_kw"]')?.value) || 0;
+    if (capacidadKw > 0 && costoKw > 0) {
+        const capex = capacidadKw * costoKw;
+        const capexInput = document.querySelector('[name="vf_capex"]');
+        if (capexInput) capexInput.value = capex;
+        score += 0.5;
+    }
+
+    // Incentivos tributarios
+    const incentivos = document.querySelectorAll('[name="vf_incentivos"]:checked');
+    score += Math.min(incentivos.length * 0.2, 0.7);
+
+    score = Math.min(Math.max(score, 0), 5);
+    appState.viabilityScores.financiera = score;
 }
 
-// ============ FINANCIAL PARAMETERS HANDLER ============
+// ============ MOSTRAR RESULTADOS INTEGRALES ============
 
-function setupFinancialParameters() {
-    // Todas las preguntas se muestran siempre, sin condicionalidad
-    // La función se mantiene para compatibilidad futura
+function displayIntegralResults() {
+    const scores = appState.viabilityScores;
+    const viabilidades = ['energetica', 'ambiental', 'legal', 'financiera', 'social'];
+
+    let totalScore = 0;
+    let validCount = 0;
+
+    viabilidades.forEach(viab => {
+        const score = scores[viab] || 0;
+        const message = getViabilityMessage(viab, score);
+
+        // Update main tab (viabilidad-integral)
+        const scoreElement = document.getElementById(`integral_${viab}`);
+        const msgElement = document.getElementById(`msg_${viab}`);
+
+        if (scoreElement) {
+            scoreElement.textContent = `${score.toFixed(1)}/5`;
+        }
+
+        if (msgElement) {
+            msgElement.textContent = message;
+        }
+
+        // Update subtab (integral within viabilidad tab)
+        const subtabScoreElement = document.getElementById(`subtab_integral_${viab}`);
+        const subtabMsgElement = document.getElementById(`subtab_msg_${viab}`);
+
+        if (subtabScoreElement) {
+            subtabScoreElement.textContent = `${score.toFixed(1)}/5`;
+        }
+
+        if (subtabMsgElement) {
+            subtabMsgElement.textContent = message;
+        }
+
+        if (score > 0) {
+            totalScore += score;
+            validCount++;
+        }
+    });
+
+    // Calcular promedio general
+    const overallScore = validCount > 0 ? totalScore / validCount : 0;
+
+    // Determine classification text and color
+    let classificationText = 'Pendiente';
+    let classificationColor = '#666';
+
+    if (overallScore >= 4) {
+        classificationText = 'Alta - Viable';
+        classificationColor = '#27ae60';
+    } else if (overallScore >= 3) {
+        classificationText = 'Media - Requiere ajustes';
+        classificationColor = '#f39c12';
+    } else if (overallScore > 0) {
+        classificationText = 'Baja - Barreras críticas';
+        classificationColor = '#e74c3c';
+    }
+
+    // Update main tab (viabilidad-integral)
+    const overallElement = document.getElementById('overall_score');
+    if (overallElement) {
+        overallElement.textContent = overallScore.toFixed(1);
+    }
+
+    const classificationElement = document.getElementById('classification_value');
+    if (classificationElement) {
+        classificationElement.textContent = classificationText;
+        classificationElement.style.color = classificationColor;
+    }
+
+    // Update subtab (integral within viabilidad tab)
+    const subtabOverallElement = document.getElementById('integral_overall_score');
+    if (subtabOverallElement) {
+        subtabOverallElement.textContent = overallScore.toFixed(1);
+    }
+
+    const subtabClassificationElement = document.getElementById('integral_classification');
+    if (subtabClassificationElement) {
+        subtabClassificationElement.textContent = classificationText;
+        subtabClassificationElement.style.color = classificationColor;
+    }
+
+    // Generar recomendaciones
+    generateRecommendations(scores, overallScore);
 }
 
-// ============ UTILITIES ============
+function getViabilityMessage(type, score) {
+    const messages = {
+        energetica: {
+            high: 'El potencial energético y la infraestructura son favorables para el proyecto.',
+            medium: 'Se requieren mejoras en infraestructura o conexión a red.',
+            low: 'Es necesario evaluar alternativas tecnológicas o mejorar infraestructura.'
+        },
+        ambiental: {
+            high: 'El proyecto cumple con los requisitos ambientales.',
+            medium: 'Se requieren algunos permisos o estudios ambientales adicionales.',
+            low: 'Existen restricciones ambientales significativas a resolver.'
+        },
+        legal: {
+            high: 'La comunidad tiene constituida su personería jurídica y documentación completa.',
+            medium: 'Se requiere completar documentación o registros pendientes.',
+            low: 'Es prioritario constituir legalmente la comunidad energética.'
+        },
+        financiera: {
+            high: 'El proyecto cuenta con fuentes de financiación identificadas y viabilidad financiera.',
+            medium: 'Se requiere gestionar fuentes adicionales de financiación.',
+            low: 'Es necesario desarrollar un plan financiero sólido.'
+        },
+        social: {
+            high: 'La comunidad muestra alto nivel de cohesión social, liderazgo y participación activa.',
+            medium: 'Se requiere fortalecer la participación comunitaria y el consenso.',
+            low: 'Es necesario trabajar en la cohesión social y gobernanza antes de avanzar.'
+        }
+    };
+
+    let level = 'low';
+    if (score >= 4) level = 'high';
+    else if (score >= 3) level = 'medium';
+
+    return messages[type]?.[level] || 'Complete la evaluación para ver el resultado.';
+}
+
+function generateRecommendations(scores, overallScore) {
+    const recommendationsDiv = document.getElementById('recommendations_content');
+    if (!recommendationsDiv) return;
+
+    let recommendations = [];
+
+    if (scores.energetica < 3) {
+        recommendations.push('- Revisar el cálculo de potencial energético y evaluar tecnologías alternativas.');
+    }
+    if (scores.ambiental < 3) {
+        recommendations.push('- Gestionar permisos ambientales y verificar zonificación del POT.');
+    }
+    if (scores.legal < 3) {
+        recommendations.push('- Priorizar la constitución legal de la comunidad energética y registro en el RCE.');
+    }
+    if (scores.financiera < 3) {
+        recommendations.push('- Identificar y gestionar fuentes de financiación (FAER, FENOGE, cooperación).');
+    }
+    if (scores.social < 3) {
+        recommendations.push('- Realizar talleres de sensibilización, fortalecer liderazgo y gobernanza comunitaria.');
+    }
+
+    if (recommendations.length === 0) {
+        recommendations.push('El proyecto presenta buenas condiciones de viabilidad. Se recomienda avanzar a la fase de diseño integral.');
+    }
+
+    recommendationsDiv.innerHTML = recommendations.join('<br>');
+}
+
+// ============ EXPORTAR RESULTADOS ============
+
+function exportResults() {
+    const scores = appState.viabilityScores;
+    const data = {
+        fecha: new Date().toLocaleDateString('es-CO'),
+        viabilidades: scores,
+        promedioGeneral: Object.values(scores).reduce((a, b) => a + b, 0) / Object.keys(scores).length
+    };
+
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `viabilidad_integral_${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showNotification('Resultados exportados correctamente');
+}
+
+// ============ NOTIFICACIONES ============
 
 function showNotification(message) {
+    // Crear notificación
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
     notification.style.cssText = `
         position: fixed;
-        top: 20px;
+        bottom: 20px;
         right: 20px;
-        background-color: #c5d82a;
-        color: #000;
+        background-color: #27ae60;
+        color: white;
         padding: 15px 25px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         z-index: 1000;
-        animation: slideIn 0.3s ease;
+        animation: slideIn 0.3s ease-out;
     `;
 
     document.body.appendChild(notification);
 
+    // Remover después de 3 segundos
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
+        notification.style.animation = 'slideOut 0.3s ease-in';
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
-// Agregar animaciones
-const animationStyles = document.createElement('style');
-animationStyles.textContent = `
+// Agregar estilos de animación
+const style = document.createElement('style');
+style.textContent = `
     @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
     }
     @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-    .recommendation {
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 20px;
-    }
-    .recommendation.success {
-        background-color: #d4edda;
-        border: 1px solid #c3e6cb;
-        color: #155724;
-    }
-    .recommendation.warning {
-        background-color: #fff3cd;
-        border: 1px solid #ffeeba;
-        color: #856404;
-    }
-    .recommendation.error {
-        background-color: #f8d7da;
-        border: 1px solid #f5c6cb;
-        color: #721c24;
-    }
-    .recommendation h4 {
-        margin-top: 0;
-        font-size: 16px;
-    }
-    .recommendation p {
-        margin-bottom: 0;
-        font-size: 14px;
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
     }
 `;
-document.head.appendChild(animationStyles);
+document.head.appendChild(style);

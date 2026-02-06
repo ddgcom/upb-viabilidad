@@ -748,3 +748,659 @@ input[type="email"].form-control {
         width: 100%;
     }
 }
+
+/* ============================================== */
+/* ICONOS DE POTENCIAL ENERGÉTICO */
+/* ============================================== */
+.potencial-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.potencial-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 15px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.potencial-icon-item.active {
+    border-color: #27ae60;
+    background-color: #f0fff4;
+}
+
+.potencial-icon-item.active .potencial-value {
+    color: #27ae60;
+}
+
+.potencial-icon-item.inactive {
+    border-color: #ccc;
+    background-color: #f5f5f5;
+    opacity: 0.6;
+}
+
+.potencial-icon-item.inactive .potencial-icon {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.potencial-icon-item.inactive .potencial-value {
+    color: #999;
+}
+
+.potencial-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.potencial-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.potencial-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* ============================================== */
+/* ELEMENTOS DESHABILITADOS */
+/* ============================================== */
+.config-disabled .checkbox-item.disabled-item {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    border-color: #ccc;
+}
+
+.config-disabled .checkbox-item.disabled-item input {
+    cursor: not-allowed;
+}
+
+.disabled-badge {
+    display: block;
+    font-size: 10px;
+    color: #e74c3c;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Elementos habilitados */
+.config-mixed .checkbox-item.enabled-item {
+    border-color: #27ae60;
+    background-color: #f0fff4;
+}
+
+.config-mixed .checkbox-item.enabled-item:hover {
+    border-color: #219a52;
+    background-color: #e6f9ed;
+}
+
+.enabled-badge {
+    display: block;
+    font-size: 10px;
+    color: #27ae60;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* ============================================== */
+/* TOOLTIPS PARA OPCIONES */
+/* ============================================== */
+.radio-item {
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.radio-item .radio-label {
+    flex: 1;
+}
+
+.tooltip-text {
+    display: block;
+    width: 100%;
+    font-size: 11px;
+    color: #888;
+    margin-left: 32px;
+    margin-top: 2px;
+    font-style: italic;
+}
+
+/* ============================================== */
+/* SUB-PREGUNTAS */
+/* ============================================== */
+.sub-question {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 3px solid #c5d82a;
+}
+
+/* ============================================== */
+/* ESTILOS PARA PESTAÑAS MORADAS (PURPLE TABS) */
+/* ============================================== */
+.purple-tabs {
+    background-color: #7b4397;
+    background: linear-gradient(135deg, #7b4397 0%, #9b59b6 100%);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.purple-tabs .main-tab {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 20px;
+    font-weight: 500;
+}
+
+.purple-tabs .main-tab:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.purple-tabs .main-tab.active {
+    background-color: #fff;
+    color: #7b4397;
+    border-color: #fff;
+}
+
+/* ============================================== */
+/* BLOQUES DE PREGUNTAS (CUADROS NEGROS) */
+/* ============================================== */
+.question-block {
+    border: 2px solid #333;
+    border-radius: 0;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+
+.question-block .block-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #7b4397;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ============================================== */
+/* SECCIÓN DE DOCUMENTOS A ADJUNTAR */
+/* ============================================== */
+.documents-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+.documents-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.documents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+.document-item:hover {
+    border-color: #7b4397;
+}
+
+.document-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Estilo de onda en la parte inferior del documento */
+.document-item {
+    position: relative;
+    background: linear-gradient(to bottom, #fff 85%, #f8e8f8 100%);
+    border-bottom: 3px solid #d4a5d4;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.document-item::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0 5 Q25 0 50 5 T100 5 V10 H0 Z' fill='%23f8e8f8'/%3E%3C/svg%3E") repeat-x;
+    background-size: 50px 8px;
+}
+
+.document-icon {
+    font-size: 20px;
+}
+
+.document-name {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.document-input {
+    max-width: 250px;
+    font-size: 12px;
+}
+
+/* Mensaje de no documentos */
+.no-documents-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    text-align: center;
+    color: #888;
+}
+
+.no-documents-message .no-docs-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    opacity: 0.6;
+}
+
+.no-documents-message p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ============================================== */
+/* VIABILIDAD INTEGRAL - MENSAJES VERDES REDONDEADOS */
+/* ============================================== */
+.integral-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.result-message-card {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.result-message-card.green-border {
+    border: 3px solid #27ae60;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background-color: #27ae60;
+    color: #fff;
+}
+
+.result-icon {
+    width: 28px;
+    height: 28px;
+    background-color: #fff;
+    color: #27ae60;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.result-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.result-score {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.result-body {
+    padding: 20px;
+}
+
+.result-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ============================================== */
+/* PUNTAJE GENERAL */
+/* ============================================== */
+.overall-score-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.overall-score-card {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: #fff;
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.overall-score-card h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.score-display {
+    margin-bottom: 15px;
+}
+
+.big-score {
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.score-max {
+    font-size: 32px;
+    opacity: 0.8;
+}
+
+.score-classification {
+    font-size: 16px;
+}
+
+.classification-value {
+    font-weight: 600;
+}
+
+/* ============================================== */
+/* INTERPRETACIÓN DE RESULTADOS */
+/* ============================================== */
+.interpretation-section {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.interpretation-section h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.interpretation-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.interpretation-scale .scale-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.interpretation-scale .scale-item.high .scale-color {
+    background-color: #27ae60;
+}
+
+.interpretation-scale .scale-item.medium .scale-color {
+    background-color: #f39c12;
+}
+
+.interpretation-scale .scale-item.low .scale-color {
+    background-color: #e74c3c;
+}
+
+.scale-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.scale-range {
+    font-weight: 600;
+    min-width: 100px;
+    color: #333;
+}
+
+.scale-desc {
+    flex: 1;
+    font-size: 14px;
+    color: #666;
+}
+
+/* ============================================== */
+/* RECOMENDACIONES */
+/* ============================================== */
+.recommendations-section {
+    background-color: #fff3cd;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border-left: 4px solid #f39c12;
+}
+
+.recommendations-section h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #856404;
+}
+
+#recommendations_content {
+    font-size: 14px;
+    color: #856404;
+    line-height: 1.7;
+}
+
+/* ============================================== */
+/* SECCIÓN ODS */
+/* ============================================== */
+.ods-section {
+    background-color: #e8f4fd;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.ods-section h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+.ods-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.ods-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 12px;
+}
+
+/* ============================================== */
+/* BOTONES DE ACCIÓN */
+/* ============================================== */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn-success {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #219a52;
+}
+
+/* ============================================== */
+/* RESULTADOS DE CÁLCULO DE POTENCIAL */
+/* ============================================== */
+.results-section {
+    background-color: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.result-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.result-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.result-value {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ============================================== */
+/* INFO BOX */
+/* ============================================== */
+.info-box {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.info-box p {
+    margin-bottom: 5px;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================== */
+/* HINT WARNINGS */
+/* ============================================== */
+.form-hint.warning-hint {
+    color: #e74c3c;
+    background-color: #fdf2f2;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+/* ============================================== */
+/* LEADERSHIP SCALE */
+/* ============================================== */
+.leadership-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.scale-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+}
+
+.scale-row .scale-label {
+    min-width: 250px;
+    font-size: 14px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .scale-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .scale-row .scale-label {
+        min-width: auto;
+    }
+
+    .integral-results {
+        grid-template-columns: 1fr;
+    }
+
+    .overall-score-card {
+        padding: 30px 40px;
+    }
+
+    .big-score {
+        font-size: 56px;
+    }
+}
