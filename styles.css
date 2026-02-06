@@ -1441,3 +1441,1486 @@ input[type="email"].form-control {
     font-style: italic;
     font-weight: normal;
 }
+
+/* ============================================== */
+/* SUB-PREGUNTAS PARA LIDERAZGO */
+/* ============================================== */
+.sub-question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.sub-question-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #c5d82a;
+}
+
+.sub-question-item p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.radio-group.radio-inline {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.radio-group.radio-inline .radio-item {
+    min-width: auto;
+    padding: 8px 15px;
+}
+
+.radio-group.radio-inline .radio-label {
+    font-weight: 600;
+}
+
+/* ============================================== */
+/* VIABILIDAD INTEGRAL - NIVELES */
+/* ============================================== */
+
+/* Tarjeta principal de resultado integral */
+.overall-score-section .overall-score-card {
+    background: #27ae60;
+    color: #fff;
+    padding: 30px 50px;
+}
+
+.overall-score-section .overall-score-card h3 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.overall-score-section .big-score {
+    font-size: 64px;
+    color: #fff;
+}
+
+.overall-score-section .score-max {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.overall-score-section .classification-value {
+    color: #fff;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.overall-message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+/* Grid de 5 tarjetas de viabilidad */
+.integral-results-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.integral-results-list .result-message-card {
+    border-radius: 10px;
+}
+
+.integral-results-list .result-header {
+    padding: 10px 12px;
+    gap: 8px;
+}
+
+.integral-results-list .result-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+}
+
+.integral-results-list .result-title {
+    font-size: 11px;
+    display: none;
+}
+
+.integral-results-list .result-score {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.integral-results-list .result-body {
+    padding: 12px;
+}
+
+.integral-results-list .result-text {
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Tarjeta borde amarillo - Viabilidad Media */
+.result-message-card.yellow-border {
+    border: 3px solid #f39c12;
+}
+
+.result-message-card.yellow-border .result-header {
+    background-color: #f39c12;
+}
+
+/* Tarjeta borde rojo - Viabilidad Baja */
+.result-message-card.red-border {
+    border: 3px solid #e74c3c;
+}
+
+.result-message-card.red-border .result-header {
+    background-color: #e74c3c;
+}
+
+/* Badges de viabilidad */
+.viability-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.viability-badge.badge-high {
+    background-color: #e8f5e9;
+    color: #27ae60;
+    border: 1px solid #27ae60;
+}
+
+.viability-badge.badge-medium {
+    background-color: #fff3e0;
+    color: #f39c12;
+    border: 1px solid #f39c12;
+}
+
+.viability-badge.badge-low {
+    background-color: #ffebee;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+/* Responsive para las 5 tarjetas */
+@media (max-width: 1200px) {
+    .integral-results-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .integral-results-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .integral-results-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================== */
+/* TARJETAS COMPACTAS DE VIABILIDAD */
+/* ============================================== */
+
+.compact-viability-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.compact-viability-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.compact-viability-card.green-border {
+    border: 3px solid #27ae60;
+}
+
+.compact-viability-card.yellow-border {
+    border: 3px solid #f39c12;
+}
+
+.compact-viability-card.red-border {
+    border: 3px solid #e74c3c;
+}
+
+.compact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #27ae60;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.compact-icon.icon-medium {
+    background: #f39c12;
+}
+
+.compact-icon.icon-low {
+    background: #e74c3c;
+}
+
+.compact-score {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.compact-label {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+.compact-viability-card .viability-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.compact-viability-card .viability-badge.badge-high {
+    background-color: #e8f5e9;
+    color: #27ae60;
+}
+
+.compact-viability-card .viability-badge.badge-medium {
+    background-color: #fff3e0;
+    color: #f39c12;
+}
+
+.compact-viability-card .viability-badge.badge-low {
+    background-color: #ffebee;
+    color: #e74c3c;
+}
+
+/* ============================================== */
+/* LISTA DE PUNTOS A MEJORAR */
+/* ============================================== */
+
+.mejoras-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mejora-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border-left: 4px solid;
+}
+
+.mejora-item.mejora-success {
+    background-color: #e8f5e9;
+    border-left-color: #27ae60;
+}
+
+.mejora-item.mejora-warning {
+    background-color: #fff3e0;
+    border-left-color: #f39c12;
+}
+
+.mejora-item.mejora-danger {
+    background-color: #ffebee;
+    border-left-color: #e74c3c;
+}
+
+.mejora-item.mejora-info {
+    background-color: #e3f2fd;
+    border-left-color: #2196f3;
+}
+
+.mejora-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.mejora-content {
+    flex: 1;
+}
+
+.mejora-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.mejora-mensaje {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.btn-mejora {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.btn-mejora:hover {
+    background-color: #7b4397;
+    border-color: #7b4397;
+    color: #fff;
+}
+
+.mejora-item.mejora-success .btn-mejora:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+.mejora-item.mejora-warning .btn-mejora:hover {
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+.mejora-item.mejora-danger .btn-mejora:hover {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.mejora-item.mejora-info .btn-mejora:hover {
+    background-color: #2196f3;
+    border-color: #2196f3;
+}
+
+/* ============================================== */
+/* MAPA CON PANEL DE INFORMACION */
+/* ============================================== */
+
+.mapa-con-info {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.mapa-cartografico-panel {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #8b9dc3;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mapa-base {
+    position: relative;
+    height: 320px;
+    background: #f5f1e8;
+    background-image:
+        radial-gradient(circle at 20% 80%, #e8e4d8 0%, transparent 25%),
+        radial-gradient(circle at 80% 20%, #eae6da 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, #f0ece2 0%, transparent 50%);
+}
+
+/* Grid de coordenadas */
+.mapa-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(139, 157, 195, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 157, 195, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Rios */
+.mapa-rio {
+    position: absolute;
+    background: #a8d4e6;
+    border: 1px solid #7bb8d0;
+}
+
+.mapa-rio:first-of-type {
+    top: 30%;
+    left: 0;
+    width: 45%;
+    height: 8px;
+    border-radius: 0 4px 4px 0;
+    transform: rotate(-5deg);
+}
+
+.mapa-rio.rio-2 {
+    top: 55%;
+    left: 35%;
+    width: 65%;
+    height: 6px;
+    border-radius: 4px 0 0 4px;
+    transform: rotate(8deg);
+}
+
+/* Carreteras */
+.mapa-carretera {
+    position: absolute;
+    background: #d4c4a8;
+    border: 1px dashed #b8a888;
+}
+
+.mapa-carretera:first-of-type {
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    transform: rotate(2deg);
+}
+
+.mapa-carretera.carretera-2 {
+    top: 15%;
+    left: 60%;
+    width: 4px;
+    height: 70%;
+    transform: rotate(-3deg);
+}
+
+/* Zonas verdes */
+.mapa-zona-verde {
+    position: absolute;
+    background: rgba(144, 190, 109, 0.4);
+    border: 1px solid rgba(100, 160, 70, 0.5);
+    border-radius: 50%;
+}
+
+.mapa-zona-verde.zona-1 {
+    top: 60%;
+    left: 5%;
+    width: 80px;
+    height: 60px;
+}
+
+.mapa-zona-verde.zona-2 {
+    top: 10%;
+    right: 10%;
+    width: 60px;
+    height: 50px;
+}
+
+/* Zona urbana */
+.mapa-zona-urbana {
+    position: absolute;
+    top: 35%;
+    left: 30%;
+    width: 100px;
+    height: 70px;
+    background: rgba(200, 180, 160, 0.5);
+    border: 1px solid rgba(180, 160, 140, 0.6);
+    border-radius: 4px;
+}
+
+/* Marcador de la comunidad */
+.mapa-marker-comunidad {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 10;
+}
+
+.marker-pin {
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    border: 3px solid #fff;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.marker-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: rgba(231, 76, 60, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+/* Iconos mini de energia */
+.mapa-icono-mini {
+    position: absolute;
+    font-size: 16px;
+    background: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 5;
+}
+
+.mapa-icono-mini:hover {
+    transform: scale(1.2);
+}
+
+.mapa-icono-mini.icono-solar {
+    top: 25%;
+    left: 55%;
+    border: 2px solid #f39c12;
+}
+
+.mapa-icono-mini.icono-hidrico {
+    top: 35%;
+    left: 20%;
+    border: 2px solid #3498db;
+}
+
+.mapa-icono-mini.icono-biomasa {
+    top: 70%;
+    left: 65%;
+    border: 2px solid #27ae60;
+}
+
+.mapa-icono-mini.icono-eolico {
+    top: 15%;
+    right: 25%;
+    border: 2px solid #9b59b6;
+    opacity: 0.5;
+}
+
+/* Coordenadas */
+.mapa-coords-box {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: monospace;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+/* Escala */
+.mapa-escala {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 9px;
+    color: #666;
+}
+
+.escala-barra {
+    width: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, #333 50%, #fff 50%);
+    border: 1px solid #333;
+}
+
+/* Marcadores de indicadores en el mapa */
+.marker-indicador {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.marker-indicador:hover {
+    transform: scale(1.3);
+    z-index: 15;
+}
+
+.marker-indicador:hover .marker-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.marker-indicador.marker-ok {
+    background: #27ae60;
+    border: 2px solid #fff;
+}
+
+.marker-indicador.marker-warning {
+    background: #f39c12;
+    border: 2px solid #fff;
+}
+
+.marker-indicador.marker-danger {
+    background: #e74c3c;
+    border: 2px solid #fff;
+}
+
+.marker-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+}
+
+.marker-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Leyenda del mapa */
+.mapa-leyenda {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 15px;
+    background: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+    flex-wrap: wrap;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #555;
+}
+
+.leyenda-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.leyenda-icono {
+    font-size: 10px;
+    letter-spacing: -2px;
+}
+
+/* Panel de informacion lateral */
+.info-panel {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-panel-titulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #c5d82a;
+}
+
+.info-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.info-item.info-ok {
+    background: #e8f5e9;
+    border-left: 3px solid #27ae60;
+}
+
+.info-item.info-warning {
+    background: #fff3e0;
+    border-left: 3px solid #f39c12;
+}
+
+.info-item.info-danger {
+    background: #ffebee;
+    border-left: 3px solid #e74c3c;
+}
+
+.info-numero {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.info-item.info-ok .info-numero {
+    background: #27ae60;
+}
+
+.info-item.info-warning .info-numero {
+    background: #f39c12;
+}
+
+.info-item.info-danger .info-numero {
+    background: #e74c3c;
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.info-desc {
+    font-size: 11px;
+    color: #666;
+}
+
+.info-leyenda {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 10px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.leyenda-mini {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.leyenda-mini.leyenda-ok { background: #27ae60; }
+.leyenda-mini.leyenda-warning { background: #f39c12; }
+.leyenda-mini.leyenda-danger { background: #e74c3c; }
+
+/* Marcadores numerados en el mapa */
+.marker-indicador span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .mapa-con-info {
+        grid-template-columns: 1fr;
+    }
+
+    .mapa-base {
+        height: 250px;
+    }
+
+    .info-panel {
+        order: -1;
+    }
+
+    .info-lista {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .info-item {
+        flex: 1 1 45%;
+        min-width: 140px;
+    }
+}
+
+/* ===== Resumen Legal ===== */
+.resumen-legal-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.legal-lista-panel {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.legal-panel-titulo {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.legal-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.legal-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.legal-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.legal-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.legal-label {
+    flex: 1;
+    font-size: 13px;
+    color: #555;
+}
+
+.legal-valor {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    min-width: 40px;
+    text-align: right;
+}
+
+.legal-grafico-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.pie-chart-legal {
+    position: relative;
+    width: 220px;
+    height: 220px;
+}
+
+.pie-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+}
+
+.pie-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.pie-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.pie-label {
+    font-size: 11px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .resumen-legal-container {
+        grid-template-columns: 1fr;
+    }
+
+    .pie-chart-legal {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* ===== Resumen Financiero ===== */
+.resumen-financiero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.financiero-grafico-panel,
+.financiero-indicadores-panel {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.financiero-panel-titulo {
+    margin: 0 0 18px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #27ae60;
+}
+
+.financiero-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.financiero-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bar-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bar-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.bar-icon.bank-icon {
+    background: #3B82F6;
+    color: white;
+}
+
+.bar-icon.green-icon {
+    background: #10B981;
+    color: white;
+}
+
+.bar-icon.foundation-icon {
+    background: #8B5CF6;
+    color: white;
+}
+
+.bar-icon.gov-icon {
+    background: #F59E0B;
+    color: white;
+}
+
+.bar-icon.intl-icon {
+    background: #EC4899;
+    color: white;
+}
+
+.bar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bar-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+}
+
+.bar-track {
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.bar-fill.bar-bank {
+    background: linear-gradient(90deg, #3B82F6, #60A5FA);
+}
+
+.bar-fill.bar-green {
+    background: linear-gradient(90deg, #10B981, #34D399);
+}
+
+.bar-fill.bar-foundation {
+    background: linear-gradient(90deg, #8B5CF6, #A78BFA);
+}
+
+.bar-fill.bar-gov {
+    background: linear-gradient(90deg, #F59E0B, #FBBF24);
+}
+
+.bar-fill.bar-intl {
+    background: linear-gradient(90deg, #EC4899, #F472B6);
+}
+
+.bar-value {
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    align-self: flex-end;
+}
+
+/* Indicadores financieros */
+.indicadores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.indicador-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.indicador-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.indicador-card.indicador-positive {
+    border-left: 4px solid #27ae60;
+}
+
+.indicador-card.indicador-neutral {
+    border-left: 4px solid #3498db;
+}
+
+.indicador-card.indicador-warning {
+    border-left: 4px solid #f39c12;
+}
+
+.indicador-icono {
+    font-size: 24px;
+}
+
+.indicador-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.indicador-valor {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+.indicador-label {
+    font-size: 11px;
+    color: #777;
+}
+
+.financiero-leyenda {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 11px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+
+.leyenda-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.leyenda-dot.dot-positive {
+    background: #27ae60;
+}
+
+.leyenda-dot.dot-neutral {
+    background: #3498db;
+}
+
+.leyenda-dot.dot-warning {
+    background: #f39c12;
+}
+
+@media (max-width: 900px) {
+    .resumen-financiero-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .indicadores-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== Resumen Social ===== */
+.resumen-social-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.gobernanza-panel,
+.social-indicadores-panel {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.social-panel-titulo {
+    margin: 0 0 18px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #9b59b6;
+}
+
+/* Diagrama de Gobernanza */
+.gobernanza-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.gobernanza-nivel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.gobernanza-conector {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, #9b59b6, #8e44ad);
+}
+
+.gobernanza-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    transition: all 0.2s ease;
+    min-width: 180px;
+}
+
+.gobernanza-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.gobernanza-card.card-lider {
+    border-color: #9b59b6;
+    background: linear-gradient(135deg, #f5f0ff 0%, #fff 100%);
+}
+
+.gobernanza-card.card-junta {
+    border-color: #3498db;
+}
+
+.gobernanza-card.card-miembros {
+    border-color: #27ae60;
+}
+
+.card-avatar {
+    font-size: 28px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.card-rol {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-nombre {
+    font-size: 11px;
+    color: #666;
+}
+
+.card-detalle {
+    font-size: 11px;
+    color: #888;
+}
+
+.card-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.card-badge.badge-activo {
+    background: #e8f5e9;
+    color: #27ae60;
+}
+
+/* Indicadores Sociales */
+.social-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.social-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.stat-icono {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.stat-icono.stat-participacion {
+    background: #e8f5e9;
+}
+
+.stat-icono.stat-aceptacion {
+    background: #e3f2fd;
+}
+
+.stat-icono.stat-comunicacion {
+    background: #fff3e0;
+}
+
+.stat-icono.stat-conflictos {
+    background: #f3e5f5;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 80px;
+}
+
+.stat-valor {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #777;
+}
+
+.stat-bar {
+    flex: 1;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #9b59b6, #8e44ad);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.stat-fill.stat-low {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+/* Actores Vinculados */
+.actores-section {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.actores-titulo {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.actores-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.actor-tag {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.actor-tag.tag-institucion {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.actor-tag.tag-academia {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.actor-tag.tag-ong {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.actor-tag.tag-empresa {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+@media (max-width: 900px) {
+    .resumen-social-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .gobernanza-card {
+        min-width: 150px;
+        padding: 10px 12px;
+    }
+
+    .card-avatar {
+        font-size: 22px;
+    }
+}

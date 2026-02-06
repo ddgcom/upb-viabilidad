@@ -31,7 +31,7 @@
     <main class="main-content">
         <!-- Pestañas principales (moradas) -->
         <div class="main-tabs purple-tabs">
-            <button class="main-tab active" data-tab="caracterizacion-inicial">
+            <button class="main-tab" data-tab="caracterizacion-inicial">
                 1. Caracterización inicial
             </button>
             <button class="main-tab" data-tab="caracterizacion-detallada">
@@ -40,18 +40,15 @@
             <button class="main-tab" data-tab="calculo-potencial">
                 3. Cálculo de potencial energético
             </button>
-            <button class="main-tab" data-tab="viabilidad">
+            <button class="main-tab active" data-tab="viabilidad">
                 4. Viabilidad
-            </button>
-            <button class="main-tab" data-tab="viabilidad-integral">
-                5. Viabilidad integral
             </button>
         </div>
 
         <!-- ============================================== -->
         <!-- 1. CARACTERIZACIÓN INICIAL -->
         <!-- ============================================== -->
-        <div id="caracterizacion-inicial" class="tab-content active">
+        <div id="caracterizacion-inicial" class="tab-content">
             <h2 class="section-title">Caracterización Inicial</h2>
 
             <!-- Bloque de preguntas -->
@@ -756,7 +753,7 @@
         <!-- ============================================== -->
         <!-- 4. VIABILIDAD -->
         <!-- ============================================== -->
-        <div id="viabilidad" class="tab-content">
+        <div id="viabilidad" class="tab-content active">
             <h2 class="section-title">Evaluación de Viabilidad</h2>
 
             <!-- Sub-tabs para tipos de viabilidad (6 viabilidades) -->
@@ -2202,6 +2199,492 @@
             <div id="integral" class="viability-content">
                 <h3 class="section-subtitle">6. Viabilidad Integral</h3>
 
+                <!-- Resultado de Viabilidad Integral (PRIMERO) -->
+                <div class="overall-score-section">
+                    <div class="overall-score-card">
+                        <h3>Resultado de Viabilidad Integral</h3>
+                        <div class="score-display">
+                            <span class="big-score" id="integral_overall_score">4.2</span>
+                            <span class="score-max">/5</span>
+                        </div>
+                        <div class="score-classification">
+                            <span class="classification-value high-viability" id="integral_classification">Alta - Viable</span>
+                        </div>
+                        <p class="overall-message">La comunidad cuenta con condiciones sólidas para avanzar a la fase de diseño integral del proyecto.</p>
+                    </div>
+                </div>
+
+                <!-- Resultados de todas las viabilidades (5 tarjetas compactas) -->
+                <div class="integral-results-list">
+                    <!-- Viabilidad Energética - ALTA -->
+                    <div class="compact-viability-card green-border">
+                        <div class="compact-icon">E</div>
+                        <div class="compact-score" id="subtab_integral_energetica">4.5/5</div>
+                        <div class="compact-label">Energetica</div>
+                        <span class="viability-badge badge-high">Alta</span>
+                    </div>
+
+                    <!-- Viabilidad Ambiental - ALTA -->
+                    <div class="compact-viability-card green-border">
+                        <div class="compact-icon">A</div>
+                        <div class="compact-score" id="subtab_integral_ambiental">4.2/5</div>
+                        <div class="compact-label">Ambiental</div>
+                        <span class="viability-badge badge-high">Alta</span>
+                    </div>
+
+                    <!-- Viabilidad Legal - MEDIA -->
+                    <div class="compact-viability-card yellow-border">
+                        <div class="compact-icon icon-medium">L</div>
+                        <div class="compact-score" id="subtab_integral_legal">3.5/5</div>
+                        <div class="compact-label">Legal</div>
+                        <span class="viability-badge badge-medium">Media</span>
+                    </div>
+
+                    <!-- Viabilidad Financiera - BAJA -->
+                    <div class="compact-viability-card red-border">
+                        <div class="compact-icon icon-low">F</div>
+                        <div class="compact-score" id="subtab_integral_financiera">2.5/5</div>
+                        <div class="compact-label">Financiera</div>
+                        <span class="viability-badge badge-low">Baja</span>
+                    </div>
+
+                    <!-- Viabilidad Social - ALTA -->
+                    <div class="compact-viability-card green-border">
+                        <div class="compact-icon">S</div>
+                        <div class="compact-score" id="subtab_integral_social">4.8/5</div>
+                        <div class="compact-label">Social</div>
+                        <span class="viability-badge badge-high">Alta</span>
+                    </div>
+                </div>
+
+                <!-- Mapa de Ubicacion y Restricciones -->
+                <div class="question-block">
+                    <h4 class="block-title">Resumen Ambiental</h4>
+                    <div class="mapa-con-info">
+                        <!-- Mapa cartografico -->
+                        <div class="mapa-cartografico-panel">
+                            <div class="mapa-base">
+                                <!-- Grid de coordenadas -->
+                                <div class="mapa-grid"></div>
+                                <!-- Elementos cartograficos -->
+                                <div class="mapa-rio"></div>
+                                <div class="mapa-rio rio-2"></div>
+                                <div class="mapa-carretera"></div>
+                                <div class="mapa-carretera carretera-2"></div>
+                                <div class="mapa-zona-verde zona-1"></div>
+                                <div class="mapa-zona-verde zona-2"></div>
+                                <div class="mapa-zona-urbana"></div>
+
+                                <!-- Marcador principal de la comunidad -->
+                                <div class="mapa-marker-comunidad" title="Ubicacion de la Comunidad">
+                                    <div class="marker-pin"></div>
+                                    <div class="marker-pulse"></div>
+                                </div>
+
+                                <!-- Marcadores de indicadores ambientales conectados a la lista -->
+                                <div class="marker-indicador marker-warning" style="top: 28%; left: 12%;" data-indicador="1">
+                                    <span>1</span>
+                                </div>
+                                <div class="marker-indicador marker-danger" style="top: 55%; left: 8%;" data-indicador="2">
+                                    <span>2</span>
+                                </div>
+                                <div class="marker-indicador marker-ok" style="top: 68%; left: 12%;" data-indicador="3">
+                                    <span>3</span>
+                                </div>
+                                <div class="marker-indicador marker-ok" style="top: 15%; right: 18%;" data-indicador="4">
+                                    <span>4</span>
+                                </div>
+                                <div class="marker-indicador marker-warning" style="top: 38%; left: 35%;" data-indicador="5">
+                                    <span>5</span>
+                                </div>
+
+                                <!-- Iconos de fuentes de energia -->
+                                <div class="mapa-icono-mini icono-solar" title="Panel Solar">☀️</div>
+                                <div class="mapa-icono-mini icono-hidrico" title="Micro Hidrica">💧</div>
+                                <div class="mapa-icono-mini icono-biomasa" title="Biomasa">🌿</div>
+
+                                <!-- Coordenadas -->
+                                <div class="mapa-coords-box">
+                                    <span>6.2518° N</span>
+                                    <span>75.5636° W</span>
+                                </div>
+                                <!-- Escala -->
+                                <div class="mapa-escala">
+                                    <div class="escala-barra"></div>
+                                    <span>500m</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel de informacion lateral -->
+                        <div class="info-panel">
+                            <h5 class="info-panel-titulo">Indicadores del Area</h5>
+                            <ul class="info-lista">
+                                <li class="info-item info-warning">
+                                    <span class="info-numero">1</span>
+                                    <div class="info-content">
+                                        <span class="info-label">Recursos hidricos</span>
+                                        <span class="info-desc">Cerca de ronda hidrica</span>
+                                    </div>
+                                </li>
+                                <li class="info-item info-danger">
+                                    <span class="info-numero">2</span>
+                                    <div class="info-content">
+                                        <span class="info-label">Zona de amenaza</span>
+                                        <span class="info-desc">Riesgo medio inundacion</span>
+                                    </div>
+                                </li>
+                                <li class="info-item info-ok">
+                                    <span class="info-numero">3</span>
+                                    <div class="info-content">
+                                        <span class="info-label">Ecosistemas</span>
+                                        <span class="info-desc">Fuera de areas RUNAP</span>
+                                    </div>
+                                </li>
+                                <li class="info-item info-ok">
+                                    <span class="info-numero">4</span>
+                                    <div class="info-content">
+                                        <span class="info-label">Areas protegidas</span>
+                                        <span class="info-desc">Sin restricciones</span>
+                                    </div>
+                                </li>
+                                <li class="info-item info-warning">
+                                    <span class="info-numero">5</span>
+                                    <div class="info-content">
+                                        <span class="info-label">Ordenamiento</span>
+                                        <span class="info-desc">Clase 4 - Semi intensivo</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Mini leyenda -->
+                            <div class="info-leyenda">
+                                <span class="leyenda-mini leyenda-ok"></span> Sin restriccion
+                                <span class="leyenda-mini leyenda-warning"></span> Precaucion
+                                <span class="leyenda-mini leyenda-danger"></span> Riesgo
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen Legal -->
+                <div class="question-block">
+                    <h4 class="block-title">Resumen Legal</h4>
+                    <div class="resumen-legal-container">
+                        <!-- Lista de ponderaciones -->
+                        <div class="legal-lista-panel">
+                            <h5 class="legal-panel-titulo">Ponderación de Criterios</h5>
+                            <ul class="legal-lista">
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #8B5CF6;"></span>
+                                    <span class="legal-label">Naturaleza jurídica</span>
+                                    <span class="legal-valor">5%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #EC4899;"></span>
+                                    <span class="legal-label">Existencia contrato</span>
+                                    <span class="legal-valor">5%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #F59E0B;"></span>
+                                    <span class="legal-label">Actividad energética</span>
+                                    <span class="legal-valor">5%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #10B981;"></span>
+                                    <span class="legal-label">Registro de CE en RCE</span>
+                                    <span class="legal-valor">10%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #3B82F6;"></span>
+                                    <span class="legal-label">Escuela TEJ</span>
+                                    <span class="legal-valor">10%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #EF4444;"></span>
+                                    <span class="legal-label">Cumplimiento técnico</span>
+                                    <span class="legal-valor">25%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #6366F1;"></span>
+                                    <span class="legal-label">Contrato de conexión</span>
+                                    <span class="legal-valor">20%</span>
+                                </li>
+                                <li class="legal-item">
+                                    <span class="legal-color" style="background: #14B8A6;"></span>
+                                    <span class="legal-label">Protección al usuario</span>
+                                    <span class="legal-valor">20%</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Gráfico pastel -->
+                        <div class="legal-grafico-panel">
+                            <div class="pie-chart-legal">
+                                <svg viewBox="0 0 100 100" class="pie-svg">
+                                    <!-- Naturaleza jurídica 5% - 18° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#8B5CF6" stroke-width="20"
+                                        stroke-dasharray="12.57 125.66" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                                    <!-- Existencia contrato 5% - 18° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#EC4899" stroke-width="20"
+                                        stroke-dasharray="12.57 125.66" stroke-dashoffset="-12.57" transform="rotate(-90 50 50)"/>
+                                    <!-- Actividad energética 5% - 18° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#F59E0B" stroke-width="20"
+                                        stroke-dasharray="12.57 125.66" stroke-dashoffset="-25.14" transform="rotate(-90 50 50)"/>
+                                    <!-- Registro de CE en RCE 10% - 36° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10B981" stroke-width="20"
+                                        stroke-dasharray="25.13 125.66" stroke-dashoffset="-37.71" transform="rotate(-90 50 50)"/>
+                                    <!-- Escuela TEJ 10% - 36° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#3B82F6" stroke-width="20"
+                                        stroke-dasharray="25.13 125.66" stroke-dashoffset="-62.84" transform="rotate(-90 50 50)"/>
+                                    <!-- Cumplimiento técnico 25% - 90° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#EF4444" stroke-width="20"
+                                        stroke-dasharray="62.83 125.66" stroke-dashoffset="-87.97" transform="rotate(-90 50 50)"/>
+                                    <!-- Contrato de conexión 20% - 72° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#6366F1" stroke-width="20"
+                                        stroke-dasharray="50.27 125.66" stroke-dashoffset="-150.80" transform="rotate(-90 50 50)"/>
+                                    <!-- Protección al usuario 20% - 72° -->
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="#14B8A6" stroke-width="20"
+                                        stroke-dasharray="50.27 125.66" stroke-dashoffset="-201.07" transform="rotate(-90 50 50)"/>
+                                </svg>
+                                <div class="pie-center">
+                                    <span class="pie-total">100%</span>
+                                    <span class="pie-label">Total</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen Financiero -->
+                <div class="question-block">
+                    <h4 class="block-title">Resumen Financiero</h4>
+                    <div class="resumen-financiero-container">
+                        <!-- Grafico de fuentes de financiamiento -->
+                        <div class="financiero-grafico-panel">
+                            <h5 class="financiero-panel-titulo">Fuentes de Financiamiento</h5>
+                            <div class="financiero-chart">
+                                <!-- Barra de Banca Comercial -->
+                                <div class="financiero-bar-item">
+                                    <div class="bar-icon bank-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2L2 7v2h20V7L12 2zm0 2.5L18 7H6l6-2.5zM4 11v8h3v-8H4zm6 0v8h4v-8h-4zm7 0v8h3v-8h-3zM2 21h20v2H2v-2z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span class="bar-label">Banca Comercial</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill bar-bank" style="width: 75%;"></div>
+                                        </div>
+                                        <span class="bar-value">75%</span>
+                                    </div>
+                                </div>
+                                <!-- Barra de Fondos Verdes -->
+                                <div class="financiero-bar-item">
+                                    <div class="bar-icon green-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66L7 19h2l2-2 5 2 3-3c1-2 2-4 2-6s-3-3-4-3zm-5 3c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span class="bar-label">Fondos Verdes / Clima</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill bar-green" style="width: 60%;"></div>
+                                        </div>
+                                        <span class="bar-value">60%</span>
+                                    </div>
+                                </div>
+                                <!-- Barra de Fundaciones -->
+                                <div class="financiero-bar-item">
+                                    <div class="bar-icon foundation-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span class="bar-label">Fundaciones / ONG</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill bar-foundation" style="width: 45%;"></div>
+                                        </div>
+                                        <span class="bar-value">45%</span>
+                                    </div>
+                                </div>
+                                <!-- Barra de Gobierno -->
+                                <div class="financiero-bar-item">
+                                    <div class="bar-icon gov-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span class="bar-label">Subsidios Gobierno</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill bar-gov" style="width: 55%;"></div>
+                                        </div>
+                                        <span class="bar-value">55%</span>
+                                    </div>
+                                </div>
+                                <!-- Barra de Cooperacion Internacional -->
+                                <div class="financiero-bar-item">
+                                    <div class="bar-icon intl-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span class="bar-label">Cooperacion Internacional</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill bar-intl" style="width: 40%;"></div>
+                                        </div>
+                                        <span class="bar-value">40%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel de indicadores financieros -->
+                        <div class="financiero-indicadores-panel">
+                            <h5 class="financiero-panel-titulo">Indicadores Clave</h5>
+                            <div class="indicadores-grid">
+                                <div class="indicador-card indicador-positive">
+                                    <div class="indicador-icono">📈</div>
+                                    <div class="indicador-info">
+                                        <span class="indicador-valor">12.5%</span>
+                                        <span class="indicador-label">TIR Estimada</span>
+                                    </div>
+                                </div>
+                                <div class="indicador-card indicador-neutral">
+                                    <div class="indicador-icono">⏱️</div>
+                                    <div class="indicador-info">
+                                        <span class="indicador-valor">7.2 años</span>
+                                        <span class="indicador-label">Payback</span>
+                                    </div>
+                                </div>
+                                <div class="indicador-card indicador-positive">
+                                    <div class="indicador-icono">💰</div>
+                                    <div class="indicador-info">
+                                        <span class="indicador-valor">1.35</span>
+                                        <span class="indicador-label">VPN Ratio</span>
+                                    </div>
+                                </div>
+                                <div class="indicador-card indicador-warning">
+                                    <div class="indicador-icono">⚡</div>
+                                    <div class="indicador-info">
+                                        <span class="indicador-valor">$0.12/kWh</span>
+                                        <span class="indicador-label">LCOE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="financiero-leyenda">
+                                <span class="leyenda-dot dot-positive"></span> Favorable
+                                <span class="leyenda-dot dot-neutral"></span> Neutro
+                                <span class="leyenda-dot dot-warning"></span> Revisar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen Social -->
+                <div class="question-block">
+                    <h4 class="block-title">Resumen Social</h4>
+                    <div class="resumen-social-container">
+                        <!-- Estructura de Gobernanza -->
+                        <div class="gobernanza-panel">
+                            <h5 class="social-panel-titulo">Estructura de Gobernanza</h5>
+                            <div class="gobernanza-diagram">
+                                <!-- Lider -->
+                                <div class="gobernanza-nivel nivel-lider">
+                                    <div class="gobernanza-card card-lider">
+                                        <div class="card-avatar">👤</div>
+                                        <div class="card-info">
+                                            <span class="card-rol">Lider</span>
+                                            <span class="card-nombre">Juan Perez</span>
+                                        </div>
+                                        <span class="card-badge badge-activo">Activo</span>
+                                    </div>
+                                </div>
+                                <!-- Conector -->
+                                <div class="gobernanza-conector"></div>
+                                <!-- Junta Directiva -->
+                                <div class="gobernanza-nivel nivel-junta">
+                                    <div class="gobernanza-card card-junta">
+                                        <div class="card-avatar">👥</div>
+                                        <div class="card-info">
+                                            <span class="card-rol">Junta Directiva</span>
+                                            <span class="card-detalle">5 miembros</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Conector -->
+                                <div class="gobernanza-conector"></div>
+                                <!-- Miembros -->
+                                <div class="gobernanza-nivel nivel-miembros">
+                                    <div class="gobernanza-card card-miembros">
+                                        <div class="card-avatar">🏘️</div>
+                                        <div class="card-info">
+                                            <span class="card-rol">Miembros</span>
+                                            <span class="card-detalle">45 familias</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Indicadores Sociales -->
+                        <div class="social-indicadores-panel">
+                            <h5 class="social-panel-titulo">Indicadores de Comunidad</h5>
+                            <div class="social-stats">
+                                <div class="social-stat-item">
+                                    <div class="stat-icono stat-participacion">🗳️</div>
+                                    <div class="stat-info">
+                                        <span class="stat-valor">85%</span>
+                                        <span class="stat-label">Participacion</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                                <div class="social-stat-item">
+                                    <div class="stat-icono stat-aceptacion">✅</div>
+                                    <div class="stat-info">
+                                        <span class="stat-valor">92%</span>
+                                        <span class="stat-label">Aceptacion</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: 92%;"></div>
+                                    </div>
+                                </div>
+                                <div class="social-stat-item">
+                                    <div class="stat-icono stat-comunicacion">📢</div>
+                                    <div class="stat-info">
+                                        <span class="stat-valor">3</span>
+                                        <span class="stat-label">Canales activos</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: 60%;"></div>
+                                    </div>
+                                </div>
+                                <div class="social-stat-item">
+                                    <div class="stat-icono stat-conflictos">⚖️</div>
+                                    <div class="stat-info">
+                                        <span class="stat-valor">Bajo</span>
+                                        <span class="stat-label">Nivel conflictos</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill stat-low" style="width: 20%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Actores Vinculados -->
+                            <div class="actores-section">
+                                <span class="actores-titulo">Actores Vinculados</span>
+                                <div class="actores-tags">
+                                    <span class="actor-tag tag-institucion">Alcaldia</span>
+                                    <span class="actor-tag tag-academia">Universidad</span>
+                                    <span class="actor-tag tag-ong">ONG Local</span>
+                                    <span class="actor-tag tag-empresa">Operador Red</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Resumen de Potencial Energético -->
                 <div class="question-block">
                     <h4 class="block-title">Resumen de Potencial Energético</h4>
@@ -2234,219 +2717,127 @@
                                 <span class="potencial-value">--</span>
                             </div>
                         </div>
-                        <p class="form-hint" style="margin-top: 15px;">Los potenciales con valor se muestran en verde (activos). Los potenciales sin información se muestran en gris (deshabilitados).</p>
                     </div>
                 </div>
 
-                <!-- Resultados de todas las viabilidades (mensajes verdes redondeados) -->
-                <div class="integral-results">
-                    <div class="result-message-card green-border">
-                        <div class="result-header">
-                            <span class="result-icon">E</span>
-                            <span class="result-title">Resultado Viabilidad Energética</span>
-                            <span class="result-score" id="subtab_integral_energetica">--/5</span>
-                        </div>
-                        <div class="result-body">
-                            <p class="result-text" id="subtab_msg_energetica">Complete la evaluación de viabilidad energética.</p>
-                        </div>
-                    </div>
-
-                    <div class="result-message-card green-border">
-                        <div class="result-header">
-                            <span class="result-icon">A</span>
-                            <span class="result-title">Resultado Viabilidad Ambiental</span>
-                            <span class="result-score" id="subtab_integral_ambiental">--/5</span>
-                        </div>
-                        <div class="result-body">
-                            <p class="result-text" id="subtab_msg_ambiental">Complete la evaluación de viabilidad ambiental.</p>
-                        </div>
-                    </div>
-
-                    <div class="result-message-card green-border">
-                        <div class="result-header">
-                            <span class="result-icon">L</span>
-                            <span class="result-title">Resultado Viabilidad Legal</span>
-                            <span class="result-score" id="subtab_integral_legal">--/5</span>
-                        </div>
-                        <div class="result-body">
-                            <p class="result-text" id="subtab_msg_legal">Complete la evaluación de viabilidad legal.</p>
-                        </div>
-                    </div>
-
-                    <div class="result-message-card green-border">
-                        <div class="result-header">
-                            <span class="result-icon">F</span>
-                            <span class="result-title">Resultado Viabilidad Financiera</span>
-                            <span class="result-score" id="subtab_integral_financiera">--/5</span>
-                        </div>
-                        <div class="result-body">
-                            <p class="result-text" id="subtab_msg_financiera">Complete la evaluación de viabilidad financiera.</p>
-                        </div>
-                    </div>
-
-                    <div class="result-message-card green-border">
-                        <div class="result-header">
-                            <span class="result-icon">S</span>
-                            <span class="result-title">Resultado Viabilidad Social</span>
-                            <span class="result-score" id="subtab_integral_social">--/5</span>
-                        </div>
-                        <div class="result-body">
-                            <p class="result-text" id="subtab_msg_social">Complete la evaluación de viabilidad social.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Evaluación de Gobernanza Energética -->
+                <!-- Puntos a Mejorar -->
                 <div class="question-block">
-                    <h4 class="block-title">Evaluación de Gobernanza Energética</h4>
-                    <div class="question-section">
-                        <label class="form-label">Campo a diligenciar por el personal del LNCE:</label>
-                        <p class="form-hint">El personal del LNCE debe evaluar el nivel de gobernanza de cada componente de viabilidad, asignando un puntaje de 0 a 5:</p>
-                        <div class="info-box">
-                            <p>0 = Inexistente | 1 = Muy débil | 2 = Incipiente | 3 = Adecuada | 4 = Buena | 5 = Muy sólida</p>
-                        </div>
-                        <p class="form-hint">La calificación debe hacerse con base en los resultados obtenidos en los módulos de viabilidad energética, ambiental, financiera, social y legal.</p>
-
-                        <table class="matrix-table">
-                            <thead>
-                                <tr>
-                                    <th>Componente</th>
-                                    <th>Puntaje (0-5)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Energético</td>
-                                    <td><input type="number" name="gob_energetico" class="form-control-sm" min="0" max="5"></td>
-                                </tr>
-                                <tr>
-                                    <td>Ambiental</td>
-                                    <td><input type="number" name="gob_ambiental" class="form-control-sm" min="0" max="5"></td>
-                                </tr>
-                                <tr>
-                                    <td>Legal</td>
-                                    <td><input type="number" name="gob_legal" class="form-control-sm" min="0" max="5"></td>
-                                </tr>
-                                <tr>
-                                    <td>Financiero</td>
-                                    <td><input type="number" name="gob_financiero" class="form-control-sm" min="0" max="5"></td>
-                                </tr>
-                                <tr>
-                                    <td>Social</td>
-                                    <td><input type="number" name="gob_social" class="form-control-sm" min="0" max="5"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Impacto en ODS -->
-                <div class="question-block">
-                    <h4 class="block-title">Impacto en ODS (Objetivos de Desarrollo Sostenible)</h4>
-                    <div class="question-section">
-                        <label class="form-label">Campo a diligenciar por el personal del LNCE:</label>
-                        <p class="form-hint">Seleccione los Objetivos de Desarrollo Sostenible (ODS) a los que contribuye directamente la comunidad energética, de acuerdo con:</p>
-                        <ul>
-                            <li>La caracterización de la comunidad</li>
-                            <li>La solución energética propuesta</li>
-                            <li>Los resultados de viabilidad</li>
-                        </ul>
-                        <p class="form-hint">Marca únicamente los ODS cuya contribución sea directa y demostrable:</p>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="1"><span class="checkbox-label">ODS 1: Fin de la pobreza</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="2"><span class="checkbox-label">ODS 2: Hambre cero</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="3"><span class="checkbox-label">ODS 3: Salud y bienestar</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="4"><span class="checkbox-label">ODS 4: Educación de calidad</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="5"><span class="checkbox-label">ODS 5: Igualdad de género</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="6"><span class="checkbox-label">ODS 6: Agua limpia y saneamiento</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="7"><span class="checkbox-label">ODS 7: Energía asequible y no contaminante</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="8"><span class="checkbox-label">ODS 8: Trabajo decente y crecimiento económico</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="9"><span class="checkbox-label">ODS 9: Industria, innovación e infraestructura</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="10"><span class="checkbox-label">ODS 10: Reducción de las desigualdades</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="11"><span class="checkbox-label">ODS 11: Ciudades y comunidades sostenibles</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="12"><span class="checkbox-label">ODS 12: Producción y consumo responsables</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="13"><span class="checkbox-label">ODS 13: Acción por el clima</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="15"><span class="checkbox-label">ODS 15: Vida de ecosistemas terrestres</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="16"><span class="checkbox-label">ODS 16: Paz, justicia e instituciones sólidas</span></label>
-                            <label class="checkbox-item"><input type="checkbox" name="ods" value="17"><span class="checkbox-label">ODS 17: Alianzas para lograr los objetivos</span></label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resultado de Viabilidad Integral -->
-                <div class="overall-score-section">
-                    <div class="overall-score-card">
-                        <h3>Resultado de Viabilidad Integral</h3>
-                        <div class="score-display">
-                            <span class="big-score" id="integral_overall_score">--</span>
-                            <span class="score-max">/5</span>
-                        </div>
-                        <div class="score-classification">
-                            <span class="classification-value" id="integral_classification">Pendiente</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="interpretation-section">
-                    <h3>Interpretación de Resultados</h3>
-                    <div class="interpretation-scale">
-                        <div class="scale-item high">
-                            <span class="scale-color"></span>
-                            <span class="scale-range">&ge; 4.0</span>
-                            <span class="scale-desc">Alta viabilidad integral: La comunidad cuenta con condiciones sólidas para avanzar a la fase de diseño integral del proyecto.</span>
-                        </div>
-                        <div class="scale-item medium">
-                            <span class="scale-color"></span>
-                            <span class="scale-range">3.0 - 3.99</span>
-                            <span class="scale-desc">Viabilidad integral media: El proyecto es potencialmente viable, pero requiere ajustes previos en algunos componentes. Se sugiere replantear el diseño de la comunidad o implementar acciones de mejora específicas antes de continuar.</span>
-                        </div>
-                        <div class="scale-item low">
-                            <span class="scale-color"></span>
-                            <span class="scale-range">&lt; 3.0</span>
-                            <span class="scale-desc">No hay viabilidad integral: La comunidad presenta barreras críticas en algunos componentes.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resumen de resultados (3 tarjetas) -->
-                <div class="question-block">
-                    <h4 class="block-title">Resumen de Viabilidad</h4>
-                    <p class="form-hint">La plataforma presenta una sección de "Resumen de viabilidad" con tres tarjetas:</p>
-                    <div class="integral-results">
-                        <div class="result-message-card green-border">
-                            <div class="result-header">
-                                <span class="result-icon">1</span>
-                                <span class="result-title">Viabilidad Integral</span>
+                    <h4 class="block-title">Puntos a Mejorar</h4>
+                    <div class="mejoras-list" id="subtab_mejoras_list">
+                        <!-- Recomendacion Hidrico -->
+                        <div class="mejora-item mejora-warning" id="subtab_mejora_hidrico">
+                            <div class="mejora-icon">💧</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Potencial Hidrico</span>
+                                <p class="mejora-mensaje">El potencial hidrico es bajo, considere complementar con otras fuentes renovables.</p>
                             </div>
-                            <div class="result-body">
-                                <p class="result-text">Cada tarjeta muestra su propio resultado, como se presentó en el bloque verde anterior.</p>
-                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('energetica', 'hidrico')">Ir a pregunta</button>
                         </div>
-                        <div class="result-message-card green-border">
-                            <div class="result-header">
-                                <span class="result-icon">2</span>
-                                <span class="result-title">Modelo de Gobernanza</span>
+                        <!-- Recomendacion Solar -->
+                        <div class="mejora-item mejora-success" id="subtab_mejora_solar">
+                            <div class="mejora-icon">☀️</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Potencial Solar</span>
+                                <p class="mejora-mensaje">Excelente potencial. Se recomienda utilizar solucion fotovoltaica como fuente principal.</p>
                             </div>
-                            <div class="result-body">
-                                <p class="result-text">Nivel de gobernanza asignado por el personal del LNCE a cada componente.</p>
-                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('energetica', 'solar')">Ir a pregunta</button>
                         </div>
-                        <div class="result-message-card green-border">
-                            <div class="result-header">
-                                <span class="result-icon">3</span>
-                                <span class="result-title">Contribución a los ODS</span>
+                        <!-- Recomendacion Eolico -->
+                        <div class="mejora-item mejora-danger" id="subtab_mejora_eolico">
+                            <div class="mejora-icon">💨</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Potencial Eolico</span>
+                                <p class="mejora-mensaje">No se recomienda utilizar solucion eolica. El recurso de viento es insuficiente en esta zona.</p>
                             </div>
-                            <div class="result-body">
-                                <p class="result-text">Esta comunidad energética contribuye directamente a los siguientes ODS:</p>
-                                <div id="ods_list_integral"></div>
+                            <button class="btn-mejora" onclick="irAMejora('energetica', 'eolico')">Ir a pregunta</button>
+                        </div>
+                        <!-- Recomendacion Biomasa Pecuaria -->
+                        <div class="mejora-item mejora-info" id="subtab_mejora_biomasa_p">
+                            <div class="mejora-icon">🌿</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Potencial Biomasa Pecuaria</span>
+                                <p class="mejora-mensaje">Existe potencial moderado, requiere estudio de disponibilidad de residuos.</p>
                             </div>
+                            <button class="btn-mejora" onclick="irAMejora('energetica', 'biomasa_p')">Ir a pregunta</button>
+                        </div>
+                        <!-- Recomendacion Biomasa Agricola -->
+                        <div class="mejora-item mejora-warning" id="subtab_mejora_biomasa_a">
+                            <div class="mejora-icon">🌾</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Potencial Biomasa Agricola</span>
+                                <p class="mejora-mensaje">Bajo potencial. Se requiere mayor produccion agricola o asociacion con productores cercanos.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('energetica', 'biomasa_a')">Ir a pregunta</button>
+                        </div>
+                        <!-- Restricciones Ambientales -->
+                        <div class="mejora-item mejora-success" id="subtab_mejora_restricciones">
+                            <div class="mejora-icon">🌍</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Restricciones Ambientales</span>
+                                <p class="mejora-mensaje">El proyecto no se ubica en areas con restricciones ambientales significativas.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'restricciones')">Ir a pregunta</button>
+                        </div>
+                        <!-- Ordenamiento Territorial -->
+                        <div class="mejora-item mejora-warning" id="subtab_mejora_ordenamiento">
+                            <div class="mejora-icon">🗺️</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Ordenamiento Territorial</span>
+                                <p class="mejora-mensaje">El proyecto esta parcialmente alineado con el instrumento de ordenamiento territorial vigente.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'ordenamiento')">Ir a pregunta</button>
+                        </div>
+                        <!-- Zonas de Amenaza y Riesgo -->
+                        <div class="mejora-item mejora-danger" id="subtab_mejora_amenazas">
+                            <div class="mejora-icon">⚠️</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Zonas de Amenaza y Riesgo</span>
+                                <p class="mejora-mensaje">El proyecto se ubica en zona con riesgo o amenaza media. Se recomienda revision detallada.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'amenazas')">Ir a pregunta</button>
+                        </div>
+                        <!-- Licenciamiento Ambiental -->
+                        <div class="mejora-item mejora-info" id="subtab_mejora_licencia">
+                            <div class="mejora-icon">📋</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Licenciamiento Ambiental</span>
+                                <p class="mejora-mensaje">No se requiere licencia ambiental. Se debe realizar un Plan de Manejo Ambiental (PMA).</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'licencia')">Ir a pregunta</button>
+                        </div>
+                        <!-- Permisos Ambientales -->
+                        <div class="mejora-item mejora-warning" id="subtab_mejora_permisos">
+                            <div class="mejora-icon">📄</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Permisos Ambientales</span>
+                                <p class="mejora-mensaje">Se requieren permisos ambientales especificos. Se recomienda verificar las actividades del proyecto.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'permisos')">Ir a pregunta</button>
+                        </div>
+                        <!-- Consulta Previa -->
+                        <div class="mejora-item mejora-success" id="subtab_mejora_consulta">
+                            <div class="mejora-icon">👥</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Consulta Previa</span>
+                                <p class="mejora-mensaje">No se requiere consulta previa para comunidades etnicas en la zona del proyecto.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'consulta')">Ir a pregunta</button>
+                        </div>
+                        <!-- Huella de Carbono -->
+                        <div class="mejora-item mejora-info" id="subtab_mejora_huella">
+                            <div class="mejora-icon">🌱</div>
+                            <div class="mejora-content">
+                                <span class="mejora-title">Huella de Carbono</span>
+                                <p class="mejora-mensaje">El proyecto presenta un balance positivo en reduccion de emisiones de carbono.</p>
+                            </div>
+                            <button class="btn-mejora" onclick="irAMejora('ambiental', 'huella')">Ir a pregunta</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="navigation-buttons">
                     <button class="btn btn-secondary" onclick="switchViabilityTab('social')">Anterior</button>
-                    <button class="btn btn-primary" onclick="calculateAllViability()">Calcular Viabilidad Integral</button>
+                    <button class="btn btn-primary" onclick="window.print()">Imprimir Reporte</button>
                 </div>
             </div>
 
