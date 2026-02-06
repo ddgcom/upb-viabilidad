@@ -1626,247 +1626,26 @@
                         <div class="radio-group">
                             <label class="radio-item">
                                 <input type="radio" name="vf_cuenta_ahorros" value="si">
-                                <span class="radio-label">Sí - tiene cuenta de ahorros o productos financieros - Válida a financiar CAPEX recursos propios</span>
+                                <span class="radio-label">Sí - tiene cuenta de ahorros o productos financieros</span>
                             </label>
                             <label class="radio-item">
                                 <input type="radio" name="vf_cuenta_ahorros" value="no">
-                                <span class="radio-label">No tiene cuenta o no ha considerado mecanismos de ahorro propio - Válida a financiar CAPEX con recursos externos</span>
+                                <span class="radio-label">No tiene cuenta o no ha considerado mecanismos de ahorro propio</span>
                             </label>
                         </div>
                     </div>
-                </div>
-
-                <!-- 2.1 Parámetros de la CE -->
-                <div class="question-block">
-                    <h4 class="block-title">2.1 Parámetros de la CE (Comunidad Energética)</h4>
                     <div class="question-section">
-                        <label class="form-label">Descripción de Parámetros:</label>
-                        <p class="form-hint">La plataforma se alimenta principalmente de información anterior, pero también pueden ingresarse si el usuario la tiene: Los usuarios pueden editar cada uno de los parámetros anteriores.</p>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Número de la comunidad (N°)</label>
-                                <input type="number" name="vf_numero_comunidad" class="form-control" placeholder="N° sistema de caracterización inicial">
-                            </div>
-                            <div class="form-group">
-                                <label>OPEX (Costo operativo anual - %)</label>
-                                <input type="number" name="vf_opex" class="form-control" placeholder="% sistema de caracterización">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Consumo mensual promedio (kWh/mes)</label>
-                                <input type="number" name="vf_consumo_mensual" class="form-control" placeholder="Ej: 150">
-                            </div>
-                            <div class="form-group">
-                                <label>Tarifa de energía actual ($/kWh)</label>
-                                <input type="number" name="vf_tarifa_energia" class="form-control" placeholder="Ej: 650" step="0.01">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.2 Parámetros Locales -->
-                <div class="question-block">
-                    <h4 class="block-title">2.2 Parámetros Locales</h4>
-                    <div class="question-section">
-                        <label class="form-label">Descripción de parámetros:</label>
-                        <p class="form-hint">La plataforma se alimenta principalmente de información anterior, los usuarios pueden editar cada uno de los parámetros:</p>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Valor total instalado (USD)</label>
-                                <input type="number" name="vf_valor_instalado" class="form-control" placeholder="Se obtiene del componente de viabilidad energética">
-                            </div>
-                            <div class="form-group">
-                                <label>Tipo de actividad energética</label>
-                                <select name="vf_tipo_actividad" class="form-control">
-                                    <option value="">Se obtiene del componente de viabilidad legal</option>
-                                    <option value="autogeneracion">Autogeneración</option>
-                                    <option value="comercializacion">Comercialización</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.3 Parámetros Tecno-energéticos -->
-                <div class="question-block">
-                    <h4 class="block-title">2.3 Parámetros Tecno-energéticos</h4>
-                    <div class="question-section">
-                        <label class="form-label">Descripción de parámetros (La plataforma se alimenta principalmente de información anterior):</label>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Potencial energético (kWh/año)</label>
-                                <input type="number" name="vf_potencial" class="form-control" placeholder="Indicador del potencial de viabilidad energética N° 1">
-                            </div>
-                            <div class="form-group">
-                                <label>Potencia instalada (kWp)</label>
-                                <input type="number" name="vf_potencia" class="form-control" placeholder="Indicador del cálculo de configuración de módulo">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Índice de Degradación Anual (%)</label>
-                                <input type="number" name="vf_degradacion" class="form-control" placeholder="Ej: 0.5" step="0.01">
-                            </div>
-                            <div class="form-group">
-                                <label>Factor de disponibilidad (%)</label>
-                                <input type="number" name="vf_disponibilidad" class="form-control" placeholder="Se obtiene de viabilidad energética">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.4 Supuestos del Modelo -->
-                <div class="question-block">
-                    <h4 class="block-title">2.4 Supuestos Técnicos y Financieros</h4>
-                    <div class="question-section">
-                        <label class="form-label">Supuestos Técnicos a editar:</label>
-                        <p class="form-hint">La plataforma debe tener los supuestos técnicos para cómo(interconexión, sistema, microred y autogeneración), la plataforma debe tener los supuestos técnicos y financieros asociados.</p>
-                        <div class="info-box">
-                            <p><strong>Se muestran los siguientes supuestos técnicos entre con la opción de que el usuario pueda editarlos:</strong></p>
-                            <ul>
-                                <li>Factor de mantenimiento: No tiene, tiene valor entre 2% y 10%</li>
-                                <li>Factor de recambio de equipos (puede variar entre 5% y 10%)</li>
-                                <li>Factor de administración técnica (por definir 10% del total de ingresos)</li>
-                            </ul>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Factor de mantenimiento (%)</label>
-                                <input type="number" name="vf_factor_mantenimiento" class="form-control" placeholder="Ej: 2" min="0" max="10">
-                            </div>
-                            <div class="form-group">
-                                <label>Factor de recambio (%)</label>
-                                <input type="number" name="vf_factor_recambio" class="form-control" placeholder="Ej: 5" min="5" max="10">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-section">
-                        <label class="form-label">Supuesto Financiero Base:</label>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Plan de vida del proyecto (años)</label>
-                                <input type="number" name="vf_vida_proyecto" class="form-control" value="15" placeholder="15">
-                            </div>
-                            <div class="form-group">
-                                <label>Tasa de inflación (%)</label>
-                                <input type="number" name="vf_inflacion" class="form-control" placeholder="Ej: 4.5" step="0.1">
-                            </div>
-                            <div class="form-group">
-                                <label>Tasa de descuento (%)</label>
-                                <input type="number" name="vf_descuento" class="form-control" placeholder="Ej: 10" step="0.1">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. CAPEX -->
-                <div class="question-block">
-                    <h4 class="block-title">3. CAPEX (Costo de Inversión)</h4>
-                    <div class="question-section">
-                        <label class="form-label">La plataforma debe calcular el CAPEX con los datos ingresados de los parámetros anteriores:</label>
-                        <p class="form-hint">CAPEX= Potencial energético según * Costo del kWh(USD) horas pico (USD)= Max_capacidad(kW)*CAPEX</p>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Potencia pico (kWp)</label>
-                                <input type="number" name="vf_potencia_pico" class="form-control" placeholder="Ingresado antes">
-                            </div>
-                            <div class="form-group">
-                                <label>Costo por kWp (USD)</label>
-                                <input type="number" name="vf_costo_kwp" class="form-control" placeholder="Ej: 1200">
-                            </div>
-                            <div class="form-group">
-                                <label>CAPEX Total (USD)</label>
-                                <input type="number" name="vf_capex" class="form-control" placeholder="Calculado automáticamente" readonly>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ingresos Anuales -->
-                <div class="question-block">
-                    <h4 class="block-title">Ingresos Anuales</h4>
-                    <div class="question-section">
-                        <label class="form-label">La plataforma debe calcular los ingresos anuales con los datos ingresados de los parámetros anteriores:</label>
-                        <p class="form-hint">Ingresos Anuales= Potencial energético según * Costo_de energía actual * MPC(Retiros del proyecto)</p>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Ingresos Anuales Proyectados (USD)</label>
-                                <input type="number" name="vf_ingresos_anuales" class="form-control" placeholder="Calculado" readonly>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LCOE -->
-                <div class="question-block">
-                    <h4 class="block-title">LCOE (Costo Nivelado de Energía)</h4>
-                    <div class="question-section">
-                        <label class="form-label">La plataforma debe calcular el CPEX anual con los datos ingresados de los parámetros anteriores:</label>
-                        <p class="form-hint">CPEX=CAPEX*Factor de mantenimiento*(0+ MPC)(Retiros del proyecto)</p>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>LCOE (USD/kWh)</label>
-                                <input type="number" name="vf_lcoe" class="form-control" placeholder="Calculado" readonly step="0.001">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Retorno -->
-                <div class="question-block">
-                    <h4 class="block-title">4. Retorno de Inversión</h4>
-                    <div class="question-section">
-                        <label class="form-label">La plataforma debe calcular los retornos:</label>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Payback (Período de recuperación en años)</label>
-                                <input type="number" name="vf_payback" class="form-control" placeholder="Calculado" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>VPN (Valor Presente Neto - USD)</label>
-                                <input type="number" name="vf_vpn" class="form-control" placeholder="Calculado" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>TIR (%)</label>
-                                <input type="number" name="vf_tir" class="form-control" placeholder="Calculado" readonly>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resultado de Viabilidad Financiera -->
-                <div class="result-message-card green-border">
-                    <div class="result-header">
-                        <span class="result-icon">F</span>
-                        <span class="result-title">Resultado de Viabilidad Financiera</span>
-                        <span class="result-score" id="score_financiera">--/5</span>
-                    </div>
-                    <div class="result-body">
-                        <p class="result-text">El proyecto es viable financieramente si:</p>
-                        <ul>
-                            <li>VPN &gt; 0</li>
-                            <li>TIR &gt; Tasa de descuento</li>
-                            <li>Payback &lt; Vida útil del proyecto</li>
-                        </ul>
+                        <label class="form-label">Digite el valor con el que cuenta (COP):</label>
+                        <input type="number" name="vf_valor_cuenta" class="form-control" placeholder="Ej: 10000000">
                     </div>
                 </div>
 
                 <div class="documents-section">
                     <h3 class="documents-title">Documentos a Adjuntar</h3>
-                    <ul class="documents-list">
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Flujo de caja proyectado</span>
-                            <input type="file" name="doc_vf_flujo" class="document-input">
-                        </li>
-                        <li class="document-item">
-                            <span class="document-icon">📄</span>
-                            <span class="document-name">Cotizaciones de equipos</span>
-                            <input type="file" name="doc_vf_cotizacion" class="document-input">
-                        </li>
-                    </ul>
+                    <div class="no-documents-message">
+                        <span class="no-docs-icon">📋</span>
+                        <p>No hay necesidad de adjuntar documentos en esta sección de viabilidad financiera.</p>
+                    </div>
                 </div>
 
                 <div class="navigation-buttons">
