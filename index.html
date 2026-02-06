@@ -1387,12 +1387,16 @@
                 <div class="question-block">
                     <h4 class="block-title">1.1 Información de Constitución Legal</h4>
                     <div class="question-section">
-                        <label class="form-label">Pregunta de texto abierto: Nombre de la comunidad (organización)</label>
+                        <label class="form-label">Nombre de la comunidad (organización)</label>
                         <input type="text" name="vl_nombre" class="form-control" placeholder="Ej: Comunidad Energética La Esperanza">
                     </div>
                     <div class="question-section">
-                        <label class="form-label">Pregunta de campo numérico: NIT</label>
+                        <label class="form-label">NIT</label>
                         <input type="text" name="vl_nit" class="form-control" placeholder="Ej: 900123456-7">
+                    </div>
+                    <div class="question-section">
+                        <label class="form-label">Fecha de constitución legal</label>
+                        <input type="date" name="vl_fecha_constitucion" class="form-control">
                     </div>
                 </div>
 
@@ -1400,223 +1404,146 @@
                 <div class="question-block">
                     <h4 class="block-title">1.2 Figura Legal Adoptada</h4>
                     <div class="question-section">
-                        <label class="form-label">Pregunta de selección múltiple: Tipo de figura legal adoptada (selección múltiple):</label>
+                        <label class="form-label">Tipo de figura legal adoptada (selección múltiple):</label>
                         <div class="checkbox-grid">
                             <label class="checkbox-item">
                                 <input type="checkbox" name="vl_figura" value="cooperativa">
-                                <span class="checkbox-label">Cooperativa sin ánimo de lucro</span>
+                                <span class="checkbox-label">Cooperativa</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vl_figura" value="sin-animo-lucro">
+                                <span class="checkbox-label">Organizaciones sin ánimo de lucro</span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="vl_figura" value="asociacion">
                                 <span class="checkbox-label">Asociación</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vl_figura" value="fundacion">
-                                <span class="checkbox-label">Fundación, Fondo; SerG</span>
+                                <input type="checkbox" name="vl_figura" value="sas">
+                                <span class="checkbox-label">Sociedad por Acciones Simplificada (SAS)</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vl_figura" value="sociedad">
+                                <input type="checkbox" name="vl_figura" value="sa">
+                                <span class="checkbox-label">Sociedad Anónima (S.A.)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vl_figura" value="srl">
                                 <span class="checkbox-label">Sociedad de Responsabilidad Limitada (SRL)</span>
                             </label>
                         </div>
-                    </div>
-
-                    <div class="question-section">
-                        <label class="form-label">El LNCE acoge el puntaje según los criterios:</label>
-                        <div class="info-box">
-                            <p>Vigencia del certificado Fecha y 30 días = Puntaje 1</p>
-                            <p>Certificación de medición a 137 años cuando llega a = Puntaje 0.5</p>
-                            <p>Contar con plan para 4 y 5 Tiene constituido en = Puntaje 1</p>
-                            <p>Fecha más próxima a la de 3 fecha publicada por CE = Puntaje 0.5</p>
+                        <div class="question-section" style="margin-top: 15px;">
+                            <label class="form-label">Otra (especifique):</label>
+                            <input type="text" name="vl_figura_otra" class="form-control" placeholder="Especifique otra figura legal">
                         </div>
                     </div>
                 </div>
 
-                <!-- 2.1 Conexión a Circuito -->
+                <!-- 2.0 Contrato Asociado -->
                 <div class="question-block">
-                    <h4 class="block-title">2.1 Conexión a Circuito</h4>
+                    <h4 class="block-title">2.0 Contrato Asociado</h4>
                     <div class="question-section">
-                        <label class="form-label">¿La comunidad está conectada a la CE o se conecta con circuito perteneciente al SIN o circuito del nivel de tensión 1?</label>
+                        <label class="form-label">Propósito y objetivo de la CE:</label>
+                        <textarea name="vl_proposito_ce" class="form-control" rows="3" placeholder="Describa el propósito y objetivo de la Comunidad Energética"></textarea>
+                    </div>
+                    <div class="question-section">
+                        <label class="form-label">Número de usuarios que componen la CE:</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Persona Natural</label>
+                                <input type="number" name="vl_usuarios_natural" class="form-control" placeholder="Cantidad">
+                            </div>
+                            <div class="form-group">
+                                <label>Persona Jurídica</label>
+                                <input type="number" name="vl_usuarios_juridica" class="form-control" placeholder="Cantidad">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <label class="form-label">Cantidad de personas que se verían beneficiadas:</label>
+                        <input type="number" name="vl_beneficiados" class="form-control" placeholder="Número de personas beneficiadas">
+                    </div>
+                    <div class="question-section">
+                        <label class="form-label">Reporte de la actividad productiva, social, económica, entre otras, cuando aplique:</label>
+                        <textarea name="vl_reporte_actividad" class="form-control" rows="3" placeholder="Describa las actividades productivas, sociales, económicas, etc."></textarea>
+                    </div>
+                </div>
+
+                <!-- 3.0 Actividad Energética -->
+                <div class="question-block">
+                    <h4 class="block-title">3.0 Actividad Energética</h4>
+                    <div class="question-section">
+                        <label class="form-label">¿Qué tipo de actividad energética va a prestar la comunidad?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="vl_conexion" value="sin">
-                                <span class="radio-label">Sí - Pertenece al SIN</span>
+                                <input type="radio" name="vl_actividad_energetica" value="autoconsumo">
+                                <span class="radio-label">Autogeneración para autoconsumo</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="vl_conexion" value="zni">
-                                <span class="radio-label">No - Se ubica en ZNI (Zona No Interconectada)</span>
+                                <input type="radio" name="vl_actividad_energetica" value="comercializacion">
+                                <span class="radio-label">Autogeneración para comercialización</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="vl_actividad_energetica" value="ambas">
+                                <span class="radio-label">Ambas</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2.2 Excedentes -->
+                <!-- 5.1 Certificado de cumplimiento Escuela de Transición Energética -->
                 <div class="question-block">
-                    <h4 class="block-title">2.2 Excedentes</h4>
+                    <h4 class="block-title">5.1 Certificado de cumplimiento de la Escuela de Transición Energética Justa</h4>
                     <div class="question-section">
-                        <label class="form-label">¿Qué tipo de actividad básica generadora se comercializará de acuerdo con la actividad del proyecto?</label>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vl_actividad" value="autogeneracion">
-                                <span class="checkbox-label">Autogeneración para autoconsumo</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vl_actividad" value="comercializacion">
-                                <span class="checkbox-label">Autogeneración para comercialización</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="vl_actividad" value="hibrido">
-                                <span class="checkbox-label">Híbrido</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3.1 Caracterización Local -->
-                <div class="question-block">
-                    <h4 class="block-title">3.1 Caracterización Local</h4>
-                    <div class="question-section">
-                        <label class="form-label">La comunidad debe ser un CE de área local (en CE de nivel 1 de tensión o sea mínimo de 600V para áreas urbanas y otros niveles de tensión).</label>
+                        <label class="form-label">¿La comunidad se constituye o se constituirá en todo o en parte con recursos públicos?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="vl_local" value="si">
-                                <span class="radio-label">Sí - La comunidad cumple con criterio de área local</span>
+                                <input type="radio" name="vl_recursos_publicos" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="vl_local" value="no">
-                                <span class="radio-label">No cumple con el criterio</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5.1 Certificado de Autogeneración -->
-                <div class="question-block">
-                    <h4 class="block-title">5.1 Certificado de Autogeneración Pequeña Escala o Gran Escala</h4>
-                    <div class="question-section">
-                        <label class="form-label">¿La comunidad cuenta con el Certificado de Autogeneración de Pequeña Escala?</label>
-                        <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="vl_cert_autogen" value="si">
-                                <span class="radio-label">Sí - tiene el certificado</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vl_cert_autogen" value="tramite">
-                                <span class="radio-label">En trámite</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vl_cert_autogen" value="no">
+                                <input type="radio" name="vl_recursos_publicos" value="no">
                                 <span class="radio-label">No</span>
                             </label>
                         </div>
-                        <p class="form-hint">Puntaje 4: Si no cuenta debe realizar el Registro de Comunidades Energéticas (RCE) Puntaje 0 para infraestructura.</p>
                     </div>
-                </div>
-
-                <!-- 5.2 Certificado por Pequeña Escala -->
-                <div class="question-block">
-                    <h4 class="block-title">5.2 Certificado por Pequeña Escala (Hasta 100kW)</h4>
                     <div class="question-section">
-                        <label class="form-label">Encontrarse con el certificado de pequeña escala para autogeneración (del mismo N.9.3):</label>
+                        <label class="form-label">¿La comunidad se constituye o se constituirá con capital privado que sea entregado a la comunidad para su beneficio y administración?</label>
                         <div class="radio-group">
                             <label class="radio-item">
-                                <input type="radio" name="vl_pequena_escala" value="si">
-                                <span class="radio-label">Sí cuenta - La documentación adjunta está completa y fue validada</span>
+                                <input type="radio" name="vl_capital_privado" value="si">
+                                <span class="radio-label">Sí</span>
                             </label>
                             <label class="radio-item">
-                                <input type="radio" name="vl_pequena_escala" value="no">
-                                <span class="radio-label">No cuenta - documentación incompleta o en proceso</span>
+                                <input type="radio" name="vl_capital_privado" value="no">
+                                <span class="radio-label">No</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <!-- 6.1 Contrato de Conexión -->
+                <!-- 8. Protección al Usuario -->
                 <div class="question-block">
-                    <h4 class="block-title">6.1 Contrato de Conexión</h4>
+                    <h4 class="block-title">8. Protección al Usuario</h4>
                     <div class="question-section">
-                        <label class="form-label">¿La comunidad finalizada de la CE es mayor o TOD kW?</label>
-                        <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="vl_capacidad_100" value="si">
-                                <span class="radio-label">Sí - mayor a 100 kW (requiere contrato de conexión)</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vl_capacidad_100" value="no">
-                                <span class="radio-label">No - menor o igual a 100 kW</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="question-section">
-                        <label class="form-label">Dependencia de lo anterior ¿Actualmente cuántas lecturas documentadas, seguimiento de lecturas, ubicación en instalación, entre otros?</label>
-                        <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="vl_contrato" value="completo">
-                                <span class="radio-label">La documentación adjunta está completa y fue validada</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vl_contrato" value="incompleto">
-                                <span class="radio-label">Documentación incompleta o complementaria. De esta lista los documentos listados en verde son los elementos que evidencian que son de contrato con el operador propuesto</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7.2 Registro de Fronteras -->
-                <div class="question-block">
-                    <h4 class="block-title">7.2 Registro de Fronteras Comerciales</h4>
-                    <div class="question-section">
-                        <label class="form-label">Cuenta con registro de fronteras comerciales (para CE mayor a 100kW):</label>
-                        <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="vl_fronteras" value="si">
-                                <span class="radio-label">Documentación requerida por el OR - completa y válida</span>
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="vl_fronteras" value="no">
-                                <span class="radio-label">No cuenta con registro de fronteras</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8.1 Documentación al Usuario -->
-                <div class="question-block">
-                    <h4 class="block-title">8.1 Documentación al Usuario</h4>
-                    <div class="question-section">
-                        <label class="form-label">¿La comunidad Energética y cuenta con los requisitos formales de protección al usuario?</label>
+                        <label class="form-label">¿La Comunidad Energética cuenta con mecanismos formales de protección al usuario?</label>
                         <div class="checkbox-grid">
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vl_proteccion" value="contratos">
-                                <span class="checkbox-label">Contratos de Condiciones Uniformes</span>
+                                <input type="checkbox" name="vl_proteccion" value="contrato-condiciones">
+                                <span class="checkbox-label">Contrato de Condiciones Uniformes</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vl_proteccion" value="libro">
-                                <span class="checkbox-label">Libro diario de provisión</span>
+                                <input type="checkbox" name="vl_proteccion" value="libre-eleccion">
+                                <span class="checkbox-label">Libre elección del prestador</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="vl_proteccion" value="medicion">
-                                <span class="checkbox-label">Medición neta de consumos</span>
+                                <input type="checkbox" name="vl_proteccion" value="medicion-real">
+                                <span class="checkbox-label">Medición real de consumos</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="vl_proteccion" value="canal-quejas">
+                                <span class="checkbox-label">Canal de atención de quejas</span>
                             </label>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Resultado de Viabilidad Legal -->
-                <div class="result-message-card green-border">
-                    <div class="result-header">
-                        <span class="result-icon">L</span>
-                        <span class="result-title">Resultado de Viabilidad Legal</span>
-                        <span class="result-score" id="score_legal">--/5</span>
-                    </div>
-                    <div class="result-body">
-                        <p class="result-text">Se hace ponderación según:</p>
-                        <ul>
-                            <li>&gt; 4.0 = Alta viabilidad legal</li>
-                            <li>3.0 - 3.99 = Viabilidad media (requiere acciones)</li>
-                            <li>&lt; 3.0 = No hay viabilidad legal</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -1625,48 +1552,58 @@
                     <ul class="documents-list">
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Adjuntar documentos de Constitución legal (Certificado de Cámara y otros documentos CE)</span>
-                            <input type="file" name="doc_vl_constitucion" class="document-input">
+                            <span class="document-name">Certificado de existencia y representación (Cámara de Comercio u otra autoridad) <span class="document-condition">(Solo si tiene registro jurídico)</span></span>
+                            <input type="file" name="doc_vl_certificado_existencia" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Adjuntar documentos - Resultado del Cumplimiento de Constitución</span>
-                            <input type="file" name="doc_vl_cumplimiento_const" class="document-input">
+                            <span class="document-name">Estatutos / Acta de constitución (PDF) <span class="document-condition">(Solo si tiene registro jurídico)</span></span>
+                            <input type="file" name="doc_vl_estatutos" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Adjuntar documentos con la certificación</span>
-                            <input type="file" name="doc_vl_certificacion" class="document-input">
+                            <span class="document-name">RUT <span class="document-condition">(Solo si tiene registro jurídico)</span></span>
+                            <input type="file" name="doc_vl_rut" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado del Cumplimiento Esquema N°3</span>
-                            <input type="file" name="doc_vl_esquema3" class="document-input">
+                            <span class="document-name">Acta de asamblea vigente <span class="document-condition">(Opcional - Solo si tiene registro jurídico)</span></span>
+                            <input type="file" name="doc_vl_acta_asamblea" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado del Cumplimiento de Autogeneración</span>
-                            <input type="file" name="doc_vl_autogeneracion" class="document-input">
+                            <span class="document-name">Contrato o convenio asociado <span class="document-condition">(Opcional)</span></span>
+                            <input type="file" name="doc_vl_contrato_convenio" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado del Cumplimiento de Registro o Trámite (pequeña escala)</span>
-                            <input type="file" name="doc_vl_registro_tramite" class="document-input">
+                            <span class="document-name">Documento RCE del MME y SSPD <span class="document-condition">(Solo si lo tiene)</span></span>
+                            <input type="file" name="doc_vl_rce" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Documentación accesible al interesado (contrato, seguimiento de actividades, etc.)</span>
-                            <input type="file" name="doc_vl_accesible" class="document-input">
+                            <span class="document-name">Certificado de cumplimiento de la Escuela de Transición Energética Justa <span class="document-condition">(Solo si lo tiene)</span></span>
+                            <input type="file" name="doc_vl_escuela_transicion" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Documentación requerida por el OR (Operador de Red)</span>
-                            <input type="file" name="doc_vl_or" class="document-input">
+                            <span class="document-name">Certificado de capacidad instalada o nominal expedido por un profesional idóneo <span class="document-condition">(Solo si lo tiene)</span></span>
+                            <input type="file" name="doc_vl_capacidad_instalada" class="document-input">
                         </li>
                         <li class="document-item">
                             <span class="document-icon">📄</span>
-                            <span class="document-name">Resultado de Protección al usuario</span>
-                            <input type="file" name="doc_vl_proteccion" class="document-input">
+                            <span class="document-name">Certificado por parte del operador de red o distribuidor <span class="document-condition">(Solo si lo tiene)</span></span>
+                            <input type="file" name="doc_vl_operador_red" class="document-input">
+                        </li>
+                        <li class="document-item">
+                            <span class="document-icon">📄</span>
+                            <span class="document-name">Documento contrato de conexión <span class="document-condition">(Solo si lo tiene)</span></span>
+                            <input type="file" name="doc_vl_contrato_conexion" class="document-input">
+                        </li>
+                        <li class="document-item">
+                            <span class="document-icon">📄</span>
+                            <span class="document-name">Documento de registro de fronteras comerciales <span class="document-condition">(Solo si lo tiene)</span></span>
+                            <input type="file" name="doc_vl_fronteras_comerciales" class="document-input">
                         </li>
                     </ul>
                 </div>
