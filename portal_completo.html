@@ -1,0 +1,3547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Comunidades Energéticas - UPB Medellín</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-primario: #C5E82A;
+            --verde-bosque: #2E7D32;
+            --purpura: #6B2D7B;
+            --amarillo: #FFC107;
+            --azul: #2196F3;
+            --rojo: #E53935;
+            --gris: #9E9E9E;
+            --gris-claro: #F5F5F5;
+            --gris-medio: #E0E0E0;
+            --blanco: #FFFFFF;
+            --negro: #212121;
+            --naranja: #FF9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gris-claro);
+            color: var(--negro);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--blanco);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-upb {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-upb .u, .logo-upb .p { color: var(--purpura); }
+        .logo-upb .b { color: #9C27B0; }
+
+        .logo-text {
+            font-size: 0.75rem;
+            color: var(--gris);
+            max-width: 150px;
+        }
+
+        .nav-main {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-main a {
+            text-decoration: none;
+            color: var(--negro);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-main a:hover, .nav-main a.active {
+            color: var(--verde-bosque);
+            background: rgba(197, 232, 42, 0.2);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--purpura);
+            color: var(--blanco);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--blanco);
+            padding: 0.75rem 2rem;
+            border-bottom: 1px solid var(--gris-medio);
+        }
+
+        .breadcrumb-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--gris);
+        }
+
+        .breadcrumb a {
+            color: var(--purpura);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Central de Gestión - Dashboard */
+        .dashboard-banner {
+            background: linear-gradient(135deg, var(--verde-bosque) 0%, var(--purpura) 100%);
+            color: var(--blanco);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-banner h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-banner p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover:not(.blocked) {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .module-card.blocked {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .module-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .module-icon.registro { background: rgba(197, 232, 42, 0.2); }
+        .module-icon.caracterizacion { background: rgba(33, 150, 243, 0.2); }
+        .module-icon.potencial { background: rgba(107, 45, 123, 0.2); }
+        .module-icon.viabilidad { background: rgba(46, 125, 50, 0.2); }
+
+        .module-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pendiente { background: rgba(255, 152, 0, 0.2); color: var(--naranja); }
+        .status-progreso { background: rgba(33, 150, 243, 0.2); color: var(--azul); }
+        .status-completado { background: rgba(46, 125, 50, 0.2); color: var(--verde-bosque); }
+        .status-bloqueado { background: rgba(158, 158, 158, 0.2); color: var(--gris); }
+
+        .module-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--negro);
+        }
+
+        .module-description {
+            font-size: 0.85rem;
+            color: var(--gris);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .module-docs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--purpura);
+            margin-bottom: 1rem;
+        }
+
+        .module-btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .module-btn.primary {
+            background: var(--purpura);
+            color: var(--blanco);
+        }
+
+        .module-btn.primary:hover {
+            background: #5a2569;
+        }
+
+        .module-btn.secondary {
+            background: var(--verde-primario);
+            color: var(--negro);
+        }
+
+        .module-btn.disabled {
+            background: var(--gris-medio);
+            color: var(--gris);
+            cursor: not-allowed;
+        }
+
+        /* Progress Ring */
+        .progress-ring {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+        }
+
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 4;
+        }
+
+        .progress-ring .bg { stroke: var(--gris-medio); }
+        .progress-ring .progress {
+            stroke: var(--verde-bosque);
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.5s;
+        }
+
+        /* Forms Layout */
+        .form-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .form-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-main {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .form-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        /* Wizard Stepper */
+        .wizard-stepper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .wizard-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+            position: relative;
+        }
+
+        .wizard-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: var(--gris-medio);
+            z-index: 0;
+        }
+
+        .wizard-step.completed:not(:last-child)::after {
+            background: var(--verde-bosque);
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--gris-medio);
+            color: var(--gris);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .wizard-step.active .step-number {
+            background: var(--purpura);
+            color: var(--blanco);
+        }
+
+        .wizard-step.completed .step-number {
+            background: var(--verde-bosque);
+            color: var(--blanco);
+        }
+
+        .step-label {
+            font-size: 0.7rem;
+            color: var(--gris);
+            text-align: center;
+            margin-top: 0.5rem;
+            max-width: 80px;
+        }
+
+        .wizard-step.active .step-label {
+            color: var(--purpura);
+            font-weight: 600;
+        }
+
+        /* Form Section */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--verde-primario);
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            color: var(--negro);
+            margin-bottom: 0.25rem;
+        }
+
+        .section-header p {
+            font-size: 0.85rem;
+            color: var(--gris);
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--negro);
+            font-size: 0.9rem;
+        }
+
+        .form-group label .required {
+            color: var(--rojo);
+            margin-left: 2px;
+        }
+
+        .form-group .help-text {
+            font-size: 0.8rem;
+            color: var(--gris);
+            margin-top: 0.25rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gris-medio);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--purpura);
+            box-shadow: 0 0 0 3px rgba(107, 45, 123, 0.1);
+        }
+
+        .form-control.error {
+            border-color: var(--rojo);
+        }
+
+        .error-message {
+            color: var(--rojo);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-control.error + .error-message {
+            display: block;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        /* Radio & Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gris-medio);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .radio-option:hover, .checkbox-option:hover {
+            border-color: var(--purpura);
+            background: rgba(107, 45, 123, 0.05);
+        }
+
+        .radio-option input, .checkbox-option input {
+            margin-top: 2px;
+            accent-color: var(--purpura);
+        }
+
+        .radio-option.selected, .checkbox-option.selected {
+            border-color: var(--purpura);
+            background: rgba(107, 45, 123, 0.08);
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-label {
+            font-weight: 500;
+            color: var(--negro);
+        }
+
+        .option-description {
+            font-size: 0.8rem;
+            color: var(--gris);
+            margin-top: 0.25rem;
+        }
+
+        /* Scale Rating */
+        .scale-rating {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .scale-option {
+            flex: 1;
+            min-width: 60px;
+            padding: 0.75rem;
+            border: 1px solid var(--gris-medio);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .scale-option:hover {
+            border-color: var(--purpura);
+        }
+
+        .scale-option.selected {
+            background: var(--purpura);
+            color: var(--blanco);
+            border-color: var(--purpura);
+        }
+
+        .scale-option .number {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .scale-option .desc {
+            font-size: 0.65rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Map Container */
+        .map-container {
+            height: 300px;
+            background: var(--gris-claro);
+            border-radius: 8px;
+            border: 1px solid var(--gris-medio);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: var(--gris);
+        }
+
+        .map-placeholder svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+        }
+
+        .coordinates-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        /* Repeatable Section */
+        .repeatable-section {
+            border: 1px solid var(--gris-medio);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .repeatable-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .repeatable-title {
+            font-weight: 600;
+            color: var(--purpura);
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: var(--rojo);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .btn-add {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 2px dashed var(--purpura);
+            border-radius: 8px;
+            background: none;
+            color: var(--purpura);
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background: rgba(107, 45, 123, 0.05);
+        }
+
+        /* Sidebar */
+        .sidebar-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--negro);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-list {
+            list-style: none;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--gris);
+        }
+
+        .progress-item.completed {
+            color: var(--verde-bosque);
+        }
+
+        .progress-item.active {
+            color: var(--purpura);
+            font-weight: 500;
+        }
+
+        .progress-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .progress-item.completed .progress-icon {
+            background: var(--verde-bosque);
+            border-color: var(--verde-bosque);
+            color: var(--blanco);
+        }
+
+        .docs-list {
+            list-style: none;
+        }
+
+        .docs-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--negro);
+        }
+
+        .docs-item::before {
+            content: '📄';
+            font-size: 1rem;
+        }
+
+        .help-tip {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 3px solid var(--azul);
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .autosave-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--verde-bosque);
+            padding: 0.5rem;
+            background: rgba(46, 125, 50, 0.1);
+            border-radius: 6px;
+        }
+
+        /* Form Navigation */
+        .form-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gris-medio);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--purpura);
+            color: var(--blanco);
+        }
+
+        .btn-primary:hover {
+            background: #5a2569;
+        }
+
+        .btn-secondary {
+            background: var(--blanco);
+            color: var(--purpura);
+            border: 2px solid var(--purpura);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(107, 45, 123, 0.05);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gris);
+            border: 1px solid var(--gris-medio);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gris);
+        }
+
+        .btn-success {
+            background: var(--verde-bosque);
+            color: var(--blanco);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box.warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+
+        .info-box.success {
+            background: rgba(46, 125, 50, 0.1);
+            border-color: rgba(46, 125, 50, 0.3);
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box p {
+            font-size: 0.85rem;
+            color: var(--negro);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--blanco);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .modal-icon.success {
+            background: rgba(46, 125, 50, 0.1);
+        }
+
+        .modal-icon.warning {
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .modal h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            color: var(--gris);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--verde-bosque);
+            color: var(--blanco);
+            margin-top: 3rem;
+        }
+
+        .footer-top {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--verde-bosque) 0%, var(--purpura) 100%);
+        }
+
+        .footer-slogan {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-bottom {
+            padding: 1.5rem 2rem;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover { opacity: 1; }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Mobile Bottom Sheet */
+        .bottom-sheet {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content { padding: 0.5rem; }
+            .nav-main { display: none; }
+            .main-container { padding: 1rem; }
+            .dashboard-banner { padding: 1.5rem; }
+            .dashboard-banner h1 { font-size: 1.5rem; }
+            .form-main { padding: 1rem; }
+            .wizard-stepper { gap: 0.25rem; }
+            .step-label { display: none; }
+            .coordinates-row { grid-template-columns: 1fr; }
+            .form-nav { flex-direction: column; }
+            .form-nav .btn { width: 100%; justify-content: center; }
+            
+            .form-sidebar {
+                display: none;
+            }
+
+            .bottom-sheet {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--blanco);
+                border-radius: 16px 16px 0 0;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+                z-index: 1000;
+                transform: translateY(calc(100% - 60px));
+                transition: transform 0.3s ease;
+            }
+
+            .bottom-sheet.expanded {
+                transform: translateY(0);
+            }
+
+            .bottom-sheet-handle {
+                width: 40px;
+                height: 4px;
+                background: var(--gris-medio);
+                border-radius: 2px;
+                margin: 12px auto;
+                cursor: pointer;
+            }
+
+            .bottom-sheet-content {
+                padding: 0 1rem 1rem;
+                max-height: 60vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+
+        /* Conditional Fields */
+        .conditional-field {
+            display: none;
+        }
+
+        .conditional-field.visible {
+            display: block;
+        }
+
+        /* Table for leaders */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .data-table th, .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gris-medio);
+            font-size: 0.85rem;
+        }
+
+        .data-table th {
+            background: var(--gris-claro);
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gris);
+        }
+
+        /* Viability Results */
+        .result-card {
+            background: linear-gradient(135deg, var(--verde-bosque) 0%, #4CAF50 100%);
+            color: var(--blanco);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .result-label {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .dimension-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .dimension-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .dimension-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .dimension-name {
+            font-size: 0.85rem;
+            color: var(--gris);
+        }
+
+        .dimension-score {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--negro);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-upb"><span class="u">U</span><span class="p">P</span><span class="b">B</span></span>
+                <span class="logo-text">Universidad Pontificia Bolivariana</span>
+            </div>
+            <nav class="nav-main">
+                <a href="#" onclick="showView('dashboard'); return false;" class="active" id="nav-inicio">Inicio</a>
+                <a href="#" onclick="showView('dashboard'); return false;">Noticias</a>
+                <a href="#">Contacto</a>
+                <a href="#" onclick="showView('dashboard'); return false;" id="nav-gestion">Gestión</a>
+                <a href="#">Monitoreo</a>
+            </nav>
+            <div class="user-actions">
+                <div class="user-avatar">LC</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content" id="breadcrumb">
+            <a href="#" onclick="showView('dashboard'); return false;">Inicio</a>
+            <span>›</span>
+            <span>Central de Gestión</span>
+        </div>
+    </div>
+
+    <main class="main-container">
+        <!-- ========== CENTRAL DE GESTIÓN (DASHBOARD) ========== -->
+        <div id="view-dashboard" class="view active">
+            <div class="dashboard-banner">
+                <h1>🌱 Tu comunidad energética</h1>
+                <p>Bienvenido al portal de gestión. Aquí puedes ver el progreso de tu comunidad en el proceso de conformación como comunidad energética.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Módulo 1: Registro -->
+                <div class="module-card" id="card-registro" data-status="pendiente">
+                    <div class="module-header">
+                        <div class="module-icon registro">📋</div>
+                        <span class="module-status status-pendiente" id="status-registro">Pendiente</span>
+                    </div>
+                    <h3 class="module-title">Registra tu comunidad</h3>
+                    <p class="module-description">En este apartado podrás realizar el registro completo de tu comunidad. Te guiaremos paso a paso para que completes la información básica.</p>
+                    <div class="module-docs">📎 Documentos necesarios</div>
+                    <button class="module-btn primary" onclick="showView('registro')">
+                        Comenzar registro →
+                    </button>
+                </div>
+
+                <!-- Módulo 2: Caracterización Inicial -->
+                <div class="module-card" id="card-caracterizacion-inicial" data-status="pendiente">
+                    <div class="module-header">
+                        <div class="module-icon caracterizacion">📊</div>
+                        <span class="module-status status-pendiente" id="status-caract-inicial">Pendiente</span>
+                    </div>
+                    <h3 class="module-title">Caracterización inicial</h3>
+                    <p class="module-description">Cuéntanos sobre tu comunidad: ubicación, número de personas, consumo energético actual y recursos disponibles.</p>
+                    <div class="module-docs">📎 Prepara estos documentos</div>
+                    <button class="module-btn primary" onclick="showView('caracterizacion-inicial')">
+                        Iniciar caracterización →
+                    </button>
+                </div>
+
+                <!-- Módulo 3: Caracterización Detallada -->
+                <div class="module-card" id="card-caracterizacion-detallada" data-status="bloqueado">
+                    <div class="module-header">
+                        <div class="module-icon caracterizacion">📈</div>
+                        <span class="module-status status-bloqueado" id="status-caract-detallada">Bloqueado</span>
+                    </div>
+                    <h3 class="module-title">Caracterización detallada</h3>
+                    <p class="module-description">Profundiza en los detalles técnicos, socioeconómicos y organizacionales de tu comunidad.</p>
+                    <div class="module-docs">📎 Prepara estos documentos</div>
+                    <button class="module-btn disabled" id="btn-caract-detallada">
+                        🔒 Completa caracterización inicial
+                    </button>
+                </div>
+
+                <!-- Módulo 4: Cálculo Potencial -->
+                <div class="module-card" id="card-potencial" data-status="bloqueado">
+                    <div class="module-header">
+                        <div class="module-icon potencial">⚡</div>
+                        <span class="module-status status-bloqueado" id="status-potencial">Bloqueado</span>
+                    </div>
+                    <h3 class="module-title">Cálculo de potencial energético</h3>
+                    <p class="module-description">Calcularemos cuánta energía puede generar tu comunidad y qué tecnología es la más adecuada.</p>
+                    <div class="module-docs">📎 Prepara estos documentos</div>
+                    <button class="module-btn disabled" id="btn-potencial">
+                        🔒 Completa caracterización detallada
+                    </button>
+                </div>
+
+                <!-- Módulo 5: Viabilidad -->
+                <div class="module-card" id="card-viabilidad" data-status="pendiente">
+                    <div class="module-header">
+                        <div class="module-icon viabilidad">✅</div>
+                        <span class="module-status status-pendiente" id="status-viabilidad">Pendiente</span>
+                    </div>
+                    <h3 class="module-title">Viabilidad</h3>
+                    <p class="module-description">Evaluaremos si tu proyecto es viable desde el punto de vista técnico, económico, legal y ambiental.</p>
+                    <div class="module-docs">📎 Prepara estos documentos</div>
+                    <button class="module-btn secondary" onclick="showView('viabilidad')">
+                        Evaluar viabilidad →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== FORMULARIO: REGISTRO DE COMUNIDAD ========== -->
+        <div id="view-registro" class="view hidden">
+            <div class="form-layout">
+                <div class="form-main">
+                    <div class="section-header">
+                        <h2>📋 Registra tu comunidad</h2>
+                        <p>Complete la información básica de su comunidad. Todos los campos marcados con * son obligatorios.</p>
+                    </div>
+
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ Importante</div>
+                        <p>La plataforma debe ser diligenciada por un líder de la comunidad designado para este fin. Solo se permite un registro por comunidad.</p>
+                    </div>
+
+                    <!-- Sección 1: Ubicación Geográfica -->
+                    <div class="form-section active" id="registro-sec-1">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">1. Ubicación geográfica</h3>
+                        
+                        <div class="form-group">
+                            <label>Nombre de la comunidad <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="nombre_comunidad" placeholder="Ingresa el nombre de la comunidad" required>
+                            <span class="help-text">Nombre oficial o reconocido de la comunidad</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Departamento <span class="required">*</span></label>
+                            <select class="form-control" id="departamento" required>
+                                <option value="">Selecciona un departamento</option>
+                                <option value="antioquia">Antioquia</option>
+                                <option value="atlantico">Atlántico</option>
+                                <option value="bogota">Bogotá D.C.</option>
+                                <option value="bolivar">Bolívar</option>
+                                <option value="boyaca">Boyacá</option>
+                                <option value="caldas">Caldas</option>
+                                <option value="caqueta">Caquetá</option>
+                                <option value="cauca">Cauca</option>
+                                <option value="cesar">Cesar</option>
+                                <option value="choco">Chocó</option>
+                                <option value="cordoba">Córdoba</option>
+                                <option value="cundinamarca">Cundinamarca</option>
+                                <option value="guainia">Guainía</option>
+                                <option value="guaviare">Guaviare</option>
+                                <option value="huila">Huila</option>
+                                <option value="la_guajira">La Guajira</option>
+                                <option value="magdalena">Magdalena</option>
+                                <option value="meta">Meta</option>
+                                <option value="narino">Nariño</option>
+                                <option value="norte_santander">Norte de Santander</option>
+                                <option value="putumayo">Putumayo</option>
+                                <option value="quindio">Quindío</option>
+                                <option value="risaralda">Risaralda</option>
+                                <option value="san_andres">San Andrés y Providencia</option>
+                                <option value="santander">Santander</option>
+                                <option value="sucre">Sucre</option>
+                                <option value="tolima">Tolima</option>
+                                <option value="valle">Valle del Cauca</option>
+                                <option value="vaupes">Vaupés</option>
+                                <option value="vichada">Vichada</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Municipio <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="municipio" placeholder="Ingresa el nombre del municipio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Barrio / Vereda / Resguardo <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="barrio_vereda" placeholder="Ingresa barrio, vereda o resguardo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Coordenadas <span class="required">*</span></label>
+                            <div class="map-container">
+                                <div class="map-placeholder">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    <p>Haz clic para seleccionar ubicación</p>
+                                </div>
+                            </div>
+                            <span class="help-text">Haz clic en el mapa para seleccionar la ubicación. Las coordenadas se actualizan automáticamente.</span>
+                            <div class="coordinates-row mt-1">
+                                <div class="form-group" style="margin-bottom:0">
+                                    <label style="font-size:0.8rem">Latitud</label>
+                                    <input type="text" class="form-control" id="latitud" placeholder="Ej: 6.2442" readonly>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0">
+                                    <label style="font-size:0.8rem">Longitud</label>
+                                    <input type="text" class="form-control" id="longitud" placeholder="Ej: -75.5812" readonly>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0">
+                                    <label style="font-size:0.8rem">Altitud (m)</label>
+                                    <input type="text" class="form-control" id="altitud" placeholder="Auto" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ubicación de la comunidad <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="ubicacion_tipo" value="rural">
+                                    <div class="option-content">
+                                        <span class="option-label">Rural</span>
+                                        <span class="option-description">Fuera del casco urbano</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ubicacion_tipo" value="urbana">
+                                    <div class="option-content">
+                                        <span class="option-label">Urbana</span>
+                                        <span class="option-description">Dentro del casco urbano</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ubicacion_tipo" value="periurbana">
+                                    <div class="option-content">
+                                        <span class="option-label">Periurbana</span>
+                                        <span class="option-description">En los límites de la ciudad</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección 2: Conexión Eléctrica -->
+                    <div class="form-section" id="registro-sec-2">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">2. Conexión eléctrica</h3>
+                        
+                        <div class="form-group">
+                            <label>Conexión al sistema eléctrico <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="conexion_sistema" value="sin">
+                                    <div class="option-content">
+                                        <span class="option-label">Conectada al Sistema Interconectado Nacional (SIN)</span>
+                                        <span class="option-description">Tiene acceso a la red eléctrica nacional</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="conexion_sistema" value="zni">
+                                    <div class="option-content">
+                                        <span class="option-label">Ubicada en Zona No Interconectada (ZNI)</span>
+                                        <span class="option-description">No tiene acceso a la red eléctrica nacional</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="conexion_sistema" value="no_sabe">
+                                    <div class="option-content">
+                                        <span class="option-label">No sabe</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Cómo se identifica su comunidad? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="tipo_comunidad" value="ordinaria">
+                                    <div class="option-content">
+                                        <span class="option-label">Ordinaria</span>
+                                        <span class="option-description">Comunidad residencial</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="tipo_comunidad" value="equipamiento_social">
+                                    <div class="option-content">
+                                        <span class="option-label">Equipamiento social</span>
+                                        <span class="option-description">Centros comunitarios, salud, educación</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="tipo_comunidad" value="institucional">
+                                    <div class="option-content">
+                                        <span class="option-label">Institucional</span>
+                                        <span class="option-description">Entidades gubernamentales</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La comunidad ya se encuentra registrada en el Registro de Comunidades Energéticas (RCE)?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="registrada_rce" value="si">
+                                    <span class="option-label">Sí</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="registrada_rce" value="no">
+                                    <span class="option-label">No</span>
+                                </label>
+                            </div>
+                            <span class="help-text">El RCE es el registro oficial del Ministerio de Minas y Energía</span>
+                        </div>
+                    </div>
+
+                    <!-- Sección 3: Datos del Representante -->
+                    <div class="form-section" id="registro-sec-3">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">3. Datos del representante</h3>
+                        
+                        <div class="form-group">
+                            <label>Nombre del representante o líder de la comunidad <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="nombre_representante" placeholder="Nombre completo del representante" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Documento de identidad <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="documento_identidad" placeholder="Número de documento" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Correo electrónico <span class="required">*</span></label>
+                            <input type="email" class="form-control" id="correo_contacto" placeholder="ejemplo@correo.com" required>
+                            <span class="error-message">Por favor ingrese un correo válido</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Número de contacto <span class="required">*</span></label>
+                            <input type="tel" class="form-control" id="telefono_contacto" placeholder="Número de contacto" required>
+                        </div>
+                    </div>
+
+                    <div class="form-nav">
+                        <button class="btn btn-outline" onclick="showView('dashboard')">
+                            ← Volver al inicio
+                        </button>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-secondary" id="btn-registro-prev" onclick="navigateRegistro(-1)" style="display:none">
+                                ← Anterior
+                            </button>
+                            <button class="btn btn-primary" id="btn-registro-next" onclick="navigateRegistro(1)">
+                                Siguiente →
+                            </button>
+                            <button class="btn btn-success" id="btn-registro-submit" onclick="submitRegistro()" style="display:none">
+                                Enviar registro ✓
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="form-sidebar">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📊 Progreso</h4>
+                        <ul class="progress-list">
+                            <li class="progress-item active" id="prog-reg-1">
+                                <span class="progress-icon">1</span>
+                                Ubicación geográfica
+                            </li>
+                            <li class="progress-item" id="prog-reg-2">
+                                <span class="progress-icon">2</span>
+                                Conexión eléctrica
+                            </li>
+                            <li class="progress-item" id="prog-reg-3">
+                                <span class="progress-icon">3</span>
+                                Datos del representante
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📄 Documentos necesarios</h4>
+                        <ul class="docs-list">
+                            <li class="docs-item">Documento de identidad del representante (cédula)</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">💡 Ayuda</h4>
+                        <div class="help-tip">
+                            <strong>Coordenadas:</strong> Si no conoces las coordenadas exactas, puedes usar Google Maps para encontrarlas.
+                        </div>
+                        <div class="help-tip">
+                            <strong>SIN vs ZNI:</strong> Si recibes factura de energía de una empresa como EPM, Codensa o similar, estás en el SIN.
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <div class="autosave-indicator">
+                            <span>💾</span>
+                            <span>Auto-guardado activo</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- ========== FORMULARIO: CARACTERIZACIÓN INICIAL ========== -->
+        <div id="view-caracterizacion-inicial" class="view hidden">
+            <div class="form-layout">
+                <div class="form-main">
+                    <div class="section-header">
+                        <h2>📊 Caracterización inicial</h2>
+                        <p>Cuéntanos sobre tu comunidad en 8 sencillos pasos. Esta información nos ayuda a entender mejor tus necesidades.</p>
+                    </div>
+
+                    <!-- Wizard Stepper -->
+                    <div class="wizard-stepper" id="wizard-caract-inicial">
+                        <div class="wizard-step active" data-step="1">
+                            <span class="step-number">1</span>
+                            <span class="step-label">Población</span>
+                        </div>
+                        <div class="wizard-step" data-step="2">
+                            <span class="step-number">2</span>
+                            <span class="step-label">Acceso</span>
+                        </div>
+                        <div class="wizard-step" data-step="3">
+                            <span class="step-number">3</span>
+                            <span class="step-label">Ambiente</span>
+                        </div>
+                        <div class="wizard-step" data-step="4">
+                            <span class="step-number">4</span>
+                            <span class="step-label">Internet</span>
+                        </div>
+                        <div class="wizard-step" data-step="5">
+                            <span class="step-number">5</span>
+                            <span class="step-label">Gobernanza</span>
+                        </div>
+                        <div class="wizard-step" data-step="6">
+                            <span class="step-number">6</span>
+                            <span class="step-label">Motivaciones</span>
+                        </div>
+                        <div class="wizard-step" data-step="7">
+                            <span class="step-number">7</span>
+                            <span class="step-label">Habilidades</span>
+                        </div>
+                        <div class="wizard-step" data-step="8">
+                            <span class="step-number">8</span>
+                            <span class="step-label">Energía</span>
+                        </div>
+                    </div>
+
+                    <!-- Paso 1: Población -->
+                    <div class="form-section active" id="ci-paso-1">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">1. Información de población</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Su comunidad incluye población bajo protección constitucional especial? <span class="required">*</span></label>
+                            <span class="help-text" style="margin-bottom:0.75rem;display:block">Puede seleccionar más de una opción</span>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="victimas_conflicto"><span class="option-label">Víctimas del conflicto armado</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="reintegracion"><span class="option-label">Personas en reintegración (firmantes de paz)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="rural"><span class="option-label">Población rural</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="discapacidad"><span class="option-label">Personas con discapacidad</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="lgbtiq"><span class="option-label">Población LGBTIQ+</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="migrantes"><span class="option-label">Migrantes o refugiados</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="reparacion_colectiva"><span class="option-label">Sujetos de reparación colectiva</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="etnicos"><span class="option-label">Comunidades étnicas</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="mayores"><span class="option-label">Personas mayores (60+)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="gestantes"><span class="option-label">Mujeres gestantes o lactantes</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="calle"><span class="option-label">Personas en situación de calle</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="estratos_bajos"><span class="option-label">Estratos socioeconómicos 1, 2 o 3</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="poblacion_proteccion" value="ninguna" id="pob-ninguna"><span class="option-label">Ninguna de las anteriores</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Actividades productivas predominantes en la comunidad <span class="required">*</span></label>
+                            <span class="help-text" style="margin-bottom:0.75rem;display:block">Puede seleccionar varias opciones</span>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="A"><span class="option-label">Agricultura, ganadería, caza, silvicultura y pesca</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="B"><span class="option-label">Explotación de minas y canteras</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="C"><span class="option-label">Industrias manufactureras</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="G"><span class="option-label">Comercio al por mayor y menor; reparación de vehículos</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="I"><span class="option-label">Alojamiento y servicios de comida</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="P"><span class="option-label">Educación</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="Q"><span class="option-label">Actividades de atención de la salud humana</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="actividades_productivas" value="S"><span class="option-label">Otras actividades de servicios</span></label>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label style="font-size:0.85rem">Otro (especifique)</label>
+                                <input type="text" class="form-control" id="actividades_otro" placeholder="Especifique otra actividad productiva">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Acceso -->
+                    <div class="form-section" id="ci-paso-2">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">2. Conectividad y acceso</h3>
+                        
+                        <div class="form-group">
+                            <label>Tipo de acceso disponible a la comunidad <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_acceso" value="via_primaria"><span class="option-label">Vía primaria (carretera pavimentada)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_acceso" value="via_secundaria"><span class="option-label">Vía secundaria (carretera sin pavimentar)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_acceso" value="camino_peatonal"><span class="option-label">Camino peatonal/sendero</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_acceso" value="rio"><span class="option-label">Río navegable</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_acceso" value="aereo"><span class="option-label">Acceso aéreo (avioneta/helicóptero)</span></label>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label style="font-size:0.85rem">Otro (especifique)</label>
+                                <input type="text" class="form-control" id="acceso_otro" placeholder="Especifique otro tipo de acceso">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nombre del centro urbano más cercano <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="centro_urbano_cercano" placeholder="Nombre del centro urbano">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Disponibilidad de transporte público <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="transporte_publico" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="transporte_publico" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="transporte_publico" value="a_veces"><span class="option-label">A veces</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Ambiental -->
+                    <div class="form-section" id="ci-paso-3">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">3. Información ambiental</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Existen en su territorio zonas protegidas o de conservación ambiental? <span class="required">*</span></label>
+                            <span class="help-text" style="margin-bottom:0.5rem;display:block">Parques naturales, reservas forestales, humedales, rondas de ríos</span>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="zonas_protegidas" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="zonas_protegidas" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="zonas_protegidas" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Existen conflictos por el uso del suelo en la comunidad? <span class="required">*</span></label>
+                            <span class="help-text" style="margin-bottom:0.5rem;display:block">Agricultura, minería, ganadería, conservación</span>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="conflictos_suelo" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="conflictos_suelo" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="conflictos_suelo" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Internet/TIC -->
+                    <div class="form-section" id="ci-paso-4">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">4. Conectividad digital (internet y TIC)</h3>
+                        
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con acceso a internet? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="acceso_internet" value="si" onchange="toggleConditional('tipo_conexion_internet', true)"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="acceso_internet" value="no" onchange="toggleConditional('tipo_conexion_internet', false)"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="acceso_internet" value="no_sabe" onchange="toggleConditional('tipo_conexion_internet', false)"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group conditional-field" id="tipo_conexion_internet">
+                            <label>¿Cuenta con acceso a internet permanente o intermitente? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="tipo_conexion_internet" value="permanente"><span class="option-label">Permanente</span></label>
+                                <label class="radio-option"><input type="radio" name="tipo_conexion_internet" value="intermitente"><span class="option-label">Intermitente</span></label>
+                            </div>
+                            <div class="info-box mt-1" id="msg-intermitente" style="display:none">
+                                <p>La comunidad tiene conectividad intermitente. Esto puede limitar la interacción continua con la plataforma del LNCE, pero aún puede participar mediante alternativas complementarias.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Gobernanza -->
+                    <div class="form-section" id="ci-paso-5">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">5. Verificación del modelo de gobernanza</h3>
+                        <p style="margin-bottom:1rem;color:var(--gris);font-size:0.9rem;">Cuestionario autoguiado para verificar aspectos de gobernanza implementados</p>
+                        
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con una misión clara, conocida y compartida? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="tiene_mision" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="tiene_mision" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con una visión clara, conocida y compartida? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="tiene_vision" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="tiene_vision" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con una composición adecuada de líderes y representantes? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="composicion_lideres" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="composicion_lideres" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿El liderazgo promueve una cultura de resultados? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="cultura_resultados" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="cultura_resultados" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La toma de decisiones se realiza por consenso y con participación? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="decisiones_consenso" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="decisiones_consenso" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La comunidad aplica mecanismos de rendición de cuentas y transparencia? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="rendicion_cuentas" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="rendicion_cuentas" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La comunidad aplica mecanismos de gestión de quejas y resolución de conflictos? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="gestion_conflictos" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="gestion_conflictos" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="info-box success mt-2" id="diagnostico-gobernanza">
+                            <div class="info-box-title">📊 Diagnóstico de habilitación</div>
+                            <p>La comunidad cumple con <strong id="gobernanza-count">0</strong> de los 7 aspectos fundamentales. El LNCE te puede acompañar con orientación técnica y herramientas de apoyo.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 6: Motivaciones -->
+                    <div class="form-section" id="ci-paso-6">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">6. Intereses comunitarios</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Cuáles son las principales motivaciones para conformar una comunidad energética? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="reducir_costos"><span class="option-label">Reducir costos de energía</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="confiabilidad"><span class="option-label">Mejorar la confiabilidad del servicio</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="autonomia"><span class="option-label">Aumentar la autonomía energética</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="renovables"><span class="option-label">Usar recursos renovables locales</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="ingresos"><span class="option-label">Generar ingresos comunitarios</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="economia_local"><span class="option-label">Impulsar la economía local</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="ambiente"><span class="option-label">Mejorar las condiciones ambientales</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="vulnerables"><span class="option-label">Ampliar acceso a poblaciones vulnerables</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="pobreza_energetica"><span class="option-label">Reducir la pobreza energética</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="calidad_vida"><span class="option-label">Mejorar calidad de vida y cohesión social</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="gobernanza"><span class="option-label">Fortalecer organización y gobernanza</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="capacidades"><span class="option-label">Desarrollar capacidades técnicas</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="innovacion"><span class="option-label">Promover innovación y digitalización</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="motivaciones" value="resiliencia"><span class="option-label">Aumentar resiliencia al cambio climático</span></label>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label style="font-size:0.85rem">Otro. ¿Cuál?</label>
+                                <input type="text" class="form-control" id="motivaciones_otro" placeholder="Especifique otra motivación">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 7: Habilidades -->
+                    <div class="form-section" id="ci-paso-7">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">7. Roles comunitarios</h3>
+                        
+                        <div class="form-group">
+                            <label>Seleccione las habilidades que tienen las personas de su comunidad <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="electricidad"><span class="option-label">Personas con conocimiento de electricidad</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="energia_renovable"><span class="option-label">Conocimiento de energía renovable y tecnologías sostenibles</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="infraestructura"><span class="option-label">Conocimiento de infraestructura, agua y medio ambiente</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="produccion"><span class="option-label">Conocimiento de producción local y actividades económicas</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="gestion"><span class="option-label">Conocimiento de gestión, proyectos y finanzas</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="gobernanza"><span class="option-label">Conocimiento de gobernanza, liderazgo y participación social</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="educacion"><span class="option-label">Conocimiento de educación, formación y comunicación</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="legal"><span class="option-label">Conocimiento de asesoría legal y regulatoria</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="habilidades" value="tic"><span class="option-label">Conocimiento de TIC</span></label>
+                            </div>
+                        </div>
+
+                        <div class="info-box" id="msg-habilidades">
+                            <p>El LNCE puede acompañar a la comunidad en el fortalecimiento de las capacidades que no estén presentes actualmente.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 8: Demanda Energética -->
+                    <div class="form-section" id="ci-paso-8">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">8. Demanda energética</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Qué tipo o tipos de energía consume actualmente su comunidad? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="electricidad_red"><span class="option-label">Electricidad de la red</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="energia_eolica"><span class="option-label">Energía eólica</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="lena"><span class="option-label">Leña o madera</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="diesel"><span class="option-label">Diésel</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="glp"><span class="option-label">GLP</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="solar"><span class="option-label">Energía solar</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="gas_natural"><span class="option-label">Gas natural</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="carbon"><span class="option-label">Carbón</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipos_energia" value="gasolina"><span class="option-label">Gasolina</span></label>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label style="font-size:0.85rem">Otro (especifique)</label>
+                                <input type="text" class="form-control" id="energia_otro" placeholder="Especifique otra fuente de energía">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Conoce el consumo de energía en su comunidad? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="conoce_consumo" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="conoce_consumo" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Conoce el costo mensual total que paga su comunidad por energía? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="conoce_costo" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="conoce_costo" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-nav">
+                        <button class="btn btn-outline" onclick="showView('dashboard')">← Volver al inicio</button>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-secondary" id="btn-ci-prev" onclick="navigateCI(-1)" style="display:none">← Anterior</button>
+                            <button class="btn btn-primary" id="btn-ci-next" onclick="navigateCI(1)">Siguiente →</button>
+                            <button class="btn btn-success" id="btn-ci-submit" onclick="submitCI()" style="display:none">Finalizar caracterización ✓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="form-sidebar">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📊 Progreso</h4>
+                        <ul class="progress-list" id="ci-progress-list">
+                            <li class="progress-item active"><span class="progress-icon">1</span> Población</li>
+                            <li class="progress-item"><span class="progress-icon">2</span> Acceso físico</li>
+                            <li class="progress-item"><span class="progress-icon">3</span> Ambiente</li>
+                            <li class="progress-item"><span class="progress-icon">4</span> Internet/TIC</li>
+                            <li class="progress-item"><span class="progress-icon">5</span> Gobernanza</li>
+                            <li class="progress-item"><span class="progress-icon">6</span> Motivaciones</li>
+                            <li class="progress-item"><span class="progress-icon">7</span> Habilidades</li>
+                            <li class="progress-item"><span class="progress-icon">8</span> Energía</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📄 Documentos necesarios</h4>
+                        <ul class="docs-list">
+                            <li class="docs-item">Facturas de energía recientes</li>
+                            <li class="docs-item">Información de censo poblacional</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">💡 Ayuda</h4>
+                        <div class="help-tip">
+                            Si no tiene alguna información exacta, puede dar estimaciones. Lo importante es avanzar.
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <div class="autosave-indicator">
+                            <span>💾</span>
+                            <span>Auto-guardado activo</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- ========== FORMULARIO: CARACTERIZACIÓN DETALLADA ========== -->
+        <div id="view-caracterizacion-detallada" class="view hidden">
+            <div class="form-layout">
+                <div class="form-main">
+                    <div class="section-header">
+                        <h2>📈 Caracterización detallada</h2>
+                        <p>Profundiza en los detalles técnicos, socioeconómicos y organizacionales. 14 secciones para completar.</p>
+                    </div>
+
+                    <!-- Wizard Stepper Detallada -->
+                    <div class="wizard-stepper" id="wizard-caract-detallada" style="flex-wrap: wrap;">
+                        <div class="wizard-step active" data-step="1"><span class="step-number">1</span><span class="step-label">Demografía</span></div>
+                        <div class="wizard-step" data-step="2"><span class="step-number">2</span><span class="step-label">Acceso</span></div>
+                        <div class="wizard-step" data-step="3"><span class="step-number">3</span><span class="step-label">Ambiental</span></div>
+                        <div class="wizard-step" data-step="4"><span class="step-number">4</span><span class="step-label">TIC</span></div>
+                        <div class="wizard-step" data-step="5"><span class="step-number">5</span><span class="step-label">Gobernanza</span></div>
+                        <div class="wizard-step" data-step="6"><span class="step-number">6</span><span class="step-label">Objetivo</span></div>
+                        <div class="wizard-step" data-step="7"><span class="step-number">7</span><span class="step-label">Legal</span></div>
+                        <div class="wizard-step" data-step="8"><span class="step-number">8</span><span class="step-label">Líderes</span></div>
+                        <div class="wizard-step" data-step="9"><span class="step-number">9</span><span class="step-label">Actores</span></div>
+                        <div class="wizard-step" data-step="10"><span class="step-number">10</span><span class="step-label">Demanda</span></div>
+                        <div class="wizard-step" data-step="11"><span class="step-number">11</span><span class="step-label">Generación</span></div>
+                        <div class="wizard-step" data-step="12"><span class="step-number">12</span><span class="step-label">Consumo</span></div>
+                        <div class="wizard-step" data-step="13"><span class="step-number">13</span><span class="step-label">Tarifa</span></div>
+                        <div class="wizard-step" data-step="14"><span class="step-number">14</span><span class="step-label">Resumen</span></div>
+                    </div>
+
+                    <!-- Paso 1: Demografía -->
+                    <div class="form-section active" id="cd-paso-1">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">1. Ficha poblacional de la comunidad</h3>
+                        
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+                            <div class="form-group">
+                                <label>Número de habitantes <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="num_habitantes" placeholder="Total habitantes" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Número de viviendas <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="num_viviendas" placeholder="Total viviendas" min="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Lengua predominante <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="lengua_predominante" placeholder="Ej: Español, Wayuunaiki">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Presencia de organizaciones comunitarias (JAC, asociaciones, cooperativas)</label>
+                            <textarea class="form-control" id="organizaciones_comunitarias" placeholder="Describa organizaciones presentes (si aplica)"></textarea>
+                        </div>
+
+                        <h4 style="margin: 1.5rem 0 1rem; color: var(--negro);">Distribución por edad y género</h4>
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:1rem;">
+                            <div class="form-group">
+                                <label>Adultos (total) <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="num_adultos_total" placeholder="Total" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Adultos hombres <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="adultos_hombres" placeholder="Hombres" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Adultos mujeres <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="adultos_mujeres" placeholder="Mujeres" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Jóvenes <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="num_jovenes" placeholder="Jóvenes" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Niños <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="num_ninos" placeholder="Niños" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Acceso -->
+                    <div class="form-section" id="cd-paso-2">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">2. Ficha de acceso a la comunidad</h3>
+                        
+                        <div class="form-group">
+                            <label>Distancia aproximada al centro urbano más cercano</label>
+                            <div style="display:flex;align-items:center;gap:0.5rem;">
+                                <input type="number" class="form-control" id="distancia_centro_urbano" placeholder="Distancia" style="max-width:150px;">
+                                <span>km</span>
+                            </div>
+                            <span class="help-text">Campo no obligatorio</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de conexión vial <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="tipo_conexion_vial" value="primaria"><span class="option-label">Primaria</span></label>
+                                <label class="radio-option"><input type="radio" name="tipo_conexion_vial" value="secundaria"><span class="option-label">Secundaria</span></label>
+                                <label class="radio-option"><input type="radio" name="tipo_conexion_vial" value="ninguna"><span class="option-label">Ninguna</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tiempo promedio de desplazamiento al centro urbano <span class="required">*</span></label>
+                            <div style="display:flex;gap:1rem;">
+                                <div style="display:flex;align-items:center;gap:0.5rem;">
+                                    <input type="number" class="form-control" id="tiempo_horas" placeholder="0" min="0" style="width:80px;">
+                                    <span>horas</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.5rem;">
+                                    <input type="number" class="form-control" id="tiempo_minutos" placeholder="0" min="0" max="59" style="width:80px;">
+                                    <span>minutos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Frecuencia de transporte público</label>
+                            <select class="form-control" id="frecuencia_transporte">
+                                <option value="">Seleccione la frecuencia</option>
+                                <option value="varias_dia">Varias veces al día</option>
+                                <option value="una_dia">Una vez al día</option>
+                                <option value="varias_semana">Varias veces por semana</option>
+                                <option value="una_semana">Una vez por semana</option>
+                                <option value="ocasional">Ocasionalmente</option>
+                                <option value="no_hay">No hay transporte público</option>
+                            </select>
+                            <span class="help-text">Campo no obligatorio</span>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Ambiental -->
+                    <div class="form-section" id="cd-paso-3">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">3. Ficha de información ambiental</h3>
+                        
+                        <div class="form-group">
+                            <label>¿El acceso al agua proviene de fuentes naturales cercanas? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="fuentes_agua" value="rio"><span class="option-label">Río</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="fuentes_agua" value="quebrada"><span class="option-label">Quebrada</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="fuentes_agua" value="pozo"><span class="option-label">Pozo</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="fuentes_agua" value="lago"><span class="option-label">Lago</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="fuentes_agua" value="otro"><span class="option-label">Otro</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Han tenido problemas de contaminación del agua o del suelo? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="contaminacion_agua_suelo" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="contaminacion_agua_suelo" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="contaminacion_agua_suelo" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Hay zonas con erosión o deforestación? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="erosion_deforestacion" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="erosion_deforestacion" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="erosion_deforestacion" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Existen sitios culturales, espirituales o sagrados? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="sitios_sagrados" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="sitios_sagrados" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Qué tipo de riesgos naturales afectan a la comunidad? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="riesgos_naturales" value="inundaciones"><span class="option-label">Inundaciones</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="riesgos_naturales" value="deslizamientos"><span class="option-label">Deslizamientos</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="riesgos_naturales" value="sequias"><span class="option-label">Sequías</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="riesgos_naturales" value="olas_calor"><span class="option-label">Olas de calor</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="riesgos_naturales" value="vientos_fuertes"><span class="option-label">Vientos fuertes</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="riesgos_naturales" value="otro"><span class="option-label">Otro</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Método de disposición de residuos sólidos <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="empresa_aseo"><span class="option-label">Los recoge el carro de la empresa de aseo</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="botadero"><span class="option-label">Botadero a cielo abierto</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="relleno"><span class="option-label">Relleno sanitario</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="quema"><span class="option-label">Quema</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="entierro"><span class="option-label">Entierro</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="rios"><span class="option-label">Disposición en quebradas o ríos</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="disposicion_residuos" value="reciclaje"><span class="option-label">Reciclaje</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Conectividad TIC -->
+                    <div class="form-section" id="cd-paso-4">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">4. Ficha de conectividad digital</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Existe cobertura de telefonía móvil? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="cobertura_movil" value="buena"><span class="option-label">Sí, buena señal</span></label>
+                                <label class="radio-option"><input type="radio" name="cobertura_movil" value="intermitente"><span class="option-label">Sí, señal intermitente</span></label>
+                                <label class="radio-option"><input type="radio" name="cobertura_movil" value="no"><span class="option-label">No hay cobertura</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con acceso a internet fijo o móvil? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="acceso_internet_tipo" value="fijo"><span class="option-label">Internet fijo</span></label>
+                                <label class="radio-option"><input type="radio" name="acceso_internet_tipo" value="movil"><span class="option-label">Internet móvil</span></label>
+                                <label class="radio-option"><input type="radio" name="acceso_internet_tipo" value="no"><span class="option-label">No hay acceso</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Calidad del servicio de internet disponible <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="calidad_internet" value="bueno"><div class="option-content"><span class="option-label">Bueno</span><span class="option-description">Fluido para reuniones virtuales</span></div></label>
+                                <label class="radio-option"><input type="radio" name="calidad_internet" value="regular"><div class="option-content"><span class="option-label">Regular</span><span class="option-description">Para mensajes y llamadas, pero lento para video</span></div></label>
+                                <label class="radio-option"><input type="radio" name="calidad_internet" value="malo"><div class="option-content"><span class="option-label">Malo</span><span class="option-description">Muy intermitente o sin señal</span></div></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Hay un punto comunitario de acceso a internet? <span class="required">*</span></label>
+                            <div class="radio-group" style="flex-direction:row;gap:1rem;">
+                                <label class="radio-option" style="flex:1"><input type="radio" name="punto_comunitario_internet" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option" style="flex:1"><input type="radio" name="punto_comunitario_internet" value="no"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Con cuáles elementos tecnológicos cuenta la comunidad? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="dotacion_tecnologica" value="computadores_escritorio"><span class="option-label">Computadores de escritorio</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="dotacion_tecnologica" value="portatiles"><span class="option-label">Portátiles</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="dotacion_tecnologica" value="tablets"><span class="option-label">Tablets</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="dotacion_tecnologica" value="celulares"><span class="option-label">Celulares inteligentes</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Gobernanza detallada -->
+                    <div class="form-section" id="cd-paso-5">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">5. Modelo de gobernanza (detallado)</h3>
+                        <p style="margin-bottom:1rem;color:var(--gris);font-size:0.9rem;">Campos no obligatorios - Complete lo que conozca</p>
+                        
+                        <div class="form-group">
+                            <label>Misión: ¿Cuál es la misión de la comunidad?</label>
+                            <textarea class="form-control" id="mision_detalle" placeholder="Describa la misión de la comunidad"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Visión: ¿Cuál es la visión de la comunidad?</label>
+                            <textarea class="form-control" id="vision_detalle" placeholder="Describa la visión de la comunidad"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Liderazgo: ¿Cómo se eligen los líderes?</label>
+                            <textarea class="form-control" id="liderazgo_detalle" placeholder="Describa el proceso de elección de líderes"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Resultados: ¿Qué logros importantes han tenido?</label>
+                            <textarea class="form-control" id="resultados_detalle" placeholder="Describa los logros del liderazgo"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Decisiones: ¿Qué espacios utilizan para participación?</label>
+                            <textarea class="form-control" id="decisiones_detalle" placeholder="Describa los espacios de participación"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Transparencia: ¿Cómo informan sobre decisiones y recursos?</label>
+                            <textarea class="form-control" id="transparencia_detalle" placeholder="Describa los mecanismos de transparencia"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Conflictos: ¿Qué mecanismos usan para resolver conflictos?</label>
+                            <textarea class="form-control" id="conflictos_detalle" placeholder="Describa los mecanismos de resolución de conflictos"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Paso 6: Objetivo CE -->
+                    <div class="form-section" id="cd-paso-6">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">6. Objetivo de la comunidad energética</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Cuál es el objetivo general o visión de la comunidad energética? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="modelo_comunidad_energetica" value="agrc">
+                                    <div class="option-content">
+                                        <span class="option-label">Autogeneración colectiva (AGRC)</span>
+                                        <span class="option-description">Generación de energía para autoconsumo de los miembros</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="modelo_comunidad_energetica" value="gdc">
+                                    <div class="option-content">
+                                        <span class="option-label">Generación distribuida colectiva (GDC)</span>
+                                        <span class="option-description">Generación para venta de excedentes a la red</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="modelo_comunidad_energetica" value="no_sabe">
+                                    <span class="option-label">No sabe o no lo tiene definido todavía</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 7: Figura legal -->
+                    <div class="form-section" id="cd-paso-7">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">7. Figura legal de la comunidad energética</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Bajo cuál figura legal operará la comunidad energética? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="cooperativa"><span class="option-label">Cooperativa</span></label>
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="sin_animo_lucro"><span class="option-label">Organizaciones sin ánimo de lucro</span></label>
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="asociacion"><span class="option-label">Asociación</span></label>
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="sas"><span class="option-label">Sociedad por Acciones Simplificada (SAS)</span></label>
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="sa"><span class="option-label">Sociedad Anónima (S.A.)</span></label>
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="srl"><span class="option-label">Sociedad de Responsabilidad Limitada (SRL)</span></label>
+                                <label class="radio-option"><input type="radio" name="figura_legal" value="no_sabe"><span class="option-label">No sabe o no lo tiene definido todavía</span></label>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label style="font-size:0.85rem">Otra (especifique)</label>
+                                <input type="text" class="form-control" id="figura_legal_otro" placeholder="Especifique otra figura legal">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 8: Líderes (Repetible) -->
+                    <div class="form-section" id="cd-paso-8">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">8. Reconocimiento de la comunidad - Líderes</h3>
+                        <div class="info-box warning">
+                            <p><strong>Componente opcional:</strong> La comunidad puede omitir en caso de no saber esta información. Solo registre personas con rol de liderazgo o toma de decisiones.</p>
+                        </div>
+                        
+                        <div id="lideres-container">
+                            <!-- Líderes se agregan aquí dinámicamente -->
+                        </div>
+
+                        <button type="button" class="btn-add" onclick="addLider()">
+                            + Agregar líder
+                        </button>
+
+                        <div class="mt-2">
+                            <h4 style="margin-bottom:1rem;">Líderes registrados</h4>
+                            <table class="data-table" id="tabla-lideres">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Edad</th>
+                                        <th>Género</th>
+                                        <th>Rol</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-lideres">
+                                </tbody>
+                            </table>
+                            <div class="empty-state" id="empty-lideres">
+                                <p>No se han añadido líderes todavía.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 9: Mapa de Actores (Repetible) -->
+                    <div class="form-section" id="cd-paso-9">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">9. Mapa de actores de la comunidad</h3>
+                        <div class="info-box warning">
+                            <p><strong>Componente opcional:</strong> La comunidad puede omitir en caso de no saber esta información.</p>
+                        </div>
+                        
+                        <div id="actores-container">
+                            <!-- Actores se agregan aquí dinámicamente -->
+                        </div>
+
+                        <button type="button" class="btn-add" onclick="addActor()">
+                            + Agregar actor
+                        </button>
+
+                        <div class="mt-2">
+                            <h4 style="margin-bottom:1rem;">Actores registrados</h4>
+                            <table class="data-table" id="tabla-actores">
+                                <thead>
+                                    <tr>
+                                        <th>Categoría</th>
+                                        <th>Tipo</th>
+                                        <th>Nombre</th>
+                                        <th>Nivel</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-actores">
+                                </tbody>
+                            </table>
+                            <div class="empty-state" id="empty-actores">
+                                <p>No se han añadido actores todavía.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 10-14: Demanda, Generación, Consumo, Tarifa, Resumen -->
+                    <div class="form-section" id="cd-paso-10">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">10. Demanda energética detallada</h3>
+                        
+                        <div class="form-group">
+                            <label>¿Cuáles son los principales usos de la energía en la comunidad? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="iluminacion"><span class="option-label">Iluminación</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="refrigeracion"><span class="option-label">Refrigeración</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="coccion"><span class="option-label">Cocción de alimentos</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="bombeo"><span class="option-label">Bombeo de agua</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="productivo"><span class="option-label">Uso productivo (maquinaria)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="comunicaciones"><span class="option-label">Comunicaciones (TV, radio, teléfonos)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="usos_energia" value="climatizacion"><span class="option-label">Climatización (ventiladores, AC)</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Consumo mensual promedio (si lo conoce)</label>
+                            <div style="display:flex;align-items:center;gap:0.5rem;">
+                                <input type="number" class="form-control" id="consumo_mensual_kwh" placeholder="Consumo" style="max-width:150px;">
+                                <span>kWh/mes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="cd-paso-11">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">11. Generación actual</h3>
+                        
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con algún sistema de generación propio actualmente? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="generacion_actual" value="si" onchange="toggleConditional('tipo_generacion_actual', true)"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="generacion_actual" value="no" onchange="toggleConditional('tipo_generacion_actual', false)"><span class="option-label">No</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group conditional-field" id="tipo_generacion_actual">
+                            <label>¿Qué tipo de generación?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_gen" value="solar"><span class="option-label">Paneles solares</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_gen" value="eolico"><span class="option-label">Turbinas eólicas</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_gen" value="hidro"><span class="option-label">Microturbina hidráulica</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_gen" value="diesel"><span class="option-label">Generador diésel</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_gen" value="biomasa"><span class="option-label">Biomasa</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="cd-paso-12">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">12. Perfil de consumo</h3>
+                        
+                        <div class="form-group">
+                            <label>¿En qué horario hay mayor consumo de energía? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="horario_consumo" value="manana"><span class="option-label">Mañana (6am - 12pm)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="horario_consumo" value="tarde"><span class="option-label">Tarde (12pm - 6pm)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="horario_consumo" value="noche"><span class="option-label">Noche (6pm - 10pm)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="horario_consumo" value="madrugada"><span class="option-label">Madrugada (10pm - 6am)</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Hay variación estacional en el consumo? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="variacion_estacional" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="variacion_estacional" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="variacion_estacional" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="cd-paso-13">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">13. Tarifa y costos energéticos</h3>
+                        
+                        <div class="form-group">
+                            <label>Costo mensual promedio de energía (si lo conoce)</label>
+                            <div style="display:flex;align-items:center;gap:0.5rem;">
+                                <span>$</span>
+                                <input type="number" class="form-control" id="costo_mensual_energia" placeholder="Valor en COP" style="max-width:200px;">
+                                <span>COP/mes</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Estrato socioeconómico predominante</label>
+                            <select class="form-control" id="estrato">
+                                <option value="">Seleccione estrato</option>
+                                <option value="1">Estrato 1</option>
+                                <option value="2">Estrato 2</option>
+                                <option value="3">Estrato 3</option>
+                                <option value="4">Estrato 4</option>
+                                <option value="5">Estrato 5</option>
+                                <option value="6">Estrato 6</option>
+                                <option value="no_aplica">No aplica (zona rural)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Operador de red eléctrica actual</label>
+                            <input type="text" class="form-control" id="operador_red" placeholder="Ej: EPM, Codensa, ESSA">
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="cd-paso-14">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">14. Resumen de caracterización</h3>
+                        
+                        <div class="info-box success">
+                            <div class="info-box-title">✅ Caracterización completada</div>
+                            <p>Has completado la caracterización detallada de tu comunidad. A continuación puedes revisar un resumen de la información proporcionada.</p>
+                        </div>
+
+                        <div style="background:var(--gris-claro);padding:1.5rem;border-radius:8px;margin-top:1rem;">
+                            <h4 style="margin-bottom:1rem;">Ficha resumen</h4>
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+                                <div>
+                                    <strong>Habitantes:</strong> <span id="resumen-habitantes">-</span>
+                                </div>
+                                <div>
+                                    <strong>Viviendas:</strong> <span id="resumen-viviendas">-</span>
+                                </div>
+                                <div>
+                                    <strong>Modelo CE:</strong> <span id="resumen-modelo">-</span>
+                                </div>
+                                <div>
+                                    <strong>Figura legal:</strong> <span id="resumen-figura">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-nav">
+                        <button class="btn btn-outline" onclick="showView('dashboard')">← Volver al inicio</button>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-secondary" id="btn-cd-prev" onclick="navigateCD(-1)" style="display:none">← Anterior</button>
+                            <button class="btn btn-primary" id="btn-cd-next" onclick="navigateCD(1)">Siguiente →</button>
+                            <button class="btn btn-success" id="btn-cd-submit" onclick="submitCD()" style="display:none">Finalizar caracterización ✓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="form-sidebar">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📊 Progreso</h4>
+                        <ul class="progress-list" id="cd-progress-list">
+                            <li class="progress-item active"><span class="progress-icon">1</span> Demografía</li>
+                            <li class="progress-item"><span class="progress-icon">2</span> Acceso</li>
+                            <li class="progress-item"><span class="progress-icon">3</span> Ambiental</li>
+                            <li class="progress-item"><span class="progress-icon">4</span> TIC</li>
+                            <li class="progress-item"><span class="progress-icon">5</span> Gobernanza</li>
+                            <li class="progress-item"><span class="progress-icon">6</span> Objetivo</li>
+                            <li class="progress-item"><span class="progress-icon">7</span> Legal</li>
+                            <li class="progress-item"><span class="progress-icon">8</span> Líderes</li>
+                            <li class="progress-item"><span class="progress-icon">9</span> Actores</li>
+                            <li class="progress-item"><span class="progress-icon">10</span> Demanda</li>
+                            <li class="progress-item"><span class="progress-icon">11</span> Generación</li>
+                            <li class="progress-item"><span class="progress-icon">12</span> Consumo</li>
+                            <li class="progress-item"><span class="progress-icon">13</span> Tarifa</li>
+                            <li class="progress-item"><span class="progress-icon">14</span> Resumen</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📄 Documentos</h4>
+                        <ul class="docs-list">
+                            <li class="docs-item">Censo poblacional actualizado</li>
+                            <li class="docs-item">Facturas de energía</li>
+                            <li class="docs-item">Estatutos de la comunidad</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <div class="autosave-indicator">
+                            <span>💾</span>
+                            <span>Auto-guardado activo</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- ========== FORMULARIO: VIABILIDAD ========== -->
+        <div id="view-viabilidad" class="view hidden">
+            <div class="form-layout">
+                <div class="form-main">
+                    <div class="section-header">
+                        <h2>✅ Viabilidad</h2>
+                        <p>Evaluaremos si tu proyecto es viable desde el punto de vista social, energético, ambiental, legal y financiero.</p>
+                    </div>
+
+                    <!-- Wizard Stepper Viabilidad -->
+                    <div class="wizard-stepper" id="wizard-viabilidad">
+                        <div class="wizard-step active" data-step="1"><span class="step-number">1</span><span class="step-label">Social</span></div>
+                        <div class="wizard-step" data-step="2"><span class="step-number">2</span><span class="step-label">Energética</span></div>
+                        <div class="wizard-step" data-step="3"><span class="step-number">3</span><span class="step-label">Ambiental</span></div>
+                        <div class="wizard-step" data-step="4"><span class="step-number">4</span><span class="step-label">Legal</span></div>
+                        <div class="wizard-step" data-step="5"><span class="step-number">5</span><span class="step-label">Financiera</span></div>
+                        <div class="wizard-step" data-step="6"><span class="step-number">6</span><span class="step-label">Integral</span></div>
+                    </div>
+
+                    <!-- Paso 1: Viabilidad Social -->
+                    <div class="form-section active" id="viab-paso-1">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">1. Viabilidad Social</h3>
+                        
+                        <h4 style="margin-bottom:1rem;">Reconocimiento de Liderazgos</h4>
+                        
+                        <div class="form-group">
+                            <label>Seleccione el líder que diligenciará este componente <span class="required">*</span></label>
+                            <select class="form-control" id="lider_seleccionado">
+                                <option value="">Seleccione un líder</option>
+                                <option value="lider1">Líder Comunitario 1</option>
+                                <option value="lider2">Líder Comunitario 2</option>
+                            </select>
+                        </div>
+
+                        <h4 style="margin:1.5rem 0 1rem;">Comunicación y escucha activa</h4>
+                        <p style="margin-bottom:1rem;font-size:0.85rem;color:var(--gris);">Escala: 1 = Necesito mucha mejora | 5 = Me siento muy competente</p>
+
+                        <div class="form-group">
+                            <label>Me comunico con claridad, precisión y transparencia <span class="required">*</span></label>
+                            <div class="scale-rating">
+                                <label class="scale-option"><input type="radio" name="com_claridad" value="1" hidden><span class="number">1</span></label>
+                                <label class="scale-option"><input type="radio" name="com_claridad" value="2" hidden><span class="number">2</span></label>
+                                <label class="scale-option"><input type="radio" name="com_claridad" value="3" hidden><span class="number">3</span></label>
+                                <label class="scale-option"><input type="radio" name="com_claridad" value="4" hidden><span class="number">4</span></label>
+                                <label class="scale-option"><input type="radio" name="com_claridad" value="5" hidden><span class="number">5</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Otorgo espacio para que otros expresen sus ideas <span class="required">*</span></label>
+                            <div class="scale-rating">
+                                <label class="scale-option"><input type="radio" name="com_escucha" value="1" hidden><span class="number">1</span></label>
+                                <label class="scale-option"><input type="radio" name="com_escucha" value="2" hidden><span class="number">2</span></label>
+                                <label class="scale-option"><input type="radio" name="com_escucha" value="3" hidden><span class="number">3</span></label>
+                                <label class="scale-option"><input type="radio" name="com_escucha" value="4" hidden><span class="number">4</span></label>
+                                <label class="scale-option"><input type="radio" name="com_escucha" value="5" hidden><span class="number">5</span></label>
+                            </div>
+                        </div>
+
+                        <h4 style="margin:1.5rem 0 1rem;">Mecanismos de difusión</h4>
+                        <div class="form-group">
+                            <label>¿Cuáles mecanismos de difusión de información utilizan? <span class="required">*</span></label>
+                            <textarea class="form-control" id="mecanismos_difusion" placeholder="Ej: redes sociales, boletines, carteleras, grupos de WhatsApp..."></textarea>
+                        </div>
+
+                        <h4 style="margin:1.5rem 0 1rem;">Toma de decisiones</h4>
+                        <div class="form-group">
+                            <label>¿Qué tipo de regla usa la comunidad para las decisiones? <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="regla_decisiones" value="mayoria_simple"><span class="option-label">Mayoría simple</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="regla_decisiones" value="mayoria_absoluta"><span class="option-label">Mayoría absoluta (+50%)</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="regla_decisiones" value="consenso"><span class="option-label">Consenso</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="regla_decisiones" value="comite"><span class="option-label">Decisión por comité</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="regla_decisiones" value="no_definido"><span class="option-label">No hay mecanismo definido</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Viabilidad Energética -->
+                    <div class="form-section" id="viab-paso-2">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">2. Viabilidad Energética</h3>
+                        
+                        <h4 style="margin-bottom:1rem;">Configuración Tecnológica</h4>
+                        <div class="form-group">
+                            <label>Tecnologías a implementar según potencial <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option" style="border-color:var(--verde-bosque)">
+                                    <input type="checkbox" name="tecnologias" value="solar">
+                                    <div class="option-content">
+                                        <span class="option-label">☀️ Solar</span>
+                                        <span class="option-description" style="color:var(--verde-bosque)">Disponible (80%)</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="tecnologias" value="eolico">
+                                    <div class="option-content">
+                                        <span class="option-label">💨 Eólico</span>
+                                        <span class="option-description">No indicado en cálculo</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option" style="border-color:var(--verde-bosque)">
+                                    <input type="checkbox" name="tecnologias" value="hidraulico">
+                                    <div class="option-content">
+                                        <span class="option-label">💧 Hidráulico</span>
+                                        <span class="option-description" style="color:var(--verde-bosque)">Disponible (30%)</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option" style="border-color:var(--verde-bosque)">
+                                    <input type="checkbox" name="tecnologias" value="biomasa">
+                                    <div class="option-content">
+                                        <span class="option-label">🌿 Biomasa</span>
+                                        <span class="option-description" style="color:var(--verde-bosque)">Disponible (10%)</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <h4 style="margin:1.5rem 0 1rem;">Infraestructura Eléctrica</h4>
+                        <div class="form-group">
+                            <label>¿Existen redes de distribución dentro de la comunidad? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="redes_distribucion" value="0"><span class="option-label">No existen</span></label>
+                                <label class="radio-option"><input type="radio" name="redes_distribucion" value="1"><span class="option-label">Muy parciales o deterioradas</span></label>
+                                <label class="radio-option"><input type="radio" name="redes_distribucion" value="2"><span class="option-label">Solo cubren parte mínima</span></label>
+                                <label class="radio-option"><input type="radio" name="redes_distribucion" value="3"><span class="option-label">Cubren sectores principales</span></label>
+                                <label class="radio-option"><input type="radio" name="redes_distribucion" value="4"><span class="option-label">Cubren la mayoría de la población</span></label>
+                                <label class="radio-option"><input type="radio" name="redes_distribucion" value="5"><span class="option-label">Red completa y funcional</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Cuenta con espacio disponible para instalación de equipos? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="espacio_disponible" value="si"><span class="option-label">Sí - cuenta con el espacio</span></label>
+                                <label class="radio-option"><input type="radio" name="espacio_disponible" value="no"><span class="option-label">No - no cuenta con espacio</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Viabilidad Ambiental -->
+                    <div class="form-section" id="viab-paso-3">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">3. Viabilidad Ambiental</h3>
+                        
+                        <div class="form-group">
+                            <label>¿El uso del suelo es compatible con proyectos de generación de energía? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="uso_suelo_compatible" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="uso_suelo_compatible" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="uso_suelo_compatible" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Hay sitios arqueológicos o patrimonio cultural en el área? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="patrimonio_cultural" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="patrimonio_cultural" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="patrimonio_cultural" value="no_sabe"><span class="option-label">No sabe</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿El proyecto cuenta con los permisos ambientales requeridos? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="permisos_ambientales" value="si"><span class="option-label">Sí</span></label>
+                                <label class="radio-option"><input type="radio" name="permisos_ambientales" value="no"><span class="option-label">No</span></label>
+                                <label class="radio-option"><input type="radio" name="permisos_ambientales" value="tramite"><span class="option-label">En trámite</span></label>
+                                <label class="radio-option"><input type="radio" name="permisos_ambientales" value="no_aplica"><span class="option-label">No aplica</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Se requiere consulta previa con comunidades étnicas? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="consulta_previa" value="completado"><span class="option-label">Sí, y ya se completó</span></label>
+                                <label class="radio-option"><input type="radio" name="consulta_previa" value="en_proceso"><span class="option-label">Sí, está en proceso</span></label>
+                                <label class="radio-option"><input type="radio" name="consulta_previa" value="no_iniciado"><span class="option-label">Sí, pero no se ha iniciado</span></label>
+                                <label class="radio-option"><input type="radio" name="consulta_previa" value="no_aplica"><span class="option-label">No aplica</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Viabilidad Legal -->
+                    <div class="form-section" id="viab-paso-4">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">4. Viabilidad Legal (Jurídica)</h3>
+                        
+                        <div class="form-group">
+                            <label>Nombre de la comunidad (organización) <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="nombre_comunidad_legal" placeholder="Ej: Comunidad Energética La Esperanza">
+                        </div>
+
+                        <div class="form-group">
+                            <label>NIT <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="nit" placeholder="Ej: 900123456-7">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fecha de constitución legal <span class="required">*</span></label>
+                            <input type="date" class="form-control" id="fecha_constitucion">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de figura legal adoptada <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_figura_legal" value="cooperativa"><span class="option-label">Cooperativa</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_figura_legal" value="sin_animo_lucro"><span class="option-label">Sin ánimo de lucro</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_figura_legal" value="asociacion"><span class="option-label">Asociación</span></label>
+                                <label class="checkbox-option"><input type="checkbox" name="tipo_figura_legal" value="sas"><span class="option-label">SAS</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Qué tipo de actividad energética prestará? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="tipo_actividad_energetica" value="autoconsumo"><span class="option-label">Autogeneración para autoconsumo</span></label>
+                                <label class="radio-option"><input type="radio" name="tipo_actividad_energetica" value="comercializacion"><span class="option-label">Autogeneración para comercialización</span></label>
+                                <label class="radio-option"><input type="radio" name="tipo_actividad_energetica" value="ambas"><span class="option-label">Ambas</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Viabilidad Financiera -->
+                    <div class="form-section" id="viab-paso-5">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">5. Viabilidad Financiera</h3>
+                        
+                        <div class="form-group">
+                            <label>¿La comunidad cuenta con una cuenta de ahorros colectiva u otros productos financieros? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="tiene_cuenta_ahorros" value="si" onchange="toggleConditional('valor_cuenta_field', true)"><span class="option-label">Sí - tiene cuenta de ahorros o productos financieros</span></label>
+                                <label class="radio-option"><input type="radio" name="tiene_cuenta_ahorros" value="no" onchange="toggleConditional('valor_cuenta_field', false)"><span class="option-label">No tiene cuenta o no ha considerado mecanismos de ahorro</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group conditional-field" id="valor_cuenta_field">
+                            <label>Digite el valor con el que cuenta</label>
+                            <div style="display:flex;align-items:center;gap:0.5rem;">
+                                <span>$</span>
+                                <input type="number" class="form-control" id="valor_cuenta" placeholder="Valor en COP" style="max-width:200px;">
+                                <span>COP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 6: Viabilidad Integral (Resumen) -->
+                    <div class="form-section" id="viab-paso-6">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--purpura);">6. Viabilidad Integral</h3>
+                        
+                        <div class="result-card">
+                            <div class="result-score">4.2/5</div>
+                            <div class="result-label">✅ Alta - Viable</div>
+                            <p style="margin-top:1rem;opacity:0.9">La comunidad cuenta con condiciones sólidas para avanzar a la fase de diseño integral del proyecto.</p>
+                        </div>
+
+                        <h4 style="margin-bottom:1rem;">Resumen por Dimensiones</h4>
+                        <div class="dimension-cards">
+                            <div class="dimension-card">
+                                <div class="dimension-icon" style="background:rgba(107,45,123,0.1);color:var(--purpura)">S</div>
+                                <div class="dimension-name">Social</div>
+                                <div class="dimension-score">4.3</div>
+                            </div>
+                            <div class="dimension-card">
+                                <div class="dimension-icon" style="background:rgba(255,193,7,0.1);color:var(--amarillo)">E</div>
+                                <div class="dimension-name">Energética</div>
+                                <div class="dimension-score">4.5</div>
+                            </div>
+                            <div class="dimension-card">
+                                <div class="dimension-icon" style="background:rgba(46,125,50,0.1);color:var(--verde-bosque)">A</div>
+                                <div class="dimension-name">Ambiental</div>
+                                <div class="dimension-score">4.0</div>
+                            </div>
+                            <div class="dimension-card">
+                                <div class="dimension-icon" style="background:rgba(33,150,243,0.1);color:var(--azul)">L</div>
+                                <div class="dimension-name">Legal</div>
+                                <div class="dimension-score">4.1</div>
+                            </div>
+                            <div class="dimension-card">
+                                <div class="dimension-icon" style="background:rgba(255,152,0,0.1);color:var(--naranja)">F</div>
+                                <div class="dimension-name">Financiera</div>
+                                <div class="dimension-score">4.2</div>
+                            </div>
+                        </div>
+
+                        <div class="info-box success mt-2">
+                            <div class="info-box-title">🎉 ¡Felicitaciones!</div>
+                            <p>Tu comunidad ha completado la evaluación de viabilidad. Los resultados indican que el proyecto puede avanzar a las siguientes fases.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-nav">
+                        <button class="btn btn-outline" onclick="showView('dashboard')">← Volver al inicio</button>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-secondary" id="btn-viab-prev" onclick="navigateViab(-1)" style="display:none">← Anterior</button>
+                            <button class="btn btn-primary" id="btn-viab-next" onclick="navigateViab(1)">Siguiente →</button>
+                            <button class="btn btn-success" id="btn-viab-submit" onclick="submitViab()" style="display:none">Finalizar evaluación ✓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="form-sidebar">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📊 Progreso</h4>
+                        <ul class="progress-list" id="viab-progress-list">
+                            <li class="progress-item active"><span class="progress-icon">1</span> Social</li>
+                            <li class="progress-item"><span class="progress-icon">2</span> Energética</li>
+                            <li class="progress-item"><span class="progress-icon">3</span> Ambiental</li>
+                            <li class="progress-item"><span class="progress-icon">4</span> Legal</li>
+                            <li class="progress-item"><span class="progress-icon">5</span> Financiera</li>
+                            <li class="progress-item"><span class="progress-icon">6</span> Integral</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">📄 Documentos</h4>
+                        <ul class="docs-list">
+                            <li class="docs-item">Actas firmadas</li>
+                            <li class="docs-item">Fotos de asambleas</li>
+                            <li class="docs-item">Certificado de Cámara de Comercio</li>
+                            <li class="docs-item">RUT</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <div class="autosave-indicator">
+                            <span>💾</span>
+                            <span>Auto-guardado activo</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de confirmación -->
+    <div class="modal-overlay" id="modal-aprobacion">
+        <div class="modal">
+            <div class="modal-icon warning">⏳</div>
+            <h3>Registro enviado</h3>
+            <p>Tu solicitud de registro ha sido enviada exitosamente. Un administrador del LNCE revisará la información y te notificaremos cuando sea aprobada.</p>
+            <p style="font-size:0.85rem;">Mientras tanto, puedes adelantar la <strong>Caracterización inicial</strong>.</p>
+            <button class="btn btn-primary" onclick="closeModal('modal-aprobacion'); showView('dashboard');">Entendido</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-completado">
+        <div class="modal">
+            <div class="modal-icon success">✅</div>
+            <h3>¡Completado!</h3>
+            <p>Has completado exitosamente esta sección. La información ha sido guardada.</p>
+            <button class="btn btn-primary" onclick="closeModal('modal-completado'); showView('dashboard');">Volver al inicio</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-slogan">JUNTOS EN ENERGÍA</div>
+            <div class="footer-tagline">Impulsando la transición energética a través de comunidades sostenibles</div>
+            <button class="btn btn-primary">Contáctanos</button>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Preguntas frecuentes</a>
+            </div>
+            <div style="font-size:0.85rem;">© 2026 UPB - Laboratorio de Nuevas Comunidades Energéticas</div>
+            <div class="social-links">
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">in</a>
+                <a href="#" title="X">𝕏</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Sheet para Mobile -->
+    <div class="bottom-sheet" id="bottom-sheet">
+        <div class="bottom-sheet-handle" onclick="toggleBottomSheet()"></div>
+        <div class="bottom-sheet-content">
+            <h4 style="margin-bottom:1rem;">📊 Progreso</h4>
+            <div id="mobile-progress">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== ESTADO GLOBAL ====================
+        let appState = {
+            currentView: 'dashboard',
+            registro: { currentSection: 1, totalSections: 3, status: 'pendiente' },
+            caracterizacionInicial: { currentStep: 1, totalSteps: 8, status: 'pendiente' },
+            caracterizacionDetallada: { currentStep: 1, totalSteps: 14, status: 'bloqueado' },
+            viabilidad: { currentStep: 1, totalSteps: 6, status: 'pendiente' },
+            lideres: [],
+            actores: []
+        };
+
+        // ==================== NAVEGACIÓN PRINCIPAL ====================
+        function showView(viewId) {
+            // Ocultar todas las vistas
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            
+            // Mostrar vista seleccionada
+            const view = document.getElementById('view-' + viewId);
+            if (view) {
+                view.classList.remove('hidden');
+                view.classList.add('active');
+            }
+
+            // Actualizar estado
+            appState.currentView = viewId;
+
+            // Actualizar breadcrumb
+            updateBreadcrumb(viewId);
+
+            // Scroll al inicio
+            window.scrollTo(0, 0);
+        }
+
+        function updateBreadcrumb(viewId) {
+            const breadcrumb = document.getElementById('breadcrumb');
+            const titles = {
+                'dashboard': 'Central de Gestión',
+                'registro': 'Registra tu comunidad',
+                'caracterizacion-inicial': 'Caracterización inicial',
+                'caracterizacion-detallada': 'Caracterización detallada',
+                'viabilidad': 'Viabilidad'
+            };
+
+            if (viewId === 'dashboard') {
+                breadcrumb.innerHTML = `
+                    <a href="#" onclick="showView('dashboard'); return false;">Inicio</a>
+                    <span>›</span>
+                    <span>Central de Gestión</span>
+                `;
+            } else {
+                breadcrumb.innerHTML = `
+                    <a href="#" onclick="showView('dashboard'); return false;">Inicio</a>
+                    <span>›</span>
+                    <a href="#" onclick="showView('dashboard'); return false;">Central de Gestión</a>
+                    <span>›</span>
+                    <span>${titles[viewId] || viewId}</span>
+                `;
+            }
+        }
+
+        // ==================== FORMULARIO REGISTRO ====================
+        function navigateRegistro(direction) {
+            const newSection = appState.registro.currentSection + direction;
+            
+            if (newSection < 1 || newSection > appState.registro.totalSections) return;
+
+            // Ocultar sección actual
+            document.getElementById(`registro-sec-${appState.registro.currentSection}`).classList.remove('active');
+            
+            // Mostrar nueva sección
+            document.getElementById(`registro-sec-${newSection}`).classList.add('active');
+            
+            // Actualizar estado
+            appState.registro.currentSection = newSection;
+
+            // Actualizar progreso en sidebar
+            updateRegistroProgress();
+
+            // Actualizar botones
+            updateRegistroButtons();
+        }
+
+        function updateRegistroProgress() {
+            for (let i = 1; i <= 3; i++) {
+                const item = document.getElementById(`prog-reg-${i}`);
+                item.classList.remove('active', 'completed');
+                
+                if (i < appState.registro.currentSection) {
+                    item.classList.add('completed');
+                } else if (i === appState.registro.currentSection) {
+                    item.classList.add('active');
+                }
+            }
+        }
+
+        function updateRegistroButtons() {
+            const btnPrev = document.getElementById('btn-registro-prev');
+            const btnNext = document.getElementById('btn-registro-next');
+            const btnSubmit = document.getElementById('btn-registro-submit');
+
+            btnPrev.style.display = appState.registro.currentSection > 1 ? 'inline-flex' : 'none';
+            btnNext.style.display = appState.registro.currentSection < appState.registro.totalSections ? 'inline-flex' : 'none';
+            btnSubmit.style.display = appState.registro.currentSection === appState.registro.totalSections ? 'inline-flex' : 'none';
+        }
+
+        function submitRegistro() {
+            // Simular envío
+            updateModuleStatus('registro', 'progreso');
+            document.getElementById('modal-aprobacion').classList.add('active');
+        }
+
+        // ==================== CARACTERIZACIÓN INICIAL ====================
+        function navigateCI(direction) {
+            const newStep = appState.caracterizacionInicial.currentStep + direction;
+            
+            if (newStep < 1 || newStep > appState.caracterizacionInicial.totalSteps) return;
+
+            // Ocultar paso actual
+            document.getElementById(`ci-paso-${appState.caracterizacionInicial.currentStep}`).classList.remove('active');
+            
+            // Mostrar nuevo paso
+            document.getElementById(`ci-paso-${newStep}`).classList.add('active');
+            
+            // Actualizar estado
+            appState.caracterizacionInicial.currentStep = newStep;
+
+            // Actualizar wizard
+            updateWizard('wizard-caract-inicial', newStep, appState.caracterizacionInicial.totalSteps);
+            
+            // Actualizar progreso en sidebar
+            updateProgressList('ci-progress-list', newStep, appState.caracterizacionInicial.totalSteps);
+
+            // Actualizar botones
+            updateCIButtons();
+
+            window.scrollTo(0, 200);
+        }
+
+        function updateCIButtons() {
+            const btnPrev = document.getElementById('btn-ci-prev');
+            const btnNext = document.getElementById('btn-ci-next');
+            const btnSubmit = document.getElementById('btn-ci-submit');
+
+            btnPrev.style.display = appState.caracterizacionInicial.currentStep > 1 ? 'inline-flex' : 'none';
+            btnNext.style.display = appState.caracterizacionInicial.currentStep < appState.caracterizacionInicial.totalSteps ? 'inline-flex' : 'none';
+            btnSubmit.style.display = appState.caracterizacionInicial.currentStep === appState.caracterizacionInicial.totalSteps ? 'inline-flex' : 'none';
+        }
+
+        function submitCI() {
+            updateModuleStatus('caract-inicial', 'completado');
+            unlockModule('caracterizacion-detallada');
+            document.getElementById('modal-completado').classList.add('active');
+        }
+
+        // ==================== CARACTERIZACIÓN DETALLADA ====================
+        function navigateCD(direction) {
+            const newStep = appState.caracterizacionDetallada.currentStep + direction;
+            
+            if (newStep < 1 || newStep > appState.caracterizacionDetallada.totalSteps) return;
+
+            // Ocultar paso actual
+            document.getElementById(`cd-paso-${appState.caracterizacionDetallada.currentStep}`).classList.remove('active');
+            
+            // Mostrar nuevo paso
+            document.getElementById(`cd-paso-${newStep}`).classList.add('active');
+            
+            // Actualizar estado
+            appState.caracterizacionDetallada.currentStep = newStep;
+
+            // Actualizar wizard
+            updateWizard('wizard-caract-detallada', newStep, appState.caracterizacionDetallada.totalSteps);
+            
+            // Actualizar progreso en sidebar
+            updateProgressList('cd-progress-list', newStep, appState.caracterizacionDetallada.totalSteps);
+
+            // Actualizar botones
+            updateCDButtons();
+
+            // Si es el último paso, actualizar resumen
+            if (newStep === 14) {
+                updateResumenCD();
+            }
+
+            window.scrollTo(0, 200);
+        }
+
+        function updateCDButtons() {
+            const btnPrev = document.getElementById('btn-cd-prev');
+            const btnNext = document.getElementById('btn-cd-next');
+            const btnSubmit = document.getElementById('btn-cd-submit');
+
+            btnPrev.style.display = appState.caracterizacionDetallada.currentStep > 1 ? 'inline-flex' : 'none';
+            btnNext.style.display = appState.caracterizacionDetallada.currentStep < appState.caracterizacionDetallada.totalSteps ? 'inline-flex' : 'none';
+            btnSubmit.style.display = appState.caracterizacionDetallada.currentStep === appState.caracterizacionDetallada.totalSteps ? 'inline-flex' : 'none';
+        }
+
+        function updateResumenCD() {
+            document.getElementById('resumen-habitantes').textContent = document.getElementById('num_habitantes').value || '-';
+            document.getElementById('resumen-viviendas').textContent = document.getElementById('num_viviendas').value || '-';
+            
+            const modeloRadio = document.querySelector('input[name="modelo_comunidad_energetica"]:checked');
+            document.getElementById('resumen-modelo').textContent = modeloRadio ? modeloRadio.parentElement.querySelector('.option-label').textContent : '-';
+            
+            const figuraRadio = document.querySelector('input[name="figura_legal"]:checked');
+            document.getElementById('resumen-figura').textContent = figuraRadio ? figuraRadio.parentElement.querySelector('.option-label').textContent : '-';
+        }
+
+        function submitCD() {
+            updateModuleStatus('caract-detallada', 'completado');
+            unlockModule('potencial');
+            document.getElementById('modal-completado').classList.add('active');
+        }
+
+        // ==================== VIABILIDAD ====================
+        function navigateViab(direction) {
+            const newStep = appState.viabilidad.currentStep + direction;
+            
+            if (newStep < 1 || newStep > appState.viabilidad.totalSteps) return;
+
+            // Ocultar paso actual
+            document.getElementById(`viab-paso-${appState.viabilidad.currentStep}`).classList.remove('active');
+            
+            // Mostrar nuevo paso
+            document.getElementById(`viab-paso-${newStep}`).classList.add('active');
+            
+            // Actualizar estado
+            appState.viabilidad.currentStep = newStep;
+
+            // Actualizar wizard
+            updateWizard('wizard-viabilidad', newStep, appState.viabilidad.totalSteps);
+            
+            // Actualizar progreso en sidebar
+            updateProgressList('viab-progress-list', newStep, appState.viabilidad.totalSteps);
+
+            // Actualizar botones
+            updateViabButtons();
+
+            window.scrollTo(0, 200);
+        }
+
+        function updateViabButtons() {
+            const btnPrev = document.getElementById('btn-viab-prev');
+            const btnNext = document.getElementById('btn-viab-next');
+            const btnSubmit = document.getElementById('btn-viab-submit');
+
+            btnPrev.style.display = appState.viabilidad.currentStep > 1 ? 'inline-flex' : 'none';
+            btnNext.style.display = appState.viabilidad.currentStep < appState.viabilidad.totalSteps ? 'inline-flex' : 'none';
+            btnSubmit.style.display = appState.viabilidad.currentStep === appState.viabilidad.totalSteps ? 'inline-flex' : 'none';
+        }
+
+        function submitViab() {
+            updateModuleStatus('viabilidad', 'completado');
+            document.getElementById('modal-completado').classList.add('active');
+        }
+
+        // ==================== FUNCIONES AUXILIARES ====================
+        function updateWizard(wizardId, currentStep, totalSteps) {
+            const wizard = document.getElementById(wizardId);
+            const steps = wizard.querySelectorAll('.wizard-step');
+            
+            steps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                
+                if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        function updateProgressList(listId, currentStep, totalSteps) {
+            const list = document.getElementById(listId);
+            const items = list.querySelectorAll('.progress-item');
+            
+            items.forEach((item, index) => {
+                item.classList.remove('active', 'completed');
+                
+                if (index + 1 < currentStep) {
+                    item.classList.add('completed');
+                } else if (index + 1 === currentStep) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        function updateModuleStatus(moduleId, status) {
+            const statusElement = document.getElementById(`status-${moduleId}`);
+            if (!statusElement) return;
+
+            statusElement.className = 'module-status';
+            
+            switch(status) {
+                case 'pendiente':
+                    statusElement.classList.add('status-pendiente');
+                    statusElement.textContent = 'Pendiente';
+                    break;
+                case 'progreso':
+                    statusElement.classList.add('status-progreso');
+                    statusElement.textContent = 'En progreso';
+                    break;
+                case 'completado':
+                    statusElement.classList.add('status-completado');
+                    statusElement.textContent = 'Completado';
+                    break;
+                case 'bloqueado':
+                    statusElement.classList.add('status-bloqueado');
+                    statusElement.textContent = 'Bloqueado';
+                    break;
+            }
+        }
+
+        function unlockModule(moduleId) {
+            if (moduleId === 'caracterizacion-detallada') {
+                const card = document.getElementById('card-caracterizacion-detallada');
+                const btn = document.getElementById('btn-caract-detallada');
+                card.classList.remove('blocked');
+                btn.classList.remove('disabled');
+                btn.classList.add('primary');
+                btn.textContent = 'Iniciar caracterización →';
+                btn.onclick = function() { showView('caracterizacion-detallada'); };
+                updateModuleStatus('caract-detallada', 'pendiente');
+                appState.caracterizacionDetallada.status = 'pendiente';
+            } else if (moduleId === 'potencial') {
+                const card = document.getElementById('card-potencial');
+                const btn = document.getElementById('btn-potencial');
+                card.classList.remove('blocked');
+                btn.classList.remove('disabled');
+                btn.classList.add('primary');
+                btn.textContent = 'Ver cálculo →';
+                updateModuleStatus('potencial', 'pendiente');
+            }
+        }
+
+        function toggleConditional(fieldId, show) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                if (show) {
+                    field.classList.add('visible');
+                } else {
+                    field.classList.remove('visible');
+                }
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // ==================== COMPONENTES REPETIBLES ====================
+        let liderCounter = 0;
+        let actorCounter = 0;
+
+        function addLider() {
+            liderCounter++;
+            const container = document.getElementById('lideres-container');
+            
+            const html = `
+                <div class="repeatable-section" id="lider-${liderCounter}">
+                    <div class="repeatable-header">
+                        <span class="repeatable-title">Líder #${liderCounter}</span>
+                        <button type="button" class="btn-remove" onclick="removeLider(${liderCounter})">✕</button>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" id="lider-nombre-${liderCounter}" placeholder="Nombre del líder">
+                        </div>
+                        <div class="form-group">
+                            <label>Edad</label>
+                            <input type="number" class="form-control" id="lider-edad-${liderCounter}" placeholder="Edad" min="0" max="110">
+                        </div>
+                        <div class="form-group">
+                            <label>Género</label>
+                            <select class="form-control" id="lider-genero-${liderCounter}">
+                                <option value="">Seleccione</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="otro">Otro</option>
+                                <option value="prefiero_no_decir">Prefiero no decir</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rol en la comunidad</label>
+                            <select class="form-control" id="lider-rol-${liderCounter}">
+                                <option value="">Seleccione</option>
+                                <option value="presidente">Presidente/a</option>
+                                <option value="vicepresidente">Vicepresidente/a</option>
+                                <option value="tesorero">Tesorero/a</option>
+                                <option value="secretario">Secretario/a</option>
+                                <option value="vocal">Vocal</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" style="margin-top:1rem" onclick="saveLider(${liderCounter})">Guardar líder</button>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function saveLider(id) {
+            const nombre = document.getElementById(`lider-nombre-${id}`).value;
+            const edad = document.getElementById(`lider-edad-${id}`).value;
+            const genero = document.getElementById(`lider-genero-${id}`).value;
+            const rol = document.getElementById(`lider-rol-${id}`).value;
+
+            if (!nombre) {
+                alert('Por favor ingrese el nombre del líder');
+                return;
+            }
+
+            appState.lideres.push({ id, nombre, edad, genero, rol });
+            updateLideresTable();
+            
+            // Eliminar formulario
+            document.getElementById(`lider-${id}`).remove();
+        }
+
+        function removeLider(id) {
+            document.getElementById(`lider-${id}`).remove();
+        }
+
+        function removeLiderFromTable(id) {
+            appState.lideres = appState.lideres.filter(l => l.id !== id);
+            updateLideresTable();
+        }
+
+        function updateLideresTable() {
+            const tbody = document.getElementById('tbody-lideres');
+            const empty = document.getElementById('empty-lideres');
+            
+            if (appState.lideres.length === 0) {
+                tbody.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+
+            empty.style.display = 'none';
+            tbody.innerHTML = appState.lideres.map(l => `
+                <tr>
+                    <td>${l.nombre}</td>
+                    <td>${l.edad || '-'}</td>
+                    <td>${l.genero || '-'}</td>
+                    <td>${l.rol || '-'}</td>
+                    <td><button class="btn-remove" onclick="removeLiderFromTable(${l.id})">✕</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function addActor() {
+            actorCounter++;
+            const container = document.getElementById('actores-container');
+            
+            const html = `
+                <div class="repeatable-section" id="actor-${actorCounter}">
+                    <div class="repeatable-header">
+                        <span class="repeatable-title">Actor #${actorCounter}</span>
+                        <button type="button" class="btn-remove" onclick="removeActor(${actorCounter})">✕</button>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+                        <div class="form-group">
+                            <label>Categoría</label>
+                            <select class="form-control" id="actor-categoria-${actorCounter}">
+                                <option value="">Seleccione</option>
+                                <option value="internos">Actores internos</option>
+                                <option value="externos">Actores externos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de actor</label>
+                            <select class="form-control" id="actor-tipo-${actorCounter}">
+                                <option value="">Seleccione</option>
+                                <option value="jac">Junta de Acción Comunal</option>
+                                <option value="cooperativa">Cooperativa</option>
+                                <option value="gobierno">Entidad gubernamental</option>
+                                <option value="empresa">Empresa privada</option>
+                                <option value="ong">ONG</option>
+                                <option value="academia">Universidad/Academia</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre del actor</label>
+                            <input type="text" class="form-control" id="actor-nombre-${actorCounter}" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Nivel de actuación</label>
+                            <select class="form-control" id="actor-nivel-${actorCounter}">
+                                <option value="">Seleccione</option>
+                                <option value="local">Local</option>
+                                <option value="regional">Regional</option>
+                                <option value="nacional">Nacional</option>
+                                <option value="internacional">Internacional</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" style="margin-top:1rem" onclick="saveActor(${actorCounter})">Guardar actor</button>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function saveActor(id) {
+            const categoria = document.getElementById(`actor-categoria-${id}`).value;
+            const tipo = document.getElementById(`actor-tipo-${id}`).value;
+            const nombre = document.getElementById(`actor-nombre-${id}`).value;
+            const nivel = document.getElementById(`actor-nivel-${id}`).value;
+
+            if (!nombre) {
+                alert('Por favor ingrese el nombre del actor');
+                return;
+            }
+
+            appState.actores.push({ id, categoria, tipo, nombre, nivel });
+            updateActoresTable();
+            
+            document.getElementById(`actor-${id}`).remove();
+        }
+
+        function removeActor(id) {
+            document.getElementById(`actor-${id}`).remove();
+        }
+
+        function removeActorFromTable(id) {
+            appState.actores = appState.actores.filter(a => a.id !== id);
+            updateActoresTable();
+        }
+
+        function updateActoresTable() {
+            const tbody = document.getElementById('tbody-actores');
+            const empty = document.getElementById('empty-actores');
+            
+            if (appState.actores.length === 0) {
+                tbody.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+
+            empty.style.display = 'none';
+            tbody.innerHTML = appState.actores.map(a => `
+                <tr>
+                    <td>${a.categoria || '-'}</td>
+                    <td>${a.tipo || '-'}</td>
+                    <td>${a.nombre}</td>
+                    <td>${a.nivel || '-'}</td>
+                    <td><button class="btn-remove" onclick="removeActorFromTable(${a.id})">✕</button></td>
+                </tr>
+            `).join('');
+        }
+
+        // ==================== SCALE RATING ====================
+        document.querySelectorAll('.scale-rating').forEach(rating => {
+            rating.querySelectorAll('.scale-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remover selección previa
+                    rating.querySelectorAll('.scale-option').forEach(o => o.classList.remove('selected'));
+                    // Seleccionar actual
+                    this.classList.add('selected');
+                    // Marcar radio
+                    this.querySelector('input').checked = true;
+                });
+            });
+        });
+
+        // ==================== RADIO/CHECKBOX VISUAL FEEDBACK ====================
+        document.querySelectorAll('.radio-option, .checkbox-option').forEach(option => {
+            const input = option.querySelector('input');
+            if (input) {
+                input.addEventListener('change', function() {
+                    if (this.type === 'radio') {
+                        // Remover selección de otros radios del mismo grupo
+                        document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                            r.closest('.radio-option')?.classList.remove('selected');
+                        });
+                    }
+                    
+                    if (this.checked) {
+                        option.classList.add('selected');
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+            }
+        });
+
+        // ==================== GOBERNANZA COUNTER ====================
+        function updateGobernanzaCount() {
+            const gobernanzaFields = ['tiene_mision', 'tiene_vision', 'composicion_lideres', 'cultura_resultados', 'decisiones_consenso', 'rendicion_cuentas', 'gestion_conflictos'];
+            let count = 0;
+            
+            gobernanzaFields.forEach(field => {
+                const selected = document.querySelector(`input[name="${field}"]:checked`);
+                if (selected && selected.value === 'si') {
+                    count++;
+                }
+            });
+            
+            document.getElementById('gobernanza-count').textContent = count;
+        }
+
+        // Listener para campos de gobernanza
+        document.querySelectorAll('[name^="tiene_"], [name="composicion_lideres"], [name="cultura_resultados"], [name="decisiones_consenso"], [name="rendicion_cuentas"], [name="gestion_conflictos"]').forEach(input => {
+            input.addEventListener('change', updateGobernanzaCount);
+        });
+
+        // ==================== BOTTOM SHEET ====================
+        function toggleBottomSheet() {
+            const sheet = document.getElementById('bottom-sheet');
+            sheet.classList.toggle('expanded');
+        }
+
+        // ==================== AUTO-GUARDADO ====================
+        let autosaveTimeout;
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('change', function() {
+                // Simular auto-guardado
+                clearTimeout(autosaveTimeout);
+                autosaveTimeout = setTimeout(() => {
+                    console.log('Auto-guardado...');
+                    // Aquí iría la lógica de guardado real
+                }, 2000);
+            });
+        });
+
+        // ==================== MAPA SIMULADO ====================
+        document.querySelectorAll('.map-container').forEach(map => {
+            map.addEventListener('click', function(e) {
+                // Simular selección de coordenadas
+                const lat = (Math.random() * 2 + 5).toFixed(4);
+                const lng = (-76 + Math.random() * 2).toFixed(4);
+                const alt = Math.floor(Math.random() * 2000 + 500);
+                
+                document.getElementById('latitud').value = lat;
+                document.getElementById('longitud').value = lng;
+                document.getElementById('altitud').value = alt;
+                
+                this.innerHTML = `
+                    <div style="text-align:center;color:var(--verde-bosque);">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <p style="font-weight:600;">📍 Ubicación seleccionada</p>
+                        <p style="font-size:0.85rem;">${lat}, ${lng}</p>
+                    </div>
+                `;
+            });
+        });
+
+        // ==================== INICIALIZACIÓN ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar dashboard por defecto
+            showView('dashboard');
+        });
+    </script>
+</body>
+</html>
