@@ -296,47 +296,129 @@
         .section-header h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.3px; line-height: 38px; color: var(--negro); margin-bottom: 0.25rem; }
         .section-header p { font-size: 0.85rem; color: var(--gris); }
 
-        /* Form Fields */
+        /* Form Fields — UPB UI Kit */
         .form-group { margin-bottom: 1.5rem; }
         .form-group label {
-            display: block; font-weight: 500; margin-bottom: 0.5rem;
-            color: var(--negro); font-size: 0.9rem;
+            display: block; font-weight: 700; margin-bottom: 6px;
+            color: #141820; font-size: 14px; letter-spacing: 0;
         }
-        .form-group label .required { color: var(--rojo); margin-left: 2px; }
-        .form-group .help-text { font-size: 0.8rem; color: var(--gris); margin-top: 0.25rem; }
-        .form-control {
-            width: 100%; padding: 12px 16px; border: 1px solid #E3DCFB;
-            border-radius: 6px; font-size: 14px; font-family: inherit; transition: all 0.2s;
-            background: white;
-        }
-        .form-control:focus { outline: none; border-color: #AD3DFF; box-shadow: 0 0 0 3px rgba(173,61,255,0.1); }
-        .form-control.error { border-color: var(--rojo); box-shadow: 0 0 0 3px rgba(229,57,53,0.1); }
-        .error-message { color: var(--rojo); font-size: 0.8rem; margin-top: 0.25rem; display: none; }
-        .form-control.error + .error-message { display: block; }
-        textarea.form-control { min-height: 100px; resize: vertical; }
-        select.form-control { cursor: pointer; }
+        .form-group label .required { color: #9E1616; margin-left: 2px; }
+        .form-group .help-text { font-size: 12px; color: rgba(0,0,0,0.47); margin-top: 4px; }
 
-        /* Radio & Checkbox */
-        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 0.75rem; }
-        .radio-option, .checkbox-option {
-            display: flex; flex-direction: row; align-items: center; gap: 0.75rem; padding: 12px;
-            background: white; border: 1px solid #EEF0F3; border-radius: 6px; cursor: pointer; transition: all 0.2s;
-            flex-wrap: nowrap; box-shadow: 0px 13px 18px rgba(0,0,0,0.05);
+        /* Input / Select / Textarea — Default white state */
+        .form-control {
+            width: 100%; padding: 11px 16px; border: 1px solid #E3DCFB;
+            border-radius: 6px; font-size: 14px; font-family: inherit;
+            transition: border-color 0.2s, background 0.2s, border-width 0.2s;
+            background: white; color: #141820; height: 40px;
         }
-        .radio-option:hover, .checkbox-option:hover { border-color: #D0EB00; }
+        /* Hover — lime border */
+        .form-control:hover { border-color: #BBD400; }
+        /* Focus / Active — 3px lime border, no purple glow */
+        .form-control:focus {
+            outline: none; border-color: #BBD400; border-width: 3px;
+            padding: 9px 14px; /* compensate 3px border */
+            box-shadow: none; background: white;
+        }
+        /* Press state */
+        .form-control:active:not(:focus) { background: #FAFDE6; border-color: #BBD400; }
+        /* Error state */
+        .form-control.error {
+            border-color: #EE2C5A; border-width: 3px; padding: 9px 14px;
+            background: #FFEFF7; box-shadow: none;
+        }
+        .form-control.error + label, label.error-label { color: #FF339A; }
+        .error-message { color: #FF339A; font-size: 12px; margin-top: 4px; display: none; }
+        .form-control.error ~ .error-message,
+        .form-control.error + .error-message { display: block; }
+        /* Success state */
+        .form-control.success { background: #F8F7FC; border-color: #E3DCFB; }
+
+        /* Textarea */
+        textarea.form-control { min-height: 120px; resize: vertical; height: auto; }
+
+        /* Select / Dropdown */
+        select.form-control {
+            cursor: pointer; appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 16px center; background-size: 12px;
+            padding-right: 40px;
+        }
+        select.form-control:focus {
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 6L6 1L11 6' stroke='%23BBD400' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        }
+
+        /* Form row layouts */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+        /* Radio & Checkbox — UPB UI Kit (Option block) con grid */
+        .radio-group, .checkbox-group { display: grid; gap: 10px; }
+        .radio-option, .checkbox-option {
+            display: grid; grid-template-columns: 24px 1fr; align-items: center; gap: 12px;
+            padding: 12px; background: white; border: 1px solid #EEF0F3; border-radius: 6px;
+            cursor: pointer; transition: border-color 0.2s, background 0.2s;
+            box-shadow: 0px 13px 18px rgba(0,0,0,0.05); position: relative;
+        }
+        .radio-option:hover, .checkbox-option:hover { border-color: #BBD400; }
+
+        /* Ocultar input nativo */
         .radio-option input[type="radio"],
-        .radio-option input[type="checkbox"],
         .checkbox-option input[type="radio"],
-        .checkbox-option input[type="checkbox"] { flex-shrink: 0; width: 18px; height: 18px; min-width: 18px; accent-color: var(--verde-bosque); cursor: pointer; margin: 0 8px 0 0; }
-        .radio-option.selected, .checkbox-option.selected { border-color: #D0EB00; background: rgba(208,235,0,0.08); }
-        .option-content { flex: 1; display: inline-flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
-        .option-label { font-weight: 500; color: var(--negro); }
-        .option-description { font-size: 0.8rem; color: var(--gris); }
+        .radio-option input[type="checkbox"],
+        .checkbox-option input[type="checkbox"] {
+            position: absolute; opacity: 0; width: 0; height: 0; margin: 0; pointer-events: none;
+        }
+
+        /* Circulo custom del radio via ::before */
+        .radio-option::before {
+            content: ''; grid-row: 1; grid-column: 1;
+            width: 24px; height: 24px;
+            border: 2px solid #C3C9D2; border-radius: 50%;
+            background: white; box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        .radio-option:has(input:checked)::before {
+            border-color: #D0EB00;
+            background: radial-gradient(circle, #D0EB00 40%, white 41%);
+        }
+
+        /* Cuadro custom del checkbox via ::before */
+        .checkbox-option::before {
+            content: ''; grid-row: 1; grid-column: 1;
+            width: 24px; height: 24px;
+            border: 2px solid #C3C9D2; border-radius: 4px;
+            background: white; box-sizing: border-box;
+            display: grid; place-items: center;
+            transition: all 0.2s;
+            font-size: 14px; font-weight: 700; color: #3E4700;
+        }
+        .checkbox-option:has(input:checked)::before {
+            border-color: #D0EB00; background: #D0EB00;
+            content: '✓';
+        }
+
+        .radio-option.selected, .checkbox-option.selected,
+        .radio-option:has(input:checked), .checkbox-option:has(input:checked) {
+            border-color: #D0EB00; background: #FAFDE6;
+        }
+
+        /* Option text: label arriba, descripcion abajo */
+        .option-content {
+            grid-column: 2; display: grid; gap: 2px;
+        }
+        /* Cuando solo hay span sin .option-content */
+        .radio-option > .option-label,
+        .checkbox-option > .option-label {
+            grid-column: 2;
+        }
+        .option-label { font-weight: 600; color: #556070; font-size: 14px; line-height: 1.5; }
+        .option-description { font-size: 12px; color: #8C96A5; line-height: 1.4; }
 
         /* Checkbox grid for many items */
         .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.5rem; }
-        .checkbox-grid .checkbox-option { padding: 0.5rem 0.75rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
-        .checkbox-grid .checkbox-option input { flex-shrink: 0; width: 16px; height: 16px; }
+        .checkbox-grid .checkbox-option { grid-template-columns: 20px 1fr; padding: 8px 12px; gap: 8px; }
+        .checkbox-grid .checkbox-option::before { width: 20px; height: 20px; }
 
         /* Scale Rating */
         .scale-rating { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -512,12 +594,19 @@
         .btn-success { background: var(--verde-bosque); color: #FFFFFF; border-radius: 500px; }
         .btn-success:hover { background: #1B5E20; }
 
-        /* Form Nav Button Overrides (Figma) */
-        .form-nav .btn-secondary {
+        /* Form Nav Button Overrides (Figma UI Kit) */
+        .form-nav .btn-secondary, .btn-line-white {
             background: white; border: 2px solid #B1ADC0; border-radius: 24px;
-            color: #232A34; font-weight: 700; padding: 12px 77px;
+            color: #232A34; font-weight: 700; padding: 12px 40px; height: 50px;
         }
-        .form-nav .btn-secondary:hover { background: #F5F5F5; border-color: #8C96A5; color: #232A34; }
+        .form-nav .btn-secondary:hover, .btn-line-white:hover { background: #F5F5F5; border-color: #8C96A5; color: #232A34; }
+        /* Command button (purple) — Figma "Siguiente" */
+        .btn-command {
+            background: #AD3DFF; color: white; border: none; border-radius: 24px;
+            font-weight: 700; padding: 12px 40px; height: 50px;
+            box-shadow: 0px 1px 3px rgba(16,24,40,0.1);
+        }
+        .btn-command:hover { background: #9524E8; }
         .form-nav .btn-primary {
             background: #AD3DFF; border: none; border-radius: 24px;
             color: white; font-weight: 700; padding: 12px 77px;
@@ -657,7 +746,7 @@
 
         /* Radio grid (3 columns) */
         .radio-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .radio-grid-3 .radio-option { flex-direction: column; align-items: flex-start; padding: 14px; gap: 8px; }
+        .radio-grid-3 .option-description { font-size: 12px; }
 
         /* Privacy Card */
         .privacy-card {
@@ -1099,10 +1188,10 @@
 
                         <!-- Navigation -->
                         <div class="form-nav" style="border-top:none; padding-top:24px;">
-                            <button class="btn btn-secondary" id="btn-f1-prev" onclick="navigateFase1(-1)" style="display:none">&larr; Volver al inicio</button>
-                            <button class="btn btn-secondary" id="btn-f1-back-dashboard" onclick="showView('dashboard')">&larr; Volver al inicio</button>
+                            <button class="btn btn-line-white" id="btn-f1-prev" onclick="navigateFase1(-1)" style="display:none">&larr; Anterior</button>
+                            <button class="btn btn-line-white" id="btn-f1-back-dashboard" onclick="showView('dashboard')">&larr; Volver al inicio</button>
                             <div style="display:flex; gap:0.5rem; margin-left:auto;">
-                                <button class="btn btn-primary" id="btn-f1-next" onclick="navigateFase1(1)">Siguiente &rarr;</button>
+                                <button class="btn btn-command" id="btn-f1-next" onclick="navigateFase1(1)">&rarr; Siguiente</button>
                             </div>
                         </div>
                     </div><!-- /.form-section f1-paso-1 -->
@@ -1171,9 +1260,9 @@
 
                         <!-- Navigation -->
                         <div class="form-nav" style="border-top:none; padding-top:24px;">
-                            <button class="btn btn-secondary" onclick="navigateFase1(-1)">&larr; Anterior</button>
+                            <button class="btn btn-line-white" onclick="navigateFase1(-1)">&larr; Anterior</button>
                             <div style="display:flex; gap:0.5rem; margin-left:auto;">
-                                <button class="btn btn-primary" onclick="navigateFase1(1)">Siguiente &rarr;</button>
+                                <button class="btn btn-command" onclick="navigateFase1(1)">&rarr; Siguiente</button>
                             </div>
                         </div>
                     </div><!-- /.form-section f1-paso-2 -->
@@ -1230,9 +1319,9 @@
 
                         <!-- Navigation -->
                         <div class="form-nav" style="border-top:none; padding-top:24px;">
-                            <button class="btn btn-secondary" onclick="navigateFase1(-1)">&larr; Anterior</button>
+                            <button class="btn btn-line-white" onclick="navigateFase1(-1)">&larr; Anterior</button>
                             <div style="display:flex; gap:0.5rem; margin-left:auto;">
-                                <button class="btn btn-success" id="btn-f1-submit" onclick="submitFase(1)">Enviar para revision</button>
+                                <button class="btn btn-command" id="btn-f1-submit" onclick="submitFase(1)">Enviar para revision &rarr;</button>
                             </div>
                         </div>
                     </div><!-- /.form-section f1-paso-3 -->
