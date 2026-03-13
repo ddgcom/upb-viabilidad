@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu comunidad energética - LNCE Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neutral-100: #1E1E1E;
+            --neutral-75: #777777;
+            --neutral-35: #E8E8E8;
+            --neutral-500: #8C96A5;
+            --neutral-1000: #0B0D10;
+            --lime: #D0EB00;
+            --lime-400: #DEF14D;
+            --lime-dark: #3E4700;
+            --lime-light: #F5FFDB;
+            --dark-green: #0D4015;
+            --green-done: #128041;
+            --green-done-bg: #F0F7EE;
+            --standby: #C39F12;
+            --standby-bg: #FCF4E7;
+            --purple: #AD3DFF;
+            --bg: #FFFCFC;
+            --bg-gray: #F3F4F4;
+            --bg-light: #F5F5F5;
+            --border: #E0E0E0;
+            --dark-text: #1D1D1D;
+            --gray-text: #888888;
+            --white: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img[src$=".svg"] {
+            object-fit: contain;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gray);
+            color: var(--dark-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ================================
+           HEADER
+           ================================ */
+        .header {
+            background: var(--white);
+            padding: 16px 64px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-main {
+            position: absolute;
+            left: 323px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .nav-main a {
+            text-decoration: none;
+            color: var(--neutral-500);
+            font-size: 16px;
+            font-weight: 400;
+            padding: 0 12px;
+            height: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s;
+        }
+
+        .nav-main a:hover {
+            color: var(--neutral-1000);
+        }
+
+        .nav-main a.active {
+            color: var(--neutral-1000);
+            font-weight: 400;
+            border-bottom-color: var(--purple);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .search-btn img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .user-pill .arrow-circle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--lime);
+            border-radius: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: -4px;
+        }
+
+        .user-pill .arrow-circle img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .user-pill .pill-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--lime);
+            color: var(--dark-green);
+            padding: 10px 20px;
+            border-radius: 1000px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .user-pill .pill-btn .exit-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--dark-text);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        /* ================================
+           BREADCRUMB
+           ================================ */
+        .breadcrumb {
+            padding: 4px 56px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .breadcrumb a {
+            color: var(--dark-text);
+            text-decoration: none;
+        }
+
+        .breadcrumb .separator {
+            color: var(--gray-text);
+            font-size: 12px;
+        }
+
+        .breadcrumb .current {
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        /* ================================
+           HERO SECTION
+           ================================ */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px 26px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-illustration {
+            width: 502px;
+            height: 218px;
+            object-fit: contain;
+            margin-bottom: -26px;
+        }
+
+        .hero-section h1 {
+            font-size: 40px;
+            font-weight: 400;
+            color: black;
+            letter-spacing: -0.8px;
+            line-height: 0.8;
+        }
+
+        .hero-section .hero-subtitle {
+            font-size: 20px;
+            color: black;
+            letter-spacing: -0.4px;
+            max-width: 787px;
+            line-height: 0.8;
+            margin-top: 16px;
+        }
+
+        /* ================================
+           CARDS GRID
+           ================================ */
+        .cards-container {
+            background: var(--bg-light);
+            padding: 0 80px 158px;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 24px;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            width: 374px;
+            height: 370px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        /* Progress bar */
+        .card-progress {
+            position: relative;
+            z-index: 2;
+            background: var(--lime-light);
+            width: 100%;
+            height: 9px;
+            flex-shrink: 0;
+        }
+
+        .card-progress .bar {
+            height: 100%;
+            border-radius: 29px;
+            background: linear-gradient(to right, #B6F017, var(--lime));
+        }
+
+        .card-progress .bar.partial {
+            width: 50%;
+        }
+
+        .card-progress .bar.full {
+            width: 100%;
+        }
+
+        /* Card content */
+        .card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 32px;
+        }
+
+        .card-content.with-badge {
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .card-content.no-badge {
+            justify-content: flex-end;
+        }
+
+        /* Status badges */
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px 8px 8px;
+            border-radius: 32px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .badge-status .dot {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .badge-pendiente {
+            background: var(--standby-bg);
+            border: 1px solid var(--standby-bg);
+            color: var(--standby);
+        }
+
+        .badge-listo {
+            background: var(--green-done-bg);
+            border: 1px solid var(--green-done-bg);
+            color: var(--green-done);
+        }
+
+        .badge-bloqueado {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Blocked card */
+        .card-link.blocked {
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        /* Card bottom content */
+        .card-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 314px;
+        }
+
+        .badge-docs {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--lime);
+            padding: 0;
+            border-radius: 19px;
+            width: 212px;
+            height: 22px;
+            font-size: 14px;
+            color: var(--dark-green);
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+
+        .badge-docs img {
+            width: 21px;
+            height: 21px;
+            margin-left: 5px;
+        }
+
+        .card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            width: 237px;
+        }
+
+        .card-text h3 {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--white);
+            line-height: normal;
+            letter-spacing: -0.4px;
+        }
+
+        .card-text p {
+            font-size: 14px;
+            color: #EEF0F3;
+            line-height: 1.6;
+            letter-spacing: -0.28px;
+            font-weight: 500;
+        }
+
+        .card-arrow {
+            width: 14.25px;
+            height: 14.25px;
+            flex-shrink: 0;
+        }
+
+        .card-arrow img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ================================
+           FOOTER
+           ================================ */
+        .footer {
+            background: var(--white);
+            padding: 13px 48px;
+            overflow: hidden;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: fit-content(100%) 1fr;
+            gap: 10px;
+        }
+
+        .footer-left {
+            width: 998px;
+            position: relative;
+        }
+
+        .footer-logo-area {
+            position: relative;
+            height: 86px;
+            width: 309px;
+            margin-top: 69px;
+        }
+
+        .footer-logo-area img {
+            max-width: 265px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .footer-institutional {
+            font-size: 16px;
+            color: black;
+            line-height: 1.6;
+            max-width: 327px;
+            margin-top: 122px;
+        }
+
+        .footer-copyright {
+            font-size: 16px;
+            color: black;
+            margin-top: 16px;
+        }
+
+        .btn-contacto-footer {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 77px;
+            border-radius: 24px;
+            border: 2px solid #B1ADC0;
+            background: var(--white);
+            color: #232A34;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+            margin-top: 32px;
+            height: 50px;
+            width: 310px;
+            justify-content: center;
+        }
+
+        .btn-contacto-footer:hover {
+            background: #F1F9B3;
+            border-color: #FAFDE6;
+        }
+
+        .footer-sedes-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: black;
+            letter-spacing: -0.4px;
+            position: absolute;
+            top: 128px;
+            left: 336px;
+        }
+
+        .footer-divider {
+            position: absolute;
+            left: 324px;
+            top: 165px;
+            width: 653px;
+            height: 1px;
+            background: #E0E0E0;
+        }
+
+        .sedes-grid {
+            position: absolute;
+            top: 191px;
+            left: 336px;
+            display: grid;
+            grid-template-columns: 327px 327px;
+            gap: 0;
+        }
+
+        .sedes-grid-bottom {
+            position: absolute;
+            top: 435px;
+            left: 336px;
+            display: grid;
+            grid-template-columns: 327px 327px;
+            gap: 0;
+        }
+
+        .sede-card {
+            width: 327px;
+        }
+
+        .sede-card h4 {
+            font-size: 20px;
+            font-weight: 400;
+            color: black;
+            letter-spacing: -0.4px;
+            margin-bottom: 4px;
+        }
+
+        .sede-card p {
+            font-size: 16px;
+            color: black;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .sede-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sede-contact a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: black;
+            text-decoration: underline;
+        }
+
+        .sede-contact a:hover {
+            color: var(--lime-dark);
+        }
+
+        .sede-contact .icon {
+            width: 28px;
+            height: 27px;
+            flex-shrink: 0;
+        }
+
+        .footer-right {
+            position: relative;
+            padding-top: 44px;
+        }
+
+        .footer-right-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: black;
+            letter-spacing: -0.4px;
+            margin-bottom: 8px;
+        }
+
+        .footer-divider-right {
+            width: 384px;
+            height: 1px;
+            background: #E0E0E0;
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            font-size: 16px;
+            color: var(--neutral-1000);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .footer-links a {
+            color: var(--neutral-1000);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--lime-dark);
+        }
+
+        /* ================================
+           RESPONSIVE
+           ================================ */
+        @media (max-width: 1280px) {
+            .header {
+                padding: 16px 32px;
+            }
+
+            .nav-main {
+                position: static;
+            }
+
+            .cards-container {
+                padding: 0 40px 80px;
+            }
+
+            .cards-row {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-left {
+                width: auto;
+            }
+
+            .sedes-grid,
+            .sedes-grid-bottom {
+                position: static;
+                margin-top: 24px;
+            }
+
+            .footer-sedes-title {
+                position: static;
+                margin-top: 32px;
+                margin-bottom: 16px;
+            }
+
+            .footer-divider {
+                position: static;
+                width: 100%;
+                margin: 16px 0;
+            }
+
+            .footer-institutional {
+                margin-top: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 20px;
+            }
+
+            .nav-main {
+                display: none;
+            }
+
+            .nav-main.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                border-radius: 12px;
+                padding: 12px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                z-index: 100;
+            }
+
+            .nav-main.open a {
+                height: auto;
+                padding: 12px 16px;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-illustration {
+                width: 300px;
+                height: auto;
+            }
+
+            .hero-section h1 {
+                font-size: 28px;
+            }
+
+            .hero-section .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .cards-container {
+                padding: 0 20px 60px;
+            }
+
+            .card-link {
+                width: 100%;
+                height: 320px;
+            }
+
+            .breadcrumb {
+                padding: 4px 20px;
+            }
+
+            .footer {
+                padding: 24px 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sedes-grid,
+            .sedes-grid-bottom {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================
+         HEADER
+         ================================ -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/logo-lnce.svg" alt="LNCE - Laboratorio Nacional de Comunidades Energéticas">
+            </div>
+
+            <button class="mobile-toggle" onclick="document.querySelector('.nav-main').classList.toggle('open')" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav-main">
+                <a href="index.html">Inicio</a>
+                <a href="#">Noticias</a>
+                <a href="#">Contacto</a>
+                <a href="dashboard.html" class="active">Gestión</a>
+                <a href="#">Monitoreo</a>
+                <a href="#">Panel Admin</a>
+            </nav>
+
+            <div class="user-actions">
+                <button class="search-btn" aria-label="Buscar">
+                    <img src="assets/search-icon.svg" alt="Buscar">
+                </button>
+                <a href="#" class="user-pill">
+                    <span class="arrow-circle">
+                        <img src="assets/arrow-up-right.svg" alt="">
+                    </span>
+                    <span class="pill-btn">
+                        Luis Ochoa
+                        <svg class="exit-icon" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.667 7.333L7.333 14.667M7.333 7.333l7.334 7.334" stroke="#0D4015" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================
+         BREADCRUMB
+         ================================ -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">🏠</a>
+            <span class="separator">›</span>
+            <span class="current">Tu comunidad energética</span>
+        </div>
+    </div>
+
+    <!-- ================================
+         HERO SECTION
+         ================================ -->
+    <section class="hero-section">
+        <img class="hero-illustration" src="assets/hero-illustration.png" alt="Comunidad energética">
+        <h1>🌱 Tu comunidad energética</h1>
+        <p class="hero-subtitle">Bienvenido al portal de gestión. Aquí puedes ver el progreso de tu comunidad en el proceso de conformación como comunidad energética.</p>
+    </section>
+
+    <!-- ================================
+         CARDS
+         ================================ -->
+    <div class="cards-container">
+        <div class="cards-wrapper">
+            <!-- Top Row: 3 cards -->
+            <div class="cards-row">
+
+                <!-- Card 1: Registra tu comunidad - Pendiente -->
+                <a href="viabilidad.html" class="card-link">
+                    <img class="card-bg" src="assets/card-bg.png" alt="">
+                    <div class="card-overlay"></div>
+                    <div class="card-progress">
+                        <div class="bar partial"></div>
+                    </div>
+                    <div class="card-content with-badge">
+                        <span class="badge-status badge-pendiente">
+                            <img class="dot" src="assets/dot-pending.svg" alt="">
+                            Pendiente
+                        </span>
+                        <div class="card-bottom">
+                            <div class="card-info">
+                                <span class="badge-docs">
+                                    <img src="assets/doc-duplicate.svg" alt="">
+                                    Prepara estos documentos
+                                </span>
+                                <div class="card-text">
+                                    <h3>Registra tu comunidad</h3>
+                                    <p>En este apartado podrás realizar el registro completo de tu comunidad. Te guiaremos paso a paso para que completes la información básica.</p>
+                                </div>
+                            </div>
+                            <img class="card-arrow" src="assets/arrow-circle-up-right.svg" alt="">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: Cálculo de potencial energético - Listo -->
+                <a href="#" class="card-link">
+                    <img class="card-bg" src="assets/card-bg.png" alt="">
+                    <div class="card-overlay"></div>
+                    <div class="card-progress">
+                        <div class="bar full"></div>
+                    </div>
+                    <div class="card-content with-badge">
+                        <span class="badge-status badge-listo">
+                            <img class="dot" src="assets/dot-done.svg" alt="">
+                            Listo
+                        </span>
+                        <div class="card-bottom">
+                            <div class="card-info">
+                                <span class="badge-docs">
+                                    <img src="assets/doc-duplicate.svg" alt="">
+                                    Prepara estos documentos
+                                </span>
+                                <div class="card-text">
+                                    <h3>Cálculo de potencial energético</h3>
+                                    <p>Con base en la información que proporcionaste, calcularemos cuánta energía puede generar tu comunidad y qué tecnología es la más adecuada.</p>
+                                </div>
+                            </div>
+                            <img class="card-arrow" src="assets/arrow-circle-up-right.svg" alt="">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Viabilidad -->
+                <a href="viabilidad.html" class="card-link">
+                    <img class="card-bg" src="assets/card-bg.png" alt="">
+                    <div class="card-overlay"></div>
+                    <div class="card-content no-badge">
+                        <div class="card-bottom">
+                            <div class="card-info">
+                                <span class="badge-docs">
+                                    <img src="assets/doc-duplicate.svg" alt="">
+                                    Prepara estos documentos
+                                </span>
+                                <div class="card-text">
+                                    <h3>Viabilidad</h3>
+                                    <p>Evaluaremos si tu proyecto es viable desde el punto de vista técnico, económico, legal y ambiental. Te acompañaremos en cada paso para que entiendas los resultados.</p>
+                                </div>
+                            </div>
+                            <img class="card-arrow" src="assets/arrow-circle-up-right.svg" alt="">
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Bottom Row: 2 cards -->
+            <div class="cards-row">
+
+                <!-- Card 4: Operación y monitoreo - Bloqueado -->
+                <a href="#" class="card-link blocked">
+                    <img class="card-bg" src="assets/card-bg.png" alt="">
+                    <div class="card-overlay"></div>
+                    <div class="card-content with-badge">
+                        <span class="badge-status badge-bloqueado">
+                            <svg class="dot" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3.33" y="7.33" width="9.33" height="6.67" rx="1.33" stroke="currentColor" stroke-width="1.2"/><path d="M5.33 7.33V5.33a2.67 2.67 0 015.34 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                            Bloqueado
+                        </span>
+                        <div class="card-bottom">
+                            <div class="card-info">
+                                <span class="badge-docs">
+                                    <img src="assets/doc-duplicate.svg" alt="">
+                                    Prepara estos documentos
+                                </span>
+                                <div class="card-text">
+                                    <h3>Operación y monitoreo</h3>
+                                    <p>Monitorea el rendimiento de tu comunidad energética en tiempo real. Accede a métricas de generación y consumo.</p>
+                                </div>
+                            </div>
+                            <img class="card-arrow" src="assets/arrow-circle-up-right.svg" alt="">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5: Reportes - Bloqueado -->
+                <a href="#" class="card-link blocked">
+                    <img class="card-bg" src="assets/card-bg.png" alt="">
+                    <div class="card-overlay"></div>
+                    <div class="card-content with-badge">
+                        <span class="badge-status badge-bloqueado">
+                            <svg class="dot" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3.33" y="7.33" width="9.33" height="6.67" rx="1.33" stroke="currentColor" stroke-width="1.2"/><path d="M5.33 7.33V5.33a2.67 2.67 0 015.34 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                            Bloqueado
+                        </span>
+                        <div class="card-bottom">
+                            <div class="card-info">
+                                <span class="badge-docs">
+                                    <img src="assets/doc-duplicate.svg" alt="">
+                                    Prepara estos documentos
+                                </span>
+                                <div class="card-text">
+                                    <h3>Reportes</h3>
+                                    <p>Genera reportes oficiales y documentación para entidades reguladoras. Descarga informes de avance de tu comunidad.</p>
+                                </div>
+                            </div>
+                            <img class="card-arrow" src="assets/arrow-circle-up-right.svg" alt="">
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <!-- Left Column -->
+            <div class="footer-left">
+                <div class="footer-logo-area">
+                    <img src="assets/footer-logo-2.svg" alt="Universidad Pontificia Bolivariana">
+                </div>
+
+                <p class="footer-institutional">
+                    Universidad sujeta a inspección y vigilancia por el Ministerio de Educación Nacional.<br>
+                    Otorgado por el Ministerio de Educación Nacional.<br>
+                    Nit UPB: 890.902.922-6.<br>
+                    Acreditación Institucional de Alta Calidad Multicampus.<br><br>
+                    © Todos los derechos reservados, 2025
+                </p>
+
+                <button class="btn-contacto-footer">
+                    Ver todos los canales de contacto
+                </button>
+
+                <h3 class="footer-sedes-title">Conoce nuestras sedes</h3>
+                <div class="footer-divider"></div>
+
+                <!-- Sedes Row 1 -->
+                <div class="sedes-grid">
+                    <div class="sede-card">
+                        <h4>Sede Medellín</h4>
+                        <p>Campus Laureles: Circular 1a 70-01<br>Campus Robledo: Calle 78 B # 72 A 109</p>
+                        <div class="sede-contact">
+                            <a href="tel:+576044488388">📞 +57 604 448 83 88</a>
+                            <a href="https://wa.me/573136035630">💬 313 603 56 30</a>
+                            <a href="mailto:asesoria.integral@upb.edu.co">✉️ asesoria.integral@upb.edu.co</a>
+                        </div>
+                    </div>
+                    <div class="sede-card">
+                        <h4>Sede Montería</h4>
+                        <p>Campus Laureles: Circular 1a 70-01<br>Campus Robledo: Calle 78 B # 72 A 109</p>
+                        <div class="sede-contact">
+                            <a href="tel:+576044488388">📞 +57 604 448 83 88</a>
+                            <a href="https://wa.me/573136035630">💬 313 603 56 30</a>
+                            <a href="mailto:asesoria.integral@upb.edu.co">✉️ asesoria.integral@upb.edu.co</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sedes Row 2 -->
+                <div class="sedes-grid-bottom">
+                    <div class="sede-card">
+                        <h4>Sede Bucaramanga</h4>
+                        <p>Campus Universitario Km 7 vía Piedecuesta</p>
+                        <div class="sede-contact">
+                            <a href="tel:+576076796220">📞 +57 607 6796220</a>
+                            <a href="mailto:info@upb.edu.co">✉️ info@upb.edu.co</a>
+                        </div>
+                    </div>
+                    <div class="sede-card">
+                        <h4>Sede Palmira</h4>
+                        <p>Kilómetro 1 Vía Tienda Nueva</p>
+                        <div class="sede-contact">
+                            <a href="tel:+576022660040">📞 +57 602 266 00 40</a>
+                            <a href="https://wa.me/573106126849">💬 310 6126849 – 3104532540</a>
+                            <a href="mailto:atencionintegral.pal@upb.edu.co">✉️ atencionintegral.pal@upb.edu.co</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="footer-right">
+                <h4 class="footer-right-title">De tu interés</h4>
+                <div class="footer-divider-right"></div>
+                <div class="footer-links">
+                    <a href="#">Repositorio institucional</a>
+                    <a href="#">Preguntas frecuentes</a>
+                    <a href="#">Derechos pecuniarios Medellín</a>
+                    <a href="#">Derechos pecuniarios Seccional Bucaramanga</a>
+                    <a href="#">Derechos pecuniarios Seccional Palmira</a>
+                    <a href="#">Derechos pecuniarios Seccional Montería</a>
+                    <a href="#">Normas Institucionales</a>
+                    <a href="#">PQRSF</a>
+                </div>
+
+                <h4 class="footer-right-title">Legales</h4>
+                <div class="footer-divider-right"></div>
+                <div class="footer-links">
+                    <a href="#">Normatividad y reglamentos</a>
+                    <a href="#">Estatutos generales</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Política de seguridad de información</a>
+                    <a href="#">Términos y condiciones UPB Digital</a>
+                    <a href="#">Términos y Condiciones AsistAM</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
